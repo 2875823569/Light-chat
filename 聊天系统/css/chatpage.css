@@ -9,7 +9,7 @@ body{
 .header{
     width: 100vw;
     height: 1.6rem /* 60/37.5 */;
-    background-color: aqua;
+    background-color: rgb(55,152,255);
 }
 .iconfont.iconfont{
     color: aliceblue;
@@ -22,7 +22,7 @@ body{
 .rightbtn{
     float: right;
 }
-.buttom{
+.buttombox{
     width: 100vw;
     position: absolute;
     bottom: 0;
@@ -33,12 +33,24 @@ body{
     margin: .266667rem /* 10/37.5 */;
     border-radius: .4rem /* 15/37.5 */;
     border: 1px solid rgb(229,229,229);
-    /* border-style: none; */
+}
+.mesbox{
+    width: 100%;
+    position: absolute;
+    height: 83vh;
+    background-color: rgb(229,229,229);
 }
 .send{
     padding: .133333rem /* 5/37.5 */;
     border: 1px solid white;
-    background-color: aqua;
+    background-color: rgb(135, 241, 248);
     border-radius: 1.2rem /* 45/37.5 */;
     color: white;
+}
+.userid{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.6rem /* 60/37.5 */;
+    vertical-align: middle;
 }

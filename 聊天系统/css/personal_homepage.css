@@ -1,0 +1,107 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.backg{
+    /* background-color: gold; */
+    height: 100%;
+    width: 100%;
+    background: url("../img/winxp.jpg") no-repeat;
+    background-size:cover;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.left_home {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all .3s linear;
+    font-size: medium;
+    /* left: -100%; */
+}
+
+.left_le {
+    width: 70%;
+    height: 100%;
+    border-right: 1px solid;
+    background-color: white;
+}
+
+.left_ri {
+    opacity: 0;
+    width: 30%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.left_top{
+    width: 100%;
+    height: 30%;
+    border-bottom: 1px solid;
+}
+
+#avatar{
+    position: relative;
+    top: 60px;
+    margin-left: 20px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.backg ul{
+    color: white;
+    font-size: 16px;
+    margin-left: 110px;
+    margin-top: -35px;
+}
+
+.backg ul li:nth-of-type(1){
+    font-size: 20px;
+}
+
+.left_bottom{
+    width: 99%;
+    height: 70%;
+}
+
+.left_bottom ul{
+    width: 100%;
+    height: 100%;
+}
+
+.left_bottom ul li{
+    height: 30px;
+    background-color: white;
+    line-height: 30px;
+    /* border: 1px solid; */
+}
+.left_bottom ul li img:nth-of-type(2){
+    float: right;
+    margin-top: 10px;
+    width:10px;
+    height:10px;
+}
+
+.left_bottom ul li img:nth-of-type(1){
+    float: left;
+    margin-top: 10px;
+    width:10px;
+    height:10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.left_bottom ul li:nth-of-type(1){
+    margin-top: 10px;
+}

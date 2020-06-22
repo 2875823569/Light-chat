@@ -39,7 +39,21 @@ $(".add_btn").click(function(){
 
 
 //------------------------------------------------个人信息界面--------------------------------------------------------------
-$(".head_img").click(function(){
-    console.log(111)
+//获取元素
+var left_home = $(".left_home")
+var left_le = $(".left_le")
+var left_ri = $(".left_ri")
+
+//获取大框宽度
+var ri_width = -$(".left_home").width()
+
+//点击滑出
+$(".head_img").mousedown(function () {
+    left_home.css("left", "0")
+})
+
+//左滑隐藏
+left_ri.mousedown(function () {
+    left_home.css("left", `${ri_width}px`)
 })
 
