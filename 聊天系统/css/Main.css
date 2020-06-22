@@ -20,7 +20,7 @@ ul, li {
   .out .main {
     font-size: 16px; }
     .out .main .top {
-      position: relative;
+      position: fixed;
       background-image: url(../img/顶部.jpg);
       background-size: 100%;
       width: 100vw;
@@ -131,7 +131,7 @@ ul, li {
       height: 1.5em;
       border-radius: .5rem;
       outline: none;
-      margin-top: .1rem;
+      margin: .9rem .36rem 0 .36rem;
       background-color: #f5f6fa;
       border: 1px solid #f5f6fa;
       text-align: center; }
@@ -147,7 +147,7 @@ ul, li {
         width: 100%;
         height: .5rem;
         display: flex;
-        margin: .1rem 0; }
+        margin-bottom: .2rem; }
         .out .main .notice_area .notice_infomation > img {
           width: .5rem;
           height: .5rem;
@@ -158,9 +158,25 @@ ul, li {
           .out .main .notice_area .notice_infomation .notice_left .notice_information {
             display: flex;
             justify-content: space-between; }
-            .out .main .notice_area .notice_infomation .notice_left .notice_information .notice_container {
-              font-size: 14px; }
+            .out .main .notice_area .notice_infomation .notice_left .notice_information .uname {
+              font-size: 17px;
+              font-weight: 500; }
             .out .main .notice_area .notice_infomation .notice_left .notice_information .send_time {
               font-size: 12px; }
+          .out .main .notice_area .notice_infomation .notice_left .notice_container {
+            font-size: 14px;
+            width: 88%;
+            text-overflow: ellipsis;
+            display: inline-block; }
+          .out .main .notice_area .notice_infomation .notice_left .notice_num {
+            min-width: .2rem;
+            height: .2rem;
+            display: inline-block;
+            background: #8080809e;
+            text-align: center;
+            line-height: .2rem;
+            border-radius: 10px;
+            color: #ffffffbd;
+            font-size: 12px; }
 
 /*# sourceMappingURL=Main.css.map */

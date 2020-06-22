@@ -7,18 +7,26 @@ $browser-default-font-size:108px;
 }
 .register_window  h2{
   text-align: center;
+
 }
 #regist_password{
-  margin:.1rem 0;
+  //margin:.1rem 0;
 }
 #regist_nickname{
-  background-color: rgba(77, 118, 148, 0.6);
+  margin: .1rem 0;
+  //background-color: rgba(77, 118, 148, 0.6);
 }
 #regist_btn{
   font-size: .4rem;
   text-align: center;
   display: block;
-  background-color: darkslategrey;
+  background-color: #c2c3c8;
   border-radius: .6rem;
-  margin-top: .7rem;
+  margin-top: .5rem;
+}
+.top i{
+  font-size: .25rem;
+  position: relative;
+  top: -68px;
+  color: gray;
 }

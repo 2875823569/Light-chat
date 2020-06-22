@@ -25,7 +25,7 @@ ul,li{
   .main{
     font-size: 16px;
     .top{
-      position: relative;
+      position: fixed;
       background-image: url(../img/顶部.jpg);
       background-size: 100%;
       width: 100vw;
@@ -170,7 +170,7 @@ ul,li{
       height: 1.5em;
       border-radius: .5rem;
       outline: none;
-      margin-top: .1rem;
+      margin: .9rem .36rem 0 .36rem;
       background-color: rgb(245,246,250);
       border: 1px solid rgb(245,246,250);
       text-align: center;
@@ -190,7 +190,7 @@ ul,li{
         width: 100%;
         height: .5rem;
         display: flex;
-        margin: .1rem 0;
+        margin-bottom: .2rem;
         //outline: 1px solid;
 
         >img{
@@ -209,14 +209,31 @@ ul,li{
             display: flex;
             justify-content: space-between;
 
-            .notice_container{
-              font-size: 14px;
+            .uname{
+              font-size: 17px;
+              font-weight: 500;
             }
 
             .send_time{
               font-size: 12px;
             }
-
+          }
+          .notice_container{
+            font-size: 14px;
+            width: 88%;
+            text-overflow: ellipsis;
+            display: inline-block;
+          }
+          .notice_num{
+            min-width: .2rem;
+            height: .2rem;
+            display: inline-block;
+            background: #8080809e;
+            text-align: center;
+            line-height: .2rem;
+            border-radius: 10px;
+            color: #ffffffbd;
+            font-size: 12px;
           }
         }
 

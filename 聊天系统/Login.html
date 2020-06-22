@@ -14,49 +14,41 @@
 <body>
     <div class="out">
         <div class="main loading_window">
-                <div class="top">
-                    <h2>Hi,</h2>
-                    <h2>欢迎使用</h2>
-                </div>
+<!--                <div class="top">-->
+<!--                    <h2>Hi,</h2>-->
+<!--                    <h2>欢迎使用</h2>-->
+<!--                </div>-->
                 <div class="middle">
                     <div class="loading">
                         <img src="img/用户.png" alt="">
-                        <input type="text" id="uername" placeholder="请输入您的手机号/昵称/邮箱" value="">
+                        <input type="text" id="uername" placeholder="账号" value="">
                     </div>
                     <div class="loading">
                         <img src="img/密码.png" id="#password" alt="">
-                        <input type="password" id="password" placeholder="请输入您的密码" value="" name="password">
+                        <input type="password" id="password" placeholder="密码" value="" name="password">
                     </div>
-                    <div class="loading" id="loading">
-                        立即登陆
-                    </div>
-                    <p>还没有账号？点击<a href="#" id="register_btn" class="reg">立即注册</a></p>
+                    <div class="loading loading_btn" id="loading"></div>
                 </div>
                 <div class="footer">
-                    <a>更多登陆方式</a>
-                    <div class="logo">
-                        <i class="iconfont icon-weibo"></i>
-                        <i class="iconfont icon-weixin"></i>
-                        <i class="iconfont icon-qq1"></i>
-                    </div>
+                    <span class="forget_password">忘记密码</span>
+                    <span class="open_register_btn" id="open_register_btn">立即注册</span>
                 </div>
-        </div>
+                </div>
         <div class="main register_window">
             <div class="top">
                 <i class="iconfont icon-jiantouzuoxi"></i>
-                <h2>注册</h2>
             </div>
             <div class="middle">
                 <label class="loading" id="regist_name">
                     <img src="img/用户.png" alt="">
                     <input type="text" placeholder="请输入您的用户名" value="">
                 </label>
-                    <label class="loading" id="regist_password">
+                <label class="loading" id="regist_password">
                     <img src="img/密码.png" alt="">
                     <input type="text" placeholder="请输入您的密码" value="">
                 </label>
                 <label class="loading" id="regist_nickname">
-                    <img src="img/用户.png" alt="" style="margin-left: .5rem;">
+                    <img src="img/用户.png" alt="">
                     <input type="text"  placeholder="请输入您的昵称" value="" >
                 </label>
                 <label class="loading" id="regist_headimg">

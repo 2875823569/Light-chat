@@ -51,7 +51,8 @@ $(".register_window .icon-jiantouzuoxi").click(function () {
 })
 
 
-$("#register_btn").click(function(){
+$(".footer").on("click","#open_register_btn",function(){
+    console.log(123)
     $(".loading_window").toggle("slow")
     $(".register_window").toggle("slow")
 })
