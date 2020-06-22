@@ -7,7 +7,7 @@ body{
     background-color: rgb(229,229,229);
 }
 .header{
-    width: 100vw;
+    width: 10rem;
     height: 1.6rem /* 60/37.5 */;
     background-color: rgb(55,152,255);
 }
@@ -23,7 +23,7 @@ body{
     float: right;
 }
 .buttombox{
-    width: 100vw;
+    width: 10rem;
     position: absolute;
     bottom: 0;
 }
@@ -35,7 +35,7 @@ body{
     border: 1px solid rgb(229,229,229);
 }
 .mesbox{
-    width: 100%;
+    width: 10rem;
     position: absolute;
     height: 83vh;
     background-color: rgb(229,229,229);
@@ -53,4 +53,44 @@ body{
     transform: translateX(-50%);
     line-height: 1.6rem /* 60/37.5 */;
     vertical-align: middle;
+}
+.mybox{
+    background-color: antiquewhite;
+    display: inline;
+    border-radius: .266667rem /* 10/37.5 */;
+    /* right: 0; */
+    display: block;
+    padding: .133333rem /* 5/37.5 */;
+}
+.mybox::after{
+    content: "";
+    width: 0;
+    height: 0;
+    right: -15px;
+    position: absolute;
+    border: 8px solid transparent;
+    border-left-color: antiquewhite;
+}
+.headlogo{
+    
+    border-radius: 50%;
+    display: inline-block;
+}
+.sendb{
+    /* width: 50px; */
+    height: 1.6rem /* 60/37.5 */;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    padding: .4rem /* 15/37.5 */;
+    /* float: right; */
+}
+.nickname{
+    display: inline-block;
+    
+}
+.leftmm{
+    display: inline-block;
+    position: relative;
+
 }

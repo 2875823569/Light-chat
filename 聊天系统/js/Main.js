@@ -25,6 +25,8 @@ $(".add_btn").click(function(){
         datatype:"JSON",
         success:(function (msg) {
             alert(msg.msg)
+            console.log(msg);
+            
         }),
         err:(function (msg) {
             console.log(msg)
