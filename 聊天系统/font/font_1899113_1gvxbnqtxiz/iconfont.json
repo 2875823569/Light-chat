@@ -1,0 +1,23 @@
+{
+  "id": "1899113",
+  "name": "啊啊",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "430539",
+      "name": "左箭头",
+      "font_class": "arrow-left",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "5651485",
+      "name": "汉堡菜单",
+      "font_class": "hanbaocaidan",
+      "unicode": "e675",
+      "unicode_decimal": 58997
+    }
+  ]
+}
