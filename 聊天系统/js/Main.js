@@ -12,6 +12,7 @@ $(".icon-shizi").click(function () {
 })
 //申请好友
 $(".add_btn").click(function(){
+
     //申请好友
     $.ajax({
         url:"http://118.24.25.7/chat_api/interface/addFriend.php",

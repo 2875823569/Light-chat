@@ -115,6 +115,8 @@ ul, li {
         width: 2rem;
         height: 2.5rem;
         right: 0; }
+        .out .main .top .hidden_rigth_display ul {
+          overflow: inherit; }
       .out .main .top .hidden_rigth:after {
         content: "";
         position: absolute;
