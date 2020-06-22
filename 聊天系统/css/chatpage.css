@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+body{
+    background-color: rgb(229,229,229);
+}
+.header{
+    width: 100vw;
+    height: 1.6rem /* 60/37.5 */;
+    background-color: aqua;
+}
+.iconfont.iconfont{
+    color: aliceblue;
+    font-size: .96rem /* 36/37.5 */;
+    margin: .266667rem /* 10/37.5 */;
+}
+.leftbtn{
+    float: left;
+}
+.rightbtn{
+    float: right;
+}
+.buttom{
+    width: 100vw;
+    position: absolute;
+    bottom: 0;
+}
+.textbox{
+    width: 80%;
+    height: .8rem /* 30/37.5 */;
+    margin: .266667rem /* 10/37.5 */;
+    border-radius: .4rem /* 15/37.5 */;
+    border: 1px solid rgb(229,229,229);
+    /* border-style: none; */
+}
+.send{
+    padding: .133333rem /* 5/37.5 */;
+    border: 1px solid white;
+    background-color: aqua;
+    border-radius: 1.2rem /* 45/37.5 */;
+    color: white;
+}
