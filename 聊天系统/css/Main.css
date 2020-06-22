@@ -1,0 +1,139 @@
+@charset "UTF-8";
+* {
+  padding: 0;
+  margin: 0; }
+
+ul, li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+@font-face {
+  font-family: 'iconfont';
+  /* project id 1898437 */
+  src: url("//at.alicdn.com/t/font_1898437_izt0yre64fj.eot");
+  src: url("//at.alicdn.com/t/font_1898437_izt0yre64fj.eot?#iefix") format("embedded-opentype"), url("//at.alicdn.com/t/font_1898437_izt0yre64fj.woff2") format("woff2"), url("//at.alicdn.com/t/font_1898437_izt0yre64fj.woff") format("woff"), url("//at.alicdn.com/t/font_1898437_izt0yre64fj.ttf") format("truetype"), url("//at.alicdn.com/t/font_1898437_izt0yre64fj.svg#iconfont") format("svg"); }
+.out {
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden; }
+  .out .main {
+    font-size: 16px; }
+    .out .main .top {
+      position: relative;
+      background-image: url(../img/顶部.jpg);
+      background-size: 100%;
+      width: 100vw;
+      height: .8rem; }
+      .out .main .top .time {
+        font-size: 12px;
+        position: absolute;
+        color: rgba(255, 255, 255, 0.5);
+        right: .1rem;
+        top: .05rem; }
+      .out .main .top .head_img {
+        width: .35rem;
+        height: .35rem;
+        border-radius: 50%;
+        float: left;
+        margin-top: .8rem;
+        transform: translate(50%, -120%); }
+      .out .main .top > i {
+        font-size: .2rem;
+        float: right;
+        margin-top: .4rem;
+        margin-right: .1rem; }
+      .out .main .top .shizi_isclicked {
+        transition: .3s;
+        transform: rotate(45deg); }
+      .out .main .top .hidden_rigth {
+        position: absolute;
+        width: 0;
+        height: 0;
+        transition: .3s;
+        background-color: #f9f8f8;
+        right: 0;
+        top: .9rem; }
+        .out .main .top .hidden_rigth ul {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: flex-start;
+          height: 100%;
+          padding: 0 .2rem;
+          width: 2rem; }
+          .out .main .top .hidden_rigth ul li {
+            display: flex;
+            /* justify-content: space-around; */
+            font-size: .2rem;
+            width: 1.6rem;
+            line-height: 0.5rem;
+            border-radius: .15rem;
+            position: relative; }
+            .out .main .top .hidden_rigth ul li .addfriend_box {
+              position: absolute;
+              right: 110%;
+              top: 50%;
+              transition: .3s;
+              transform: translateY(-50%);
+              width: 0;
+              height: 0;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+              align-items: center;
+              background: #f3f3f3;
+              overflow: hidden;
+              border-radius: .15rem; }
+              .out .main .top .hidden_rigth ul li .addfriend_box .add_input {
+                width: 1.5rem;
+                height: .25rem;
+                border: 1px solid gray;
+                border-radius: 10px;
+                text-align: center;
+                outline: none; }
+              .out .main .top .hidden_rigth ul li .addfriend_box .add_input::placeholder {
+                color: #333333;
+                text-align: center; }
+              .out .main .top .hidden_rigth ul li .addfriend_box .add_btn {
+                outline: none;
+                border-radius: .1rem;
+                background: #cec9c9;
+                width: .6rem;
+                height: .25rem;
+                border: 1px solid #cec9c9; }
+            .out .main .top .hidden_rigth ul li p {
+              text-indent: 1em; }
+          .out .main .top .hidden_rigth ul li:hover {
+            background: #f3f3f3; }
+            .out .main .top .hidden_rigth ul li:hover .addfriend_box.addfriend_box.addfriend_box {
+              width: 100%;
+              height: .8rem;
+              border: 1px solid white; }
+      .out .main .top .hidden_rigth_display {
+        width: 2rem;
+        height: 2.5rem; }
+      .out .main .top .hidden_rigth:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-bottom-color: #f9f8f8;
+        top: 0;
+        left: 1.68rem;
+        transform: translateY(-100%); }
+    .out .main .search {
+      width: 80%;
+      height: 1.5em;
+      border-radius: .5rem;
+      outline: none;
+      margin-top: .1rem;
+      background-color: #f5f6fa;
+      border: 1px solid #f5f6fa;
+      text-align: center; }
+    .out .main .search::placeholder {
+      font-size: 14px;
+      line-height: 1.5em; }
+
+/*# sourceMappingURL=%E9%A6%96%E9%A1%B5.css.map */

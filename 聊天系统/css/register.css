@@ -1,0 +1,21 @@
+.register_window {
+  display: none; }
+
+.register_window h2 {
+  text-align: center; }
+
+#regist_password {
+  margin: .1rem 0; }
+
+#regist_nickname {
+  background-color: rgba(77, 118, 148, 0.6); }
+
+#regist_btn {
+  font-size: .4rem;
+  text-align: center;
+  display: block;
+  background-color: darkslategrey;
+  border-radius: .6rem;
+  margin-top: .7rem; }
+
+/*# sourceMappingURL=%E6%B3%A8%E5%86%8C%E7%95%8C%E9%9D%A2.css.map */

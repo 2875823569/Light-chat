@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆</title>
+<!--    ﻿<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <link rel="stylesheet" href="css/Login.css">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_1837326_68xgxlax9a.css">
+    <script src="js/checkScreen.js"></script>
+    <script src="js/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="out">
+        <div class="main loading_window">
+                <div class="top">
+                    <h2>Hi,</h2>
+                    <h2>欢迎使用</h2>
+                </div>
+                <div class="middle">
+                    <div class="loading">
+                        <img src="img/用户.png" alt="">
+                        <input type="text" id="uername" placeholder="请输入您的手机号/昵称/邮箱" value="">
+                    </div>
+                    <div class="loading">
+                        <img src="img/密码.png" id="#password" alt="">
+                        <input type="password" id="password" placeholder="请输入您的密码" value="" name="password">
+                    </div>
+                    <div class="loading" id="loading">
+                        立即登陆
+                    </div>
+                    <p>还没有账号？点击<a href="#" id="register_btn" class="reg">立即注册</a></p>
+                </div>
+                <div class="footer">
+                    <a>更多登陆方式</a>
+                    <div class="logo">
+                        <i class="iconfont icon-weibo"></i>
+                        <i class="iconfont icon-weixin"></i>
+                        <i class="iconfont icon-qq1"></i>
+                    </div>
+                </div>
+        </div>
+        <div class="main register_window">
+            <div class="top">
+                <i class="iconfont icon-jiantouzuoxi"></i>
+                <h2>注册</h2>
+            </div>
+            <div class="middle">
+                <label class="loading" id="regist_name">
+                    <img src="img/用户.png" alt="">
+                    <input type="text" placeholder="请输入您的用户名" value="">
+                </label>
+                    <label class="loading" id="regist_password">
+                    <img src="img/密码.png" alt="">
+                    <input type="text" placeholder="请输入您的密码" value="">
+                </label>
+                <label class="loading" id="regist_nickname">
+                    <img src="img/用户.png" alt="">
+                    <input type="text"  placeholder="请输入您的昵称" value="">
+                </label>
+                <label class="loading" id="regist_headimg">
+                    <img src="img/用户.png" alt="">
+                    <input type="text"  placeholder="请输入您的头像" value="">
+                </label>
+            </div>
+            <div class="footer">
+                <span id="regist_btn">注册</span>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="js/Login.js"></script>
+</html>
