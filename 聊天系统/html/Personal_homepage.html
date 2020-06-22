@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <link rel="stylesheet" href="../css/personal_homepage.css">
+</head>
+
+<body>
+    <div class="left_home">
+        <div class="left_le">
+            <div class="left_top">
+                <div class="backg">
+                    <img src="../img/bg.jpg" id="avatar">
+                    <ul>
+                        <li>昵称</li>
+                        <li>等级Lv</li>
+                        <li>签名</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="left_bottom">
+                <ul>
+                    <li><img src="../img/qq我的钱包.png" alt="">我的钱包 <img src="../img/next.png"></li>
+                    <li><img src="../img/qq个性装扮.png" alt="">我的个性装扮 <img src="../img/next.png"></li>
+                    <li><img src="../img/qq情侣空间.png" alt="">我的情侣空间 <img src="../img/next.png"></li>
+                    <li><img src="../img/qq我的收藏.png" alt="">我的收藏 <img src="../img/next.png"></li>
+                    <li><img src="../img/qq我的相册.png" alt="">我的相册 <img src="../img/next.png"></li>
+                    <li><img src="../img/qq我的文件.png" alt="">我的文件 <img src="../img/next.png"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="left_ri"></div>
+    </div>
+</body>
+<script>
+    $(function () {
+        //获取元素
+        var left_home = $(".left_home")
+        var left_le = $(".left_le")
+        var left_ri = $(".left_ri")
+        //获取大框宽度
+        var ri_width = -$(".left_home").width()
+
+        //测试代码，点击滑出
+        $("#li").mousedown(function () {
+            left_home.css("left", "0")
+        })
+
+        //左滑隐藏
+        left_ri.mousedown(function () {
+            left_home.css("left", `${ri_width}px`)
+        })
+    })
+</script>
+
+</html>
