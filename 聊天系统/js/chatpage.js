@@ -95,7 +95,7 @@ function receivemes(){
         })
         .always(function () { })
 }
-receivemes()
+// receivemes()
 
 var lbtn=document.querySelector('.leftbtn');
 lbtn.onclick=function(){
