@@ -46,51 +46,61 @@ function longLoop(url,type,data,callback) {
         url:url,
         type:type,
         dataType:"json",
-        timeout:1000*5,
+        timeout:1000*20,
         data:data,
         success(data){
             callback(data)
         },
         error(data){
-
         },
         complete(){
             longLoop(url,type,data,callback)
         }
     })
+        .always(function () {
+
+        })
 }
 var notic_data = {
     sign_str:sign_str,
     user_id:id
 }
-
+var arr=[]
 longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
     console.log(data)
-    var arr=[]
     for(var i=0;i<data.data.length;i++){
+        var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
+
         if(arr.includes(data.data[i].user_id)){
-            $(".notice_num").html(function (n) {
+            $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
+                console.log($(".notice_num").html())
                 return parseInt($(".notice_num").html())+1;
             })
-            continue;
+            $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
+            $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
+        }else{
+            arr.push(data.data[i].user_id)
+            add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
         }
-        var time = data.data[0].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
-        add_information(time,data.data[0].nickname,data.data[0].head_logo,data.data[0].message)
-
+        
+        $(".notice_area").on("click",".notice_infomation",function () {
+            location.href = 'html/chatpage.html'
+            window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
+        })
     }
   })
 //添加消息的函数
-function add_information(time,uname,head_logo,message) {
+function add_information(time,uname,head_logo,message,user_id) {
     $(".notice_area").html(function(n){
-        return $(".notice_area").html()+`<div class="notice_infomation">
+        return $(".notice_area").html()+`<div class="notice_infomation" user_id=${user_id}>
                     <img src="http://118.24.25.7/chat_api${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
                         <div class="notice_information">
                             <p class="uname">${uname}</p>
-                            <p class="send_time">${time}</p>
+                            <p class="send_time" user_id=${user_id}>${time}</p>
                         </div>
-                        <div class="notice_container">${message}</div>
-                        <span class="notice_num">1</span>
+                        <div class="notice_container" user_id=${user_id}>${message}</div>
+                        <span class="notice_num" user_id=${user_id}>1</span>
                     </div>
                 </div>`
     })

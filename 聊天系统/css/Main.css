@@ -155,13 +155,13 @@ ul, li {
         .out .main .notice_area .notice_infomation .notice_left {
           flex: 1;
           padding: 0 .1rem; }
-          .out .main .notice_area .notice_infomation .notice_left .notice_information {
+          .out .main .notice_area .notice_infomation .notice_left .notice_information1 {
             display: flex;
             justify-content: space-between; }
-            .out .main .notice_area .notice_infomation .notice_left .notice_information .uname {
+            .out .main .notice_area .notice_infomation .notice_left .notice_information1 .uname {
               font-size: 17px;
               font-weight: 500; }
-            .out .main .notice_area .notice_infomation .notice_left .notice_information .send_time {
+            .out .main .notice_area .notice_infomation .notice_left .notice_information1 .send_time {
               font-size: 12px; }
           .out .main .notice_area .notice_infomation .notice_left .notice_container {
             font-size: 14px;
