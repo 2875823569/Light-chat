@@ -3,6 +3,8 @@ var mesbox = document.querySelector('.mesbox');
 var mes = document.querySelector('.textbox');
 var userData = localStorage.getItem("userData");
 var friendid=localStorage.getItem('friend_id');
+var nick_name=localStorage.getItem('nick_name');
+console.log(nick_name)
 userData = JSON.parse(userData);
 var click = localStorage.getItem("click")
 clickfriend = JSON.parse(click);
