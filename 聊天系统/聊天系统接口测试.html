@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天系统</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <!-- <script src="../../框架/jquery-3.4.1/jquery-3.4.1.min.js"></script> -->
+</head>
+<body>
+
+</body>
+<script>
+    // 注册用户接口
+    // $.ajax({
+    //     url:"http://118.24.25.7/chat_api/interface/reg.php",
+    //     type:"POST",
+    //     data:{
+    //         username:"lanjingxin",
+    //         password:"123456",
+    //         nickname:"kj"
+    //
+    //     },
+    //     success:(function (mes) {
+    //         console.log(mes)
+    //     })
+    // })
+    var sign_str = "";
+    var id = "";
+    var username = ""
+    var nick_name = ""
+    //登陆接口
+    $.ajax({
+        url:"http://118.24.25.7/chat_api/interface/login.php",
+        type:"POST",
+        data:{
+            username:"koujing",
+            password:"123456"
+        },
+        datatype:"json",
+        success:(function(msg){
+                sign_str = msg.data.sign_str;
+                id = msg.data.id
+                username = msg.data.username;
+                nick_name = msg.data.nickname;
+                console.log(sign_str,id,username,nick_name)
+            //获取用户信息
+            // $.ajax({
+            //     url:"http://118.24.25.7/chat_api/interface/getSearchUsers.php",
+            //     type:"GET",
+            //     data:{
+            //         sign_str:sign_str,
+            //         user_id:"50",
+            //         search_text:nick_name
+            //     },
+            //     datatype:"JSON",
+            //     success:(function (msg) {
+            //         console.log(msg)
+            //     })
+            // })
+
+            sendmessage(sign_str,id,"8","你好")
+            //接收消息
+            //
+            // data_ = {
+            //     sign_str:sign_str,
+            //     user_id:50
+            // }
+            // longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",data_,function (data) {
+            //     console.log(data)
+            // })
+            }),
+        err:(function (msg) {
+            console.log("连接失败")
+        })
+    })
+
+    //获取所有用户
+    // $.ajax({
+    //     url: "http://118.24.25.7/chat_api/interface/getOnlineUsers.php",
+    //     type: "POST",
+    //     data: {
+    //         sign_str: "a44624bc9723a883a606a17b1c021200",
+    //         user_id: "15",
+    //     },
+    //     success: (function (msg) {
+    //         console.log(msg)
+    //     })
+    // })
+
+    //申请好友
+    // $.ajax({
+    //     url:"http://118.24.25.7/chat_api/interface/addFriend.php",
+    //     type:"POST",
+    //     data:{
+    //         sign_str:"a44624bc9723a883a606a17b1c021200",
+    //         user_id:"15",
+    //         friend_user_id:"8"
+    //     },
+    //         datatype:"JSON",
+    //     success:(function (msg) {
+    //         console.log(msg)
+    //     })
+    // })
+    // //获取好友申请
+    // $.ajax({
+    //     url:"http://118.24.25.7/chat_api/interface/getFriendRequests.php",
+    //     type:"POST",
+    //     data:{
+    //         sign_str:"a44624bc9723a883a606a17b1c021200",
+    //         user_id:"15"
+    //     },
+    //     datatype:"JSON",
+    //     success:(function(mes){
+    //         console.log(mes)
+    // })
+    // })
+
+
+
+
+    //获取好友申请
+    function getapply(sign_str,user_id) {
+        $.ajax({
+            url:"http://118.24.25.7/chat_api/interface/getFriendRequests.php",
+            type:"GET",
+            data:{
+                sign_str:"da9b2929602f7d0983ef0af972e19c01",
+                user_id:localStorage.id,
+            },
+            success:(function (data) {
+                console.log(data)
+            }),
+            err:(function () {
+                console.log("shibai")
+            })
+        })
+    }
+
+    // 处理好友申请
+    // $.ajax({
+    //     url:"http://118.24.25.7/chat_api/interface/processFriendRequest.php",
+    //     type:"POST",
+    //     data:{
+    //         sign_str:"da9b2929602f7d0983ef0af972e19c01",
+    //         user_id:"50",
+    //         from_user_id:"8",
+    //         request_id:"124",
+    //         process_result:"1",
+    //     },
+    //     complete:(function (data) {
+    //         console.log(data)
+    //     })
+    // })
+
+    //长轮询
+    function longLoop(url,type,data,callback) {
+        $.ajax({
+            url:url,
+            type:type,
+            dataType:"json",
+            timeout:1000*5,
+            data:data,
+            success(data){
+                callback(data)
+            },
+            error(){
+                console.log()
+            },
+            complete(){
+                longLoop(url,type,data,callback)
+            }
+        })
+    }
+    // var userdata=localStorage.getItem(msg)
+
+    // 发送消息
+    function sendmessage(sign_str,user_id,receive_user_id,message) {
+        $.ajax({
+            url:"http://118.24.25.7/chat_api/interface/sendMessage.php",
+            type:"POST",
+            data:{
+                sign_str:sign_str,
+                user_id:user_id,
+                receive_user_id:receive_user_id,
+                message:message
+            },
+            success:(function (data) {
+                console.log(data)
+            }),
+            err:(function () {
+                console.log("失败")
+            })
+        })
+    }
+</script>
+</html>
