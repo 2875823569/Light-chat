@@ -10,6 +10,8 @@ body{
     width: 10rem;
     height: 1.6rem /* 60/37.5 */;
     background-color: rgb(55,152,255);
+    position: fixed;
+    z-index: 1;
 }
 .iconfont.iconfont{
     color: aliceblue;
@@ -35,10 +37,12 @@ body{
     border: 1px solid rgb(229,229,229);
 }
 .mesbox{
+    top: 1.6rem /* 60/37.5 */;
     width: 10rem;
     position: absolute;
     height: 83vh;
     background-color: rgb(229,229,229);
+    overflow: scroll;
 }
 .send{
     padding: .133333rem /* 5/37.5 */;
@@ -66,7 +70,7 @@ body{
     content: "";
     width: 0;
     height: 0;
-    right: -15px;
+    right: -10px;
     position: absolute;
     border: 8px solid transparent;
     border-left-color: antiquewhite;
@@ -77,20 +81,27 @@ body{
     display: inline-block;
 }
 .sendb{
-    /* width: 50px; */
     height: 1.6rem /* 60/37.5 */;
     display: inline-block;
     position: absolute;
     right: 0;
-    padding: .4rem /* 15/37.5 */;
-    /* float: right; */
+    padding: .4rem;
 }
 .nickname{
     display: inline-block;
-    
+    position: absolute;
+    top: -.4rem /* -15/37.5 */;
+    right: .133333rem /* 5/37.5 */;
 }
 .leftmm{
     display: inline-block;
     position: relative;
-
+    padding-right: .133333rem /* 5/37.5 */;
+}
+.revb{
+    height: 1.6rem /* 60/37.5 */;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    padding: .4rem;
 }

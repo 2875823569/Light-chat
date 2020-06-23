@@ -1,12 +1,11 @@
 var sendbtn = document.querySelector('.send');
 var mesbox = document.querySelector('.mesbox');
 var mes = document.querySelector('.textbox');
-console.log(mes);
-var userData = localStorage.getItem("userData")
+var userData = localStorage.getItem("userData");
+var friendid=localStorage.getItem('friend_id');
 userData = JSON.parse(userData);
 var click = localStorage.getItem("click")
 clickfriend = JSON.parse(click);
-console.log(clickfriend);
 console.log(userData);
 console.log(localStorage);
 
@@ -22,11 +21,10 @@ function sendmes(){
         data: {
             sign_str: localStorage.sign_str,
             user_id: localStorage.id,
-            receive_user_id: '50',
+            receive_user_id: friendid,
             message: mes.value
         },
         dataType: "JSON",
-        timeout: 3000
     })
         .done(function (res) {
             console.log(res);
@@ -46,7 +44,7 @@ function sendmes(){
                 <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
                 </div><br><br><br>`
                 mesbox.append(p)
-                console.log(localStorage.nickname);
+                // console.log(localStorage.nickname);
                 mes.value=null;
             }else{
                 console.log('发送失败');
@@ -57,6 +55,56 @@ function sendmes(){
 
         })
         .always(function () { })
+}
+
+function receivemes(){
+    $.ajax({
+        url: "http://118.24.25.7/chat_api/interface/getMessages.php",
+        type: "GET",
+        data: {
+            sign_str: localStorage.sign_str,
+            user_id: localStorage.id,
+        },
+        dataType: "JSON",
+        timeout: 3000
+    })
+        .done(function (res) {
+            console.log(res);
+            if(code==0){
+                console.log("接收到消息");  
+                var p = document.createElement('div');
+                // p.style.display="block";
+                p.innerHTML = `<div class="revb">
+                <div class='rightmm'>
+                <div class='nickname'>${localStorage.nickname}</div>
+                <div class='mybox'>${mes.value}</div>
+                </div>
+                <div class="headlogo">
+                <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
+                </div><br><br>`
+                mesbox.append(p)
+                console.log(localStorage.nickname);
+                mes.value=null;
+            }else{
+                console.log(接收失败);
+                
+            }
+        })
+        .fail(function () {
+
+        })
+        .always(function () { })
+}
+receivemes()
+
+var lbtn=document.querySelector('.leftbtn');
+lbtn.onclick=function(){
+    location.href='Main.html'
+}
+
+var rightbtn=document.querySelector('.rightbtn');
+rightbtn.onclick=function(){
+
 }
 
 // 添加好友
