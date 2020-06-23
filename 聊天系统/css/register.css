@@ -1,5 +1,12 @@
+@charset "UTF-8";
 .register_window {
   display: none; }
+  .register_window .middle {
+    margin: .5rem .1rem; }
+    .register_window .middle .loading:nth-of-type(2) {
+      margin: .1rem 0; }
+  .register_window .footer {
+    padding: 0; }
 
 .register_window h2 {
   text-align: center; }
@@ -9,11 +16,14 @@
 
 #regist_btn {
   font-size: .4rem;
-  text-align: center;
   display: block;
-  background-color: #c2c3c8;
-  border-radius: .6rem;
-  margin-top: .5rem; }
+  background-image: url(../img/正确.png);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0;
+  height: .8rem;
+  width: .8rem; }
 
 .top i {
   font-size: .25rem;

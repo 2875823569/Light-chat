@@ -160,7 +160,11 @@ ul, li {
             justify-content: space-between; }
             .out .main .notice_area .notice_infomation .notice_left .notice_information1 .uname {
               font-size: 17px;
-              font-weight: 500; }
+              width: 2.3rem;
+              font-weight: 500;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap; }
             .out .main .notice_area .notice_infomation .notice_left .notice_information1 .send_time {
               font-size: 12px; }
           .out .main .notice_area .notice_infomation .notice_left .notice_container {

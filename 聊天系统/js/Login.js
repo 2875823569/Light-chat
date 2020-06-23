@@ -17,7 +17,7 @@ $("#loading").click(function () {
         // dataType:JSON,
         success:(function (msg) {
             if(msg.msg==="success"){
-                location.href = 'html/Main.html'
+                location.href = 'html/main_box.html'
 
                 var uinformation = [{"id":msg.data.id,"sign_str":msg.data.sign_str,"uname":msg.data.username}]
                 //设置localStorage

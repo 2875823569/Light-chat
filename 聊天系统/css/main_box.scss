@@ -1,0 +1,52 @@
+*{
+  padding:0;
+  margin:0;
+}
+.main{
+  width: 100vw;
+  height: 100vh;
+  font-size:0;
+  overflow: hidden;
+
+  .main_window{
+    width: 100%;
+    height: 90%;
+    border: none;
+  }
+  .footer{
+    width: 100%;
+    height: 10%;
+    //outline: 1px solid;
+
+    .container{
+      width: 100%;
+      height: 100%;
+      //padding: .1rem .2rem;
+      display: flex;
+      color: #999999;
+      background-color: #d5c7c738;
+
+
+    }
+    span{
+      width: 33.33%;
+      height: 100%;
+      //outline: 1px solid;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      i{
+        font-size: 35px;
+      }
+      p{
+        font-size: 12px;
+
+      }
+    }
+    .isclicked{
+      color: rgb(100,212,253);
+    }
+  }
+}

@@ -211,7 +211,11 @@ ul,li{
 
             .uname{
               font-size: 17px;
+              width: 2.3rem;
               font-weight: 500;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
 
             .send_time{

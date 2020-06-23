@@ -71,28 +71,7 @@ var arr_id=[]//存放发信息的id
 longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
     // set_add_information(data.data)
     for(var i=0;i<data.data.length;i++){
-<<<<<<< HEAD
-        var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
-
-        if(arr.includes(data.data[i].user_id)){
-            $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                console.log($(".notice_num").html())
-                return parseInt($(".notice_num").html())+1;
-            })
-            $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
-            $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
-        }else{
-            arr.push(data.data[i].user_id)
-            add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
-        }
-        
-        $(".notice_area").on("click",".notice_infomation",function () {
-            location.href = '../html/chatpage.html'
-            window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
-        })
-=======
         set_add_information(data.data[i])
->>>>>>> 3ed5d412fa3121cd7780803e401e20f8e55861f2
     }
   })
 
@@ -107,7 +86,7 @@ function add_information(time,uname,head_logo,message,user_id) {
                             <p class="send_time" user_id=${user_id} uname=${uname}>${time}</p>
                         </div>
                         <div class="notice_container" user_id=${user_id} uname=${uname}>${message}</div>
-                        <span class="notice_num" user_id=${user_id} uname=${uname}>1</span>
+                        <span class="notice_num" user_id=${user_id} uname=${uname}>0</span>
                     </div>
                 </div>`+$(".notice_area").html()
     })
@@ -120,11 +99,14 @@ function set_add_information(arr_notice) {
             // console.log($(".notice_num").html())
             return parseInt($(`.notice_num[user_id=${arr_notice.user_id}]`).html())+1;
         })
+        $(`.notice_num[user_id=${arr_notice.user_id}]`).css({"display":"inline-block"});
         $(`.notice_container[user_id=${arr_notice.user_id}]`).html(arr_notice.message)
         $(`.send_time[user_id=${arr_notice.user_id}]`).html(time)
+
     }else{
         arr_id.push(arr_notice.user_id)
         add_information(time,arr_notice.nickname,arr_notice.head_logo,arr_notice.message,arr_notice.user_id)
+        $(`.notice_num[user_id=${arr_notice.user_id}]`).html("1");
     }
 
     $(".notice_area").on("click",".notice_infomation",function () {
@@ -161,26 +143,34 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
             user_id:user_id,
             friend_id:friend_id
         },
-        success:(function (data) {
-            // callback(data)
+        success:(function (msg) {
+            callback(msg)
         }),
-        error(data) {
+        error(msg) {
+            console.log(msg)
             console.log("获取失败")
         }
     })
 }
-getchatlist(id,sign_str,50)
 
 // 添加聊天记录到主页上
-// get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (data) {
-//     console.log(11)
-//     for(var i=0;i<data.data.length;i++){
-//         getchatlist(id,sign_str,data.data[i],function (data) {
-//             arr_id.push(data.data.user_id)
-//             set_add_information(data.data[0])
-//         })
-//     }
-// })
+get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (data) {
+    // console.log(11)
+    var friend_list = data.data
+
+    for(let i=0;i<friend_list.length;i++){
+        getchatlist(id,sign_str,friend_list[i].user_id,function (data) {
+            if(!data.data[0]) return;
+
+            var data_list = {"message_send_time":"14:20:06","nickname":friend_list[i].nickname,"user_id":friend_list[i].user_id,
+                "head_logo":friend_list[i].head_logo,"message":data.data[0].message}
+            arr_id.push(friend_list.user_id)
+            // console.log(data.data[0].message)
+            set_add_information(data_list)
+            $(".notice_area .notice_num").css({"display":"none"});
+        })
+    }
+})
 
 // 搜索用户
 //用户按下回车键执行的操作
