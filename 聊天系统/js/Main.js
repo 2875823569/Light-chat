@@ -140,10 +140,9 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
             user_id:user_id,
             friend_id:friend_id
         },
-        success(data) {
-            console.log(data)
-            callback(data)
-        },
+        success:(function (data) {
+            // callback(data)
+        }),
         error(data) {
             console.log("获取失败")
         }
@@ -152,14 +151,15 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
 getchatlist(id,sign_str,50)
 
 // 添加聊天记录到主页上
-get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (data) {
-    arr_id.push(data.data.user_id)
-    for(var i=0;i<arr_id.length;i++){
-        getchatlist(id,sign_str,arr_id[i],function (data) {
-            set_add_information(data.data[0])
-        })
-    }
-})
+// get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (data) {
+//     console.log(11)
+//     for(var i=0;i<data.data.length;i++){
+//         getchatlist(id,sign_str,data.data[i],function (data) {
+//             arr_id.push(data.data.user_id)
+//             set_add_information(data.data[0])
+//         })
+//     }
+// })
 
 // 搜索用户
 //用户按下回车键执行的操作
