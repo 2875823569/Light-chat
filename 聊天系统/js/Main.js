@@ -67,10 +67,11 @@ var notic_data = {
     sign_str:sign_str,
     user_id:id
 }
-var arr=[]
+var arr_id=[]//存放发信息的id
 longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
-    console.log(data)
+    // set_add_information(data.data)
     for(var i=0;i<data.data.length;i++){
+<<<<<<< HEAD
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
 
         if(arr.includes(data.data[i].user_id)){
@@ -89,34 +90,101 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
             location.href = '../html/chatpage.html'
             window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         })
+=======
+        set_add_information(data.data[i])
+>>>>>>> 3ed5d412fa3121cd7780803e401e20f8e55861f2
     }
   })
+
 //添加消息的函数
 function add_information(time,uname,head_logo,message,user_id) {
     $(".notice_area").html(function(n){
-        return $(".notice_area").html()+`<div class="notice_infomation" user_id=${user_id}>
+        return `<div class="notice_infomation" user_id=${user_id} uname=${uname}>
                     <img src="http://118.24.25.7/chat_api${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
-                        <div class="notice_information">
+                        <div class="notice_information1">
                             <p class="uname">${uname}</p>
-                            <p class="send_time" user_id=${user_id}>${time}</p>
+                            <p class="send_time" user_id=${user_id} uname=${uname}>${time}</p>
                         </div>
-                        <div class="notice_container" user_id=${user_id}>${message}</div>
-                        <span class="notice_num" user_id=${user_id}>1</span>
+                        <div class="notice_container" user_id=${user_id} uname=${uname}>${message}</div>
+                        <span class="notice_num" user_id=${user_id} uname=${uname}>1</span>
                     </div>
-                </div>`
+                </div>`+$(".notice_area").html()
+    })
+}
+function set_add_information(arr_notice) {
+    var time = arr_notice.message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
+
+    if(arr_id.includes(arr_notice.user_id)){
+        $(`.notice_num[user_id=${arr_notice.user_id}]`).html(function (n) {
+            // console.log($(".notice_num").html())
+            return parseInt($(`.notice_num[user_id=${arr_notice.user_id}]`).html())+1;
+        })
+        $(`.notice_container[user_id=${arr_notice.user_id}]`).html(arr_notice.message)
+        $(`.send_time[user_id=${arr_notice.user_id}]`).html(time)
+    }else{
+        arr_id.push(arr_notice.user_id)
+        add_information(time,arr_notice.nickname,arr_notice.head_logo,arr_notice.message,arr_notice.user_id)
+    }
+
+    $(".notice_area").on("click",".notice_infomation",function () {
+        location.href = '../html/chatpage.html'
+        window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
+        window.localStorage.setItem('nick_name',this.getAttribute("uname"));
     })
 }
 
+//获取好友列表
+function get_friendlist(url,callback) {
+    $.ajax({
+        url:url,
+        type:"GET",
+        datatype:"json",
+        data:{
+            sign_str:sign_str,
+            user_id:id,
+        },
+        success:(function (data) {
+            callback(data)
+        })
+    })
+}
+
+//获取聊天记录
+function getchatlist(user_id,sign_str,friend_id,callback) {
+    $.ajax({
+        url:"http://118.24.25.7/chat_api/interface/getChatHistory.php",
+        type:"GET",
+        datatype:"json",
+        data:{
+            sign_str:sign_str,
+            user_id:user_id,
+            friend_id:friend_id
+        },
+        success(data) {
+            console.log(data)
+            callback(data)
+        },
+        error(data) {
+            console.log("获取失败")
+        }
+    })
+}
+getchatlist(id,sign_str,50)
+
+// 添加聊天记录到主页上
+get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (data) {
+    arr_id.push(data.data.user_id)
+    for(var i=0;i<arr_id.length;i++){
+        getchatlist(id,sign_str,arr_id[i],function (data) {
+            set_add_information(data.data[0])
+        })
+    }
+})
+
 // 搜索用户
 //用户按下回车键执行的操作
-        function ctlent() {
-            if(event.keyCode === 14) {
-                console.log(123)
-                // document.getElementsByClassName("search")[0].focus() //焦点将移到id为"text"的对象上。
-            }
-        }
-document.onkeydown = ctlent
+
 
 // $.ajax({
 //     url:"http://118.24.25.7/chat_api/interface/getSearchUsers.php",
