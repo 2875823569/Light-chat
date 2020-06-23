@@ -67,28 +67,31 @@ var notic_data = {
     sign_str:sign_str,
     user_id:id
 }
-var arr=[]
-longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
-    console.log(data)
-    for(var i=0;i<data.data.length;i++){
-        var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
 
-        if(arr.includes(data.data[i].user_id)){
-            $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                console.log($(".notice_num").html())
-                return parseInt($(".notice_num").html())+1;
-            })
-            $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
-            $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
-        }else{
-            arr.push(data.data[i].user_id)
-            add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
-        }
-        
-        $(".notice_area").on("click",".notice_infomation",function () {
-            location.href = 'html/chatpage.html'
-            window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
-        })
+longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
+    // set_add_information(data.data)
+    for(var i=0;i<data.data.length;i++){
+        console.log(11)
+        set_add_information(data.data[i])
+
+        // var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
+        //
+        // if(arr.includes(data.data[i].user_id)){
+        //     $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
+        //         console.log($(".notice_num").html())
+        //         return parseInt($(".notice_num").html())+1;
+        //     })
+        //     $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
+        //     $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
+        // }else{
+        //     arr.push(data.data[i].user_id)
+        //     add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
+        // }
+        //
+        // $(".notice_area").on("click",".notice_infomation",function () {
+        //     location.href = '../html/chatpage.html'
+        //     window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
+        // })
     }
   })
 //添加消息的函数
@@ -97,7 +100,7 @@ function add_information(time,uname,head_logo,message,user_id) {
         return $(".notice_area").html()+`<div class="notice_infomation" user_id=${user_id}>
                     <img src="http://118.24.25.7/chat_api${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
-                        <div class="notice_information">
+                        <div class="notice_information1">
                             <p class="uname">${uname}</p>
                             <p class="send_time" user_id=${user_id}>${time}</p>
                         </div>
@@ -108,15 +111,55 @@ function add_information(time,uname,head_logo,message,user_id) {
     })
 }
 
+var arr_id=[]//存放发信息的id
+function set_add_information(arr_notice) {
+    var time = arr_notice.message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
+
+    if(arr_id.includes(arr_notice.user_id)){
+        $(`.notice_num[user_id=${arr_notice.user_id}]`).html(function (n) {
+            console.log($(".notice_num").html())
+            return parseInt($(`.notice_num[user_id=${arr_notice.user_id}]`).html())+1;
+        })
+        $(`.notice_container[user_id=${arr_notice.user_id}]`).html(arr_notice.message)
+        $(`.send_time[user_id=${arr_notice.user_id}]`).html(time)
+    }else{
+        arr_id.push(arr_notice.user_id)
+        add_information(time,arr_notice.nickname,arr_notice.head_logo,arr_notice.message,arr_notice.user_id)
+    }
+
+    $(".notice_area").on("click",".notice_infomation",function () {
+        location.href = '../html/chatpage.html'
+        window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
+    })
+}
+
+
+//获取聊天记录
+function getchatlist(user_id,sign_str,friend_id) {
+    $.ajax({
+        url:"http://118.24.25.7/chat_api/interface/getChatHistory.php",
+        type:"GET",
+        datatype:"json",
+        data:{
+            sign_str:sign_str,
+            user_id:user_id,
+            friend_id:friend_id
+        },
+        success(data) {
+            console.log(data)
+        },
+        error(data) {
+            console.log("获取失败")
+        }
+    })
+}
+// getchatlist(id,sign_str,8)
+//添加聊天记录到主页上
+// add_information(id,username,he)
+
 // 搜索用户
 //用户按下回车键执行的操作
-        function ctlent() {
-            if(event.keyCode === 14) {
-                console.log(123)
-                // document.getElementsByClassName("search")[0].focus() //焦点将移到id为"text"的对象上。
-            }
-        }
-document.onkeydown = ctlent
+
 
 // $.ajax({
 //     url:"http://118.24.25.7/chat_api/interface/getSearchUsers.php",
