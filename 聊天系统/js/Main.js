@@ -86,7 +86,7 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
         }
         
         $(".notice_area").on("click",".notice_infomation",function () {
-            location.href = 'html/chatpage.html'
+            location.href = '../html/chatpage.html'
             window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         })
     }

@@ -15,7 +15,7 @@ body{
 }
 .iconfont.iconfont{
     color: aliceblue;
-    font-size: .96rem /* 36/37.5 */;
+    font-size: .8rem /* 30/37.5 */;
     margin: .266667rem /* 10/37.5 */;
 }
 .leftbtn{
@@ -28,6 +28,7 @@ body{
     width: 10rem;
     position: absolute;
     bottom: 0;
+    background-color: rgb(229,229,229);
 }
 .textbox{
     width: 80%;
@@ -40,7 +41,7 @@ body{
     top: 1.6rem /* 60/37.5 */;
     width: 10rem;
     position: absolute;
-    height: 83vh;
+    height: 84vh;
     background-color: rgb(229,229,229);
     overflow: scroll;
 }
@@ -52,6 +53,8 @@ body{
     color: white;
 }
 .userid{
+    font-size: .64rem /* 24/37.5 */;
+    color: aliceblue;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -99,9 +102,23 @@ body{
     padding-right: .133333rem /* 5/37.5 */;
 }
 .revb{
-    height: 1.6rem /* 60/37.5 */;
     display: inline-block;
-    position: absolute;
-    left: 0;
-    padding: .4rem;
+    /* position: absolute;
+    left: 0; */
+    padding: .266667rem /* 10/37.5 */;
+}
+
+
+.rightmm{
+    display: inline-block;
+    position: relative;
+    padding-right: .133333rem /* 5/37.5 */;
+}
+.mbox{
+    background-color: antiquewhite;
+    display: inline-block;
+    border-radius: .266667rem /* 10/37.5 */;
+    /* right: 0; */
+    display: block;
+    padding: .133333rem /* 5/37.5 */;
 }
