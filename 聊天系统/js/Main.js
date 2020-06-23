@@ -71,7 +71,6 @@ var arr_id=[]//存放发信息的id
 longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
     // set_add_information(data.data)
     for(var i=0;i<data.data.length;i++){
-<<<<<<< HEAD
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
 
         if(arr.includes(data.data[i].user_id)){
@@ -90,9 +89,6 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
             location.href = '../html/chatpage.html'
             window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         })
-=======
-        set_add_information(data.data[i])
->>>>>>> 3ed5d412fa3121cd7780803e401e20f8e55861f2
     }
   })
 

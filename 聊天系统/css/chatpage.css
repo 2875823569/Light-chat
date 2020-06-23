@@ -16,7 +16,7 @@ body{
 .iconfont.iconfont{
     color: aliceblue;
     font-size: .8rem /* 30/37.5 */;
-    margin: .266667rem /* 10/37.5 */;
+    margin: .4rem /* 15/37.5 */;
 }
 .leftbtn{
     float: left;
@@ -92,7 +92,7 @@ body{
 }
 .nickname{
     display: inline-block;
-    position: absolute;
+    /* position: absolute; */
     top: -.4rem /* -15/37.5 */;
     right: .133333rem /* 5/37.5 */;
 }
