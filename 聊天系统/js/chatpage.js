@@ -88,7 +88,7 @@ sendbtn.onclick = function () {
         data: {
             sign_str: localStorage.sign_str,
             user_id: localStorage.id,
-            receive_user_id: 50,
+            receive_user_id: friendid,
             message: mes.value
         },
         dataType: "JSON",
@@ -102,7 +102,7 @@ sendbtn.onclick = function () {
             } else if (res.code == 0) {
                 console.log('发送成功');
                 var p = document.createElement('div');
-                p.innerHTML = `<div class="sendb">
+                p.innerHTML = `<div class="sendb">  
                 <div class='leftmm'>
                 <div class='nickname'>${localStorage.nickname}</div>
                 <div class='mybox'>${mes.value}</div>
