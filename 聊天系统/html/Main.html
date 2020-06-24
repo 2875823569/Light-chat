@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>聊天系统</title>
-    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
     <link rel="stylesheet" href="../css/Main.css">
     <script src="../js/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../css/personal_homepage.css">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_1837326_68xgxlax9a.css">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_1898437_izt0yre64fj.css">
     <script src="../js/checkScreen.js"></script>
-<!--    <link rel="stylesheet" href="../css/Main.css">-->
+    <!-- <link rel="stylesheet" href="../css/Main.scss"> -->
 </head>
+
 <body>
     <div class="out">
         <div class="main">
@@ -39,7 +42,7 @@
                     </ul>
                 </div>
                 <p class="time"></p>
-                    <script>    //设置时间
+                <script>    //设置时间
                     var t = null;
                     t = setTimeout(time, 1000); //開始运行
                     function time() {
@@ -51,8 +54,18 @@
                         t = setTimeout(time, 1000); //设定定时器，循环运行
                     }</script>
             </div>
-            <input type="text" class="iconfont search" placeholder="&#xe616;搜索" onkeypress="ctlent()    " required>
+            <input type="text" class="iconfont search" placeholder="&#xe616;搜索">
             <div class="notice_area">
+                <div class="notice_infomation">
+                    <img src="../img/head_logo.jpg" class="notice_uheadimg">
+                    <div class="notice_left">
+                        <div class="notice_information">
+                            <p class="uname">kj</p>
+                            <p class="send_time">下午1:56</p>
+                        </div>
+                        <div class="notice_container">123456</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -64,9 +77,8 @@
                 <div class="backg">
                     <img src="../img/bg.jpg" id="avatar">
                     <ul>
-                        <li>昵称</li>
-                        <li>等级Lv</li>
-                        <li>签名</li>
+                        <li>用户名：<span></span></li>
+                        <li>昵&nbsp&nbsp&nbsp称：<span></span></li>
                     </ul>
                 </div>
             </div>
@@ -80,9 +92,21 @@
                     <li><img src="../img/qq我的文件.png" alt="">我的文件 <img src="../img/next.png"></li>
                 </ul>
             </div>
+            <div class="change_avatar">
+                <img src="../img/bg.jpg" id="avatar2">
+                <input type="file" id="btn_file">
+                <input type="button" value="确认上传新头像" id="btn_submit" />
+            </div>
+            <div class="login_out">
+                <img src="../img/settings.png" id="log_out">
+            </div>
+            <div class="login_out_slider">
+                <a href="../Login.html"></a>
+            </div>
         </div>
         <div class="left_ri"></div>
     </div>
 </body>
 <script src="../js/Main.js"></script>
+
 </html>
