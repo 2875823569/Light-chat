@@ -217,6 +217,7 @@ var change_avatar = $(".change_avatar")
 var backg = $(".backg")
 var login_out_slider= $(".login_out_slider")
 var login_out =$(".login_out")
+var head_img =$(".head_img")
 
 //获取大框宽度
 var ri_width = -$(".left_home").width()
@@ -248,7 +249,6 @@ login_out_slider.click(function(){
     parent.location.href="../Login.html"
 })
 
-
 //获取用户头像
 $.ajax({
     url: "http://118.24.25.7/chat_api/interface/getHeadImg.php",
@@ -263,8 +263,10 @@ $.ajax({
         //获取的数据显示到页面
         avatar.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
         avatar2.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
+        head_img.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
         backg.children().eq(1).children().eq(0).children().empty().append(username)
         backg.children().eq(1).children().eq(1).children().empty().append(nikename)
+        backg.children().eq(1).children().eq(2).children().empty().append(id)
 
         //上传图片
         btn_submit.click(function () {
@@ -320,6 +322,6 @@ $.ajax({
         })
     },
     error: function () {
-        console.log("fail");
+        console.log("获取头像失败");
     }
 })

@@ -74,8 +74,8 @@ body {
 .backg ul{
     color: #f9f8f8;
     font-size: 16px;
-    /* margin-left: 90px;
-    margin-top: 25px; */
+    /* margin-left: 90px; */
+    margin-top: -10px;
     position: relative;
 }
 
