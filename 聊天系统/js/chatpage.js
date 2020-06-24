@@ -1,10 +1,10 @@
 var sendbtn = document.querySelector('.send');
 var mesbox = document.querySelector('.mesbox');
 var mes = document.querySelector('.textbox');
-var userid=document.querySelector('.userid')
+var userid = document.querySelector('.userid')
 var friendid = window.localStorage.getItem('friend_id');
-var nickname=localStorage.getItem('nick_name')
-userid.innerHTML=`${nickname}`;
+var nickname = localStorage.getItem('nick_name')
+userid.innerHTML = `${nickname}`;
 // console.log(friendid);
 
 
@@ -24,7 +24,13 @@ clickfriend = JSON.parse(click);
 console.log(localStorage);
 
 
-
+function back() {
+    var timer = null;
+    timer = setInterval(function () {
+        location.href = '../Login.html'
+    }, 3000)
+    clearTimeout()
+}
 
 // 接收消息
 function receivemes() {
@@ -38,16 +44,16 @@ function receivemes() {
         dataType: "JSON",
         timeout: 6000
     })
-    .done(function (res) {
-        console.log(res);
+        .done(function (res) {
+            console.log(res);
 
-        if (res.code == 0) {
+            if (res.code == 0) {
 
 
-            var p = document.createElement('div');
-            p.style.display="block";
-            console.log(res.data[0].nickname);
-            p.innerHTML = `<div class="revb">
+                var p = document.createElement('div');
+                p.style.display = "block";
+                console.log(res.data[0].nickname);
+                p.innerHTML = `<div class="revb">
             <div class="headlogo">
             <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
             </div>
@@ -56,26 +62,29 @@ function receivemes() {
             <div class='mbox'>${res.data[0].message}</div>
             </div>
             <br>`
-            mesbox.append(p)
-            console.log(localStorage.nickname);
-            mes.value = null;
-        }else if(res.code==3){
+                mesbox.append(p)
+                var lmessage = localStorage.setItem('p');
+                console.log(lmessage);
+
+                console.log(localStorage.nickname);
+                mes.value = null;
+            } else if (res.code == 3) {
                 var timer = null;
                 timer = setInterval(function () {
                     location.href = '../Login.html'
                 }, 3000)
                 clearTimeout()
-        } 
-        else {
-            console.log('sss');
-        }
-    })
-    .fail(function (res) {
-        console.log(res);
-    })
-    .always(function () {
-        receivemes();
-    })
+            }
+            else {
+                console.log('sss');
+            }
+        })
+        .fail(function (res) {
+            console.log(res);
+        })
+        .always(function () {
+            receivemes();
+        })
 }
 receivemes();
 
@@ -98,6 +107,7 @@ sendbtn.onclick = function () {
 
             if (res.code == 101) {
                 console.log("你不是对方的好友");
+                confirm("你不是对方的好友")
 
             } else if (res.code == 0) {
                 console.log('发送成功');
@@ -111,6 +121,7 @@ sendbtn.onclick = function () {
                 <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
                 </div><br><br><br>`
                 mesbox.append(p)
+
                 // console.log(localStorage.nickname);
                 mes.value = null;
 
@@ -121,6 +132,12 @@ sendbtn.onclick = function () {
         })
         .fail(function (res) {
             if (res.code == 3) {
+                var timer = null;
+                timer = setInterval(function () {
+                    location.href = '../Login.html'
+                }, 3000)
+                clearTimeout()
+            }else{
                 var timer = null;
                 timer = setInterval(function () {
                     location.href = '../Login.html'
