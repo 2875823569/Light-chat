@@ -156,17 +156,9 @@ body {
 
 .login_out_slider{
     position: absolute;
+    display: none;
     width: 70%;
     height: 50px;
     bottom: 50px;
-    background-color: white;
-}
-
-.sanjiao{
-    position: absolute;
-    bottom: 40px;
-    left: 30px;
-    border: 10px solid green;
-    width: 0px;
-    height: 0px;
+    background-color: #e6e6e6;
 }

@@ -33,9 +33,13 @@ $(".add_btn").click(function () {
 })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // <<<<<<< HEAD
 =======
 >>>>>>> ee7cad25c568270ce684bf83c2aa9e195ec0385a
+=======
+=======
+>>>>>>> ecfea06bf4ad3fe578b0b5e0a8a23c83ac487112
 //------------------------------------------------聊天信息界面--------------------------------------------------------------
 //长轮询
 function longLoop(url,type,data,callback) {
@@ -209,9 +213,12 @@ get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (
 // })
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // =======
 // >>>>>>> fde0957610680afa41f37a76a473ca1f80138227
 =======
+=======
+>>>>>>> ecfea06bf4ad3fe578b0b5e0a8a23c83ac487112
 >>>>>>> ee7cad25c568270ce684bf83c2aa9e195ec0385a
 //------------------------------------------------个人信息界面--------------------------------------------------------------
 //获取元素
@@ -224,6 +231,8 @@ var btn_file = $("#btn_file")
 var btn_submit = $("#btn_submit")
 var change_avatar = $(".change_avatar")
 var backg = $(".backg")
+var login_out_slider= $(".login_out_slider")
+var login_out =$(".login_out")
 
 //获取大框宽度
 var ri_width = -$(".left_home").width()
@@ -249,6 +258,14 @@ left_ri.click(function () {
 avatar.click(function () {
     change_avatar.slideToggle("slow")
 })
+login_out.click(function(){
+    login_out_slider.slideToggle("slow")
+})
+
+$("#login_outt").click(function(){
+    parent.location.href="../Login.html"
+})
+
 
 //获取用户头像
 $.ajax({
