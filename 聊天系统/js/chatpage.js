@@ -27,57 +27,57 @@ console.log(localStorage);
 
 
 // 接收消息
-// function receivemes() {
-//     $.ajax({
-//         url: 'http://118.24.25.7/chat_api/interface/getMessages.php',
-//         type: "GET",
-//         data: {
-//             sign_str: localStorage.sign_str,
-//             user_id: localStorage.id,
-//         },
-//         dataType: "JSON",
-//         timeout: 6000
-//     })
-//     .done(function (res) {
-//         console.log(res);
+function receivemes() {
+    $.ajax({
+        url: 'http://118.24.25.7/chat_api/interface/getMessages.php',
+        type: "GET",
+        data: {
+            sign_str: localStorage.sign_str,
+            user_id: localStorage.id,
+        },
+        dataType: "JSON",
+        timeout: 6000
+    })
+    .done(function (res) {
+        console.log(res);
 
-//         if (res.code == 0) {
+        if (res.code == 0) {
 
 
-//             var p = document.createElement('div');
-//             p.style.display="block";
-//             console.log(res.data[0].nickname);
-//             p.innerHTML = `<div class="revb">
-//             <div class="headlogo">
-//             <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
-//             </div>
-//             <div class='rightmm'>   
-//             <div class='nickname'>${res.data[0].nickname}</div>
-//             <div class='mbox'>${res.data[0].message}</div>
-//             </div>
-//             <br>`
-//             mesbox.append(p)
-//             console.log(localStorage.nickname);
-//             mes.value = null;
-//         }else if(res.code==3){
-//                 var timer = null;
-//                 timer = setInterval(function () {
-//                     location.href = '../Login.html'
-//                 }, 3000)
-//                 clearTimeout()
-//         } 
-//         else {
-//             console.log('sss');
-//         }
-//     })
-//     .fail(function (res) {
-//         console.log(res);
-//     })
-//     .always(function () {
-//         receivemes();
-//     })
-// }
-// receivemes();
+            var p = document.createElement('div');
+            p.style.display="block";
+            console.log(res.data[0].nickname);
+            p.innerHTML = `<div class="revb">
+            <div class="headlogo">
+            <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
+            </div>
+            <div class='rightmm'>   
+            <div class='nickname'>${res.data[0].nickname}</div>
+            <div class='mbox'>${res.data[0].message}</div>
+            </div>
+            <br>`
+            mesbox.append(p)
+            console.log(localStorage.nickname);
+            mes.value = null;
+        }else if(res.code==3){
+                var timer = null;
+                timer = setInterval(function () {
+                    location.href = '../Login.html'
+                }, 3000)
+                clearTimeout()
+        } 
+        else {
+            console.log('sss');
+        }
+    })
+    .fail(function (res) {
+        console.log(res);
+    })
+    .always(function () {
+        receivemes();
+    })
+}
+receivemes();
 
 // 发送消息
 sendbtn.onclick = function () {
@@ -137,91 +137,3 @@ sendbtn.onclick = function () {
 
 
 
-
-
-// $.ajax({
-//     url: "http://118.24.25.7/chat_api/interface/getMessages.php",
-//     type: "GET",
-//     data: {
-//         sign_str: localStorage.sign_str,
-//         user_id: localStorage.id,
-//     },
-//     dataType: "JSON",
-//     timeout: 2000,
-//     scueess:function(res){
-//         console.log(res);
-//     },
-//     error:function(data){
-//         console.log(data);
-//     }
-
-// })
-
-// 添加好友
-// $.ajax({
-//     url: "http://118.24.25.7/chat_api/interface/addFriend.php",
-//     type: "POST",
-//     data: {
-//         sign_str: localStorage.sign_str,
-//         user_id: '24',
-//         friend_user_id: '8',
-//     },
-//     dataType: "JSON",
-//     timeout: 3000
-// })
-//     .done(function (res) {
-//         console.log(res);
-
-
-//     })
-//     .fail(function () {
-
-//     })
-//     .always(function () { })
-
-// 获取申请
-// $.ajax({
-//     url: " http://118.24.25.7/chat_api/interface/getFriendRequests.php",
-//     type: "GET",
-//     data: {
-//         sign_str:localStorage.sign_str,
-//         user_id:'9'
-
-//     },
-//     dataType: "JSON",
-//     timeout: 3000
-// })
-//     .done(function (res) {
-//         console.log(res);
-
-
-//     })
-//     .fail(function () {
-
-//     })
-//     .always(function () { })
-
-    // 处理好友申请
-    // $.ajax({
-    //     url: "http://118.24.25.7/chat_api/interface/processFriendRequest.php",
-    //     type: "POST",
-    //     data: {
-    //         sign_str:localStorage.sign_str,
-    //         user_id:'9',
-    //         from_user_id:'6',
-    //         request_id:'23',
-    //         process_result:'1', 
-
-    //     },
-    //     dataType: "JSON",
-    //     timeout: 3000
-    // })
-    //     .done(function (res) {
-    //         console.log(res);
-
-
-    //     })
-    //     .fail(function () {
-
-    //     })
-    //     .always(function () { })
