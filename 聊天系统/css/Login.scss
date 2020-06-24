@@ -20,6 +20,27 @@ a {
   width: 100vw;
   height: 100vh;
 
+  .tcbox{
+    position: absolute;
+    width: 1.2rem;
+    height: .4rem;
+    text-align: center;
+    top: 0;
+    color: #2b2725;
+    line-height: .4rem;
+    background-color: #bdf7e559;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px;
+    font-size: 20px;
+    opacity: 0;
+    transition: .6s;
+
+    p{
+      color: #778385;
+    }
+  }
+
 }
 .main{
   box-sizing: border-box;

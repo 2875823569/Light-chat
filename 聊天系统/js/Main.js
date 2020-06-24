@@ -3,7 +3,6 @@ var id = window.localStorage.getItem('id')
 var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
-
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
 $(".icon-shizi").click(function () {
     $(".icon-shizi").toggleClass("shizi_isclicked")
@@ -33,7 +32,6 @@ $(".add_btn").click(function () {
     })
 })
 
-<<<<<<< HEAD
 //------------------------------------------------聊天信息界面--------------------------------------------------------------
 //长轮询
 function longLoop(url,type,data,callback) {
@@ -72,7 +70,6 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
     for(var i=0;i<data.data.length;i++){
         set_add_information(data.data[i])
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
-
         if(arr_id.includes(data.data[i].user_id)){
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
                 console.log($(".notice_num").html())
@@ -207,8 +204,6 @@ get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (
 //     })
 // })
 
-=======
->>>>>>> fde0957610680afa41f37a76a473ca1f80138227
 //------------------------------------------------个人信息界面--------------------------------------------------------------
 //获取元素
 var left_home = $(".left_home")
