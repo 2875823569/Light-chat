@@ -44,6 +44,8 @@ var btn_file = $("#btn_file")
 var btn_submit = $("#btn_submit")
 var change_avatar = $(".change_avatar")
 var backg = $(".backg")
+var slider_box= $(".slider_box")
+var login_out =$(".login_out")
 
 //获取大框宽度
 var ri_width = -$(".left_home").width()
@@ -68,6 +70,9 @@ left_ri.click(function () {
 //滑动效果
 avatar.click(function () {
     change_avatar.slideToggle("slow")
+})
+login_out.click(function(){
+    slider_box.slideToggle("slow")
 })
 
 //获取用户头像
