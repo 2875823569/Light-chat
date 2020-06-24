@@ -121,4 +121,14 @@ body{
     /* right: 0; */
     display: block;
     padding: .133333rem /* 5/37.5 */;
+    
+}
+.mbox::before{
+    content: "";
+    width: 0;
+    height: 0;
+    left: -.4rem /* -15/37.5 */;
+    position: absolute;
+    border: 8px solid transparent;
+    border-right-color: antiquewhite;
 }
