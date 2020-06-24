@@ -1,11 +1,52 @@
-$("#loading").click(function () {
+var M = {}
+//创建弹窗
+function create_tc(message){
+    $(".out").html(function () {
+        return `<div class="tcbox" num="${num}">
+            <p>${message}</p>
+        </div>`+$('.out').html()
+    })
+    //给弹窗显示事件
+    $(".out .tcbox").css({"animation":"ani 3s"})
+
+    var timer = setInterval(function () {
+        $(`.out .tcbox[num=${num}]`).remove();
+        console.log(num)
+        num++;
+        clearInterval(timer)
+    },3000)
+}
+
+//点击登陆按钮
+$(document).delegate("#loading",'click',function(){
+    //输入的账号为空时
     if($("#uername")[0].value===""){
-        alert("请输入账号")
+        if(M.dialog1){
+            return M.dialog1.show();
+        }
+        M.dialog1 = jqueryAlert({
+            'content' : '请输入账号',
+            'closeTime' : 2000,
+            'end':function(){
+            }
+        })
         return;
-    }else if($("#password")[0].value===""){
-        alert("请输入密码");
+
+    }
+    //输入的密码为空时
+    else if($("#password")[0].value===""){
+        if(M.dialog1){
+            return M.dialog1.show();
+        }
+        M.dialog1 = jqueryAlert({
+            'content' : '请输入密码',
+            'closeTime' : 2000,
+            'end':function(){
+            }
+        })
         return;
     }
+
     var data = {
         username: `${$("#uername")[0].value}`,
         password: `${$("#password")[0].value}`
@@ -16,14 +57,20 @@ $("#loading").click(function () {
         data:data,
         // dataType:JSON,
         success:(function (msg) {
-
             if(msg.msg==="success"){
-                $(".tcbox").css({"opacity":".8","top":".6rem"})
-                var timer = setInterval(function () {
-                    $(".tcbox").css({"opacity":"0"})
-                    location.href = 'html/main_box.html'
+                if(M.dialog1){
+                    return M.dialog1.show();
+                }
+                M.dialog1 = jqueryAlert({
+                    'content' : '登陆成功',
+                    'closeTime' : 2000,
+                    'end':function(){
+                    }
+                })
 
-                    var uinformation = [{"id":msg.data.id,"sign_str":msg.data.sign_str,"uname":msg.data.username}]
+                var timer = setInterval(function () {
+                    location.href = 'html/main_box.html'
+                    // var uinformation = [{"id":msg.data.id,"sign_str":msg.data.sign_str,"uname":msg.data.username}]
                     //设置localStorage
                     // console.log(msg)
                     window.localStorage.setItem('id',msg.data.id);
@@ -31,12 +78,18 @@ $("#loading").click(function () {
                     window.localStorage.setItem('username',msg.data.username);
                     window.localStorage.setItem('nickname',msg.data.nickname);
                     clearInterval(timer)
-                },600)
-                // console.log(msg.data.nickname)
-                // alert("登陆成功");
-            }else{
+                },1000)
 
-                alert(msg.msg)
+            }else{
+                if(M.dialog1){
+                    return M.dialog1.show();
+                }
+                M.dialog1 = jqueryAlert({
+                    'content' : msg.msg,
+                    'closeTime' : 2000,
+                    'end':function(){
+                    }
+                })
             }
         }),
         err:(function () {
@@ -51,14 +104,12 @@ $(".loading:nth-of-type(3)").mousedown(function () {
 
 
 $(".register_window .icon-jiantouzuoxi").click(function () {
-    console.log(123)
     $(".loading_window").toggle("slow")
     $(".register_window").toggle("slow")
 })
 
 
 $(".footer").on("click","#open_register_btn",function(){
-    console.log(123)
     $(".loading_window").toggle("slow")
     $(".register_window").toggle("slow")
 })
@@ -72,7 +123,15 @@ $("#regist_btn").click(function () {
     headimg = $("#regist_headimg input").val()
 
     if(uname===""||password===""||nickname===""){
-        alert("请将信息填完整")
+        if(M.dialog1){
+            return M.dialog1.show();
+        }
+        M.dialog1 = jqueryAlert({
+            'content' : '请将信息填写完整',
+            'closeTime' : 2000,
+            'end':function(){
+            }
+        })
         return;
     }
     if(headimg===""){
@@ -85,8 +144,15 @@ $("#regist_btn").click(function () {
                 nickname:nickname
             },
             success:(function (msg) {
-                // console.log(msg)
-                alert(msg.msg)
+                if(M.dialog1){
+                    return M.dialog1.show();
+                }
+                M.dialog1 = jqueryAlert({
+                    'content' : '注册成功',
+                    'closeTime' : 2000,
+                    'end':function(){
+                    }
+                })
             })
         })
     }

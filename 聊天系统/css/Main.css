@@ -184,9 +184,9 @@ ul, li {
             min-width: .2rem;
             height: .2rem;
             display: inline-block;
-            background: #8080809e;
+            background: #e80909fa;
             text-align: center;
-            line-height: .2rem;
+            line-height: .21rem;
             border-radius: 10px;
             color: #ffffffbd;
             font-size: 12px; }
