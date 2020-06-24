@@ -76,7 +76,7 @@ login_out.click(function(){
 })
 
 $("#login_outt").click(function(){
-    location.href="../Login.html"
+    parent.location.href="../Login.html"
 })
 
 
