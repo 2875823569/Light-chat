@@ -1,0 +1,169 @@
+*{
+    margin:0;
+    padding:0;
+}
+.ui-loader{
+    width: 0;
+    height: 0;
+    display: none!important;
+}
+#box{
+    width: 100%;
+    height:568px;
+    /* background-color: rgb(57, 207, 207); */
+    position: relative;
+    bottom:0;
+}
+#header{
+    width: 100%;
+    height:15%;
+    background-color: darkturquoise;
+    position: absolute;
+    text-align: center;
+}
+#headPortrait{
+    width:12%;
+    height:29%;
+    /* background-color: darkviolet; */
+    position: absolute;
+    margin:3px 5px;
+}
+#headPortrait img{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+}
+#header span{
+    width:100%;
+    height:30%;
+    /* background-color: darkviolet; */
+    text-align: center;
+    line-height: 34.08px;
+    display:inline-block;
+}
+#header #addFriends{
+    width:12%;
+    height:29%;
+    /* background-color: rgb(0, 211, 81); */
+    position: absolute;
+    top:0;
+    right:0;
+}
+#header #addFriends img{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+}
+#header #search{
+    width:90%;
+    height:30px;
+    margin-top: 20px;
+    border: 0;
+    border-radius: 30px;
+    text-align: center;
+}
+#content{
+    width:100%;
+    height:75%;
+    /* background-color: deeppink; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top:15%;
+    overflow: hidden;
+}
+#content #classification{
+    width:90%;
+    height:10%;
+    /* background-color: dimgrey; */
+    line-height: 30px;
+    list-style: none;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+#content #classification .lei{
+    float: left;
+}
+#content #friendsUl{
+    width:100%;
+    height: 90%;
+    /* background-color: gold; */
+    position: absolute;
+    top:10%;
+}
+#content #friendsUl .friends{
+    width:100%;
+    height:10%;
+    position: relative;
+    /* margin-bottom: 5px; */
+}
+#content #friendsUl .friends img{
+    width:38.33px;
+    height:38.33px;
+    object-fit:contain;
+    border-radius: 50%;
+    margin-left:5%;
+}
+/* #content #friendsUl .friends .Logo{
+    width:38.33px;
+    height:38.33px;
+    border-radius: 50%;
+    background-color: darkturquoise;
+    display: inline-block;
+    margin-left:5%;
+} */
+#content #friendsUl .friends .nickname{
+    width:80%;
+    height:50%;
+    font-size: 1rem;
+    font-weight: 300;
+    display: inline-block;
+    position: absolute;
+    top:0px;
+    right:0;
+    /* margin-bottom: 2px; */
+}
+#content #friendsUl .friends .signature{
+    width:80%;
+    height:50%;
+    font-size: 0.5rem;
+    font-weight: 200;
+    display: inline-block;
+    position: absolute;
+    top:50%;
+    right:0;
+}
+#content #friendsUl .friends .delete{
+    width:30%;
+    height:100%;
+    background-color:#00CED1;
+    border:1px solid #00CED1;
+    border-radius: 5px;
+    color: red;
+    position: absolute;
+    top:0;
+    right:0;
+}
+#footer{
+    width:100%;
+    height:10%;
+    /* background-color: lawngreen; */
+    position: absolute;
+    bottom:0;
+}
+#footer #footerUl{
+    width:100%;
+    height:100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+#footer #footerUl li{
+    text-align: center;
+}
+#footer img{
+    width: 33.33%;
+    height:70%;
+    object-fit:contain;
+}
