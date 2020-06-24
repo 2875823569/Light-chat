@@ -51,9 +51,15 @@ function longLoop(url,type,data,callback) {
         timeout:1000*20,
         data:data,
         success(data){
+            if(data.msg === "签名字符串已过期"){
+                location.href = '../Login.html';
+                console.log(1)
+            }
             callback(data)
         },
         error(data){
+
+
         },
         complete(){
             longLoop(url,type,data,callback)
@@ -71,12 +77,10 @@ var arr_id=[]//存放发信息的id
 longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
     // set_add_information(data.data)
     for(var i=0;i<data.data.length;i++){
-<<<<<<< HEAD
         set_add_information(data.data[i])
-=======
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
 
-        if(arr.includes(data.data[i].user_id)){
+        if(arr_id.includes(data.data[i].user_id)){
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
                 console.log($(".notice_num").html())
                 return parseInt($(".notice_num").html())+1;
@@ -84,7 +88,7 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
             $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
             $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
         }else{
-            arr.push(data.data[i].user_id)
+            arr_id.push(data.data[i].user_id)
             add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
         }
         
@@ -92,7 +96,6 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
             location.href = '../html/chatpage.html'
             window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         })
->>>>>>> 4f424d5ebf84eb6a0c4c889b7a663829f80cabcf
     }
   })
 

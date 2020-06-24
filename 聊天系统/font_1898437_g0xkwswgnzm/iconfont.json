@@ -1,0 +1,107 @@
+{
+  "id": "1898437",
+  "name": "聊天系统",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "13496579",
+      "name": "动态  激活备份",
+      "font_class": "dongtaijihuobeifen",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "3937591",
+      "name": "联系人",
+      "font_class": "lianxiren",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    },
+    {
+      "icon_id": "7792193",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e981",
+      "unicode_decimal": 59777
+    },
+    {
+      "icon_id": "13385639",
+      "name": "消息",
+      "font_class": "xiaoxi1",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "3469371",
+      "name": "公海联系人",
+      "font_class": "gonghailianxiren",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "4588996",
+      "name": "个人中心/消息",
+      "font_class": "Group",
+      "unicode": "e6e9",
+      "unicode_decimal": 59113
+    },
+    {
+      "icon_id": "7439888",
+      "name": "地球",
+      "font_class": "diqiu",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "12010391",
+      "name": "向右-圆形",
+      "font_class": "xiangyou-yuanxing",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "2058060",
+      "name": "申请",
+      "font_class": "shenqing",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "9190179",
+      "name": "好友申请",
+      "font_class": "haoyoushenqing1",
+      "unicode": "e65a",
+      "unicode_decimal": 58970
+    },
+    {
+      "icon_id": "14992211",
+      "name": "加好友",
+      "font_class": "jiahaoyou",
+      "unicode": "e653",
+      "unicode_decimal": 58963
+    },
+    {
+      "icon_id": "9028370",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e6a7",
+      "unicode_decimal": 59047
+    },
+    {
+      "icon_id": "10191275",
+      "name": "用户",
+      "font_class": "yonghu1",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "10465476",
+      "name": "好友申请",
+      "font_class": "haoyoushenqing",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    }
+  ]
+}
