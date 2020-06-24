@@ -34,10 +34,10 @@ ul, li {
       width: 100vw;
       height: .8rem; }
       .out .main .top .time {
-        font-size: 12px;
         position: absolute;
         color: rgba(255, 255, 255, 0.5);
-        right: .1rem;
+        right: 46%;
+        font-size: 14px;
         top: .05rem; }
       .out .main .top .head_img {
         width: .35rem;

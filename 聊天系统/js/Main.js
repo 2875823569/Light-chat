@@ -44,7 +44,7 @@ function longLoop(url,type,data,callback) {
         data:data,
         success(data){
             if(data.msg === "签名字符串已过期"){
-                location.href = '../Login.html';
+                parent.location.href = '../Login.html';
                 console.log(1)
             }
             callback(data)
@@ -73,7 +73,7 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
         if(arr_id.includes(data.data[i].user_id)){
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                console.log($(".notice_num").html())
+                // console.log($(".notice_num").html())
                 return parseInt($(".notice_num").html())+1;
             })
             $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
