@@ -16,18 +16,24 @@ $("#loading").click(function () {
         data:data,
         // dataType:JSON,
         success:(function (msg) {
-            if(msg.msg==="success"){
-                location.href = 'html/main_box.html'
 
-                var uinformation = [{"id":msg.data.id,"sign_str":msg.data.sign_str,"uname":msg.data.username}]
-                //设置localStorage
-                // console.log(msg)
-                window.localStorage.setItem('id',msg.data.id);
-                window.localStorage.setItem('sign_str',msg.data.sign_str);
-                window.localStorage.setItem('username',msg.data.username);
-                window.localStorage.setItem('nickname',msg.data.nickname);
+            if(msg.msg==="success"){
+                $(".tcbox").css({"opacity":".8","top":".6rem"})
+                var timer = setInterval(function () {
+                    $(".tcbox").css({"opacity":"0"})
+                    location.href = 'html/main_box.html'
+
+                    var uinformation = [{"id":msg.data.id,"sign_str":msg.data.sign_str,"uname":msg.data.username}]
+                    //设置localStorage
+                    // console.log(msg)
+                    window.localStorage.setItem('id',msg.data.id);
+                    window.localStorage.setItem('sign_str',msg.data.sign_str);
+                    window.localStorage.setItem('username',msg.data.username);
+                    window.localStorage.setItem('nickname',msg.data.nickname);
+                    clearInterval(timer)
+                },600)
                 // console.log(msg.data.nickname)
-                alert("登陆成功");
+                // alert("登陆成功");
             }else{
 
                 alert(msg.msg)
