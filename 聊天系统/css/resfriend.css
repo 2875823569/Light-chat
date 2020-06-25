@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.header{
+    top: 0;
+    background-image: url(../img/顶部1.png);
+    width: 10rem;
+    height: 2.133333rem /* 80/37.5 */;
+    background-size: cover;
+}
+.header::after{
+    content: "新朋友";
+    position: absolute;
+    font-size: .533333rem /* 20/37.5 */;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 2.133333rem /* 80/37.5 */; 
+    vertical-align: middle;
+}
+.icon-arrow-left{
+    position: absolute;
+    font-size: .8rem /* 30/37.5 */;
+    color: white;
+    left: .266667rem /* 10/37.5 */;
+    line-height: 2.133333rem /* 80/37.5 */; 
+    vertical-align: middle;
+}

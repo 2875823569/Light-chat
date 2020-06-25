@@ -47,9 +47,7 @@ function receivemes() {
         .done(function (res) {
             console.log(res);
 
-            if (res.code == 0) {
-
-
+            if (res.code == 0) { 
                 var p = document.createElement('div');
                 p.style.display = "block";
                 console.log(res.data[0].nickname);
@@ -137,7 +135,7 @@ sendbtn.onclick = function () {
                     location.href = '../Login.html'
                 }, 3000)
                 clearTimeout()
-            }else{
+            }else if(res.code == 2){
                 var timer = null;
                 timer = setInterval(function () {
                     location.href = '../Login.html'

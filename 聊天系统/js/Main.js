@@ -4,8 +4,8 @@ var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
-$(".icon-shizi").click(function () {
-    $(".icon-shizi").toggleClass("shizi_isclicked")
+$(".icon-shizi-copy").click(function () {
+    $(".icon-shizi-copy").toggleClass("shizi_isclicked")
     $(".hidden_rigth").toggleClass("hidden_rigth_display")
 })
 //申请好友
@@ -32,8 +32,6 @@ $(".add_btn").click(function () {
     })
 })
 
-<<<<<<< HEAD
-=======
 //------------------------------------------------聊天信息界面--------------------------------------------------------------
 //长轮询
 function longLoop(url,type,data,callback) {
@@ -206,7 +204,6 @@ get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (
 //     })
 // })
 
->>>>>>> ee7cad25c568270ce684bf83c2aa9e195ec0385a
 //------------------------------------------------个人信息界面--------------------------------------------------------------
 //获取元素
 var left_home = $(".left_home")
