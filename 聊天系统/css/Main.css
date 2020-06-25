@@ -34,10 +34,10 @@ ul, li {
       width: 100vw;
       height: .8rem; }
       .out .main .top .time {
-        font-size: 12px;
         position: absolute;
         color: rgba(255, 255, 255, 0.5);
-        right: .1rem;
+        right: 46%;
+        font-size: 14px;
         top: .05rem; }
       .out .main .top .head_img {
         width: .35rem;
@@ -184,9 +184,9 @@ ul, li {
             min-width: .2rem;
             height: .2rem;
             display: inline-block;
-            background: #8080809e;
+            background: #e80909fa;
             text-align: center;
-            line-height: .2rem;
+            line-height: .21rem;
             border-radius: 10px;
             color: #ffffffbd;
             font-size: 12px; }

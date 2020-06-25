@@ -47,7 +47,9 @@ function receivemes() {
         .done(function (res) {
             console.log(res);
 
-            if (res.code == 0) { 
+            if (res.code == 0) {
+
+                var message = res.data[0].message.split('<').join('&lt').split('>').join('&gt')
                 var p = document.createElement('div');
                 p.style.display = "block";
                 console.log(res.data[0].nickname);
@@ -57,14 +59,14 @@ function receivemes() {
             </div>
             <div class='rightmm'>   
             <div class='nickname'>${res.data[0].nickname}</div>
-            <div class='mbox'>${res.data[0].message}</div>
+            <div class='mbox'>${message}</div>
             </div>
             <br>`
                 mesbox.append(p)
-                var lmessage = localStorage.setItem('p');
-                console.log(lmessage);
-
-                console.log(localStorage.nickname);
+                // // var lmessage = localStorage.setItem('p');
+                // console.log(lmessage);
+                //
+                // console.log(localStorage.nickname);
                 mes.value = null;
             } else if (res.code == 3) {
                 var timer = null;
@@ -110,6 +112,7 @@ sendbtn.onclick = function () {
             } else if (res.code == 0) {
                 console.log('发送成功');
                 var p = document.createElement('div');
+                var message = mes.value.split('<').join('&lt').split('>').join('&gt')
                 p.innerHTML = `<div class="sendb">  
                 <div class='leftmm'>
                 <div class='nickname'>${localStorage.nickname}</div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天页面</title>
+    <!-- <script src="js/jquery-3.5.1.js"></script> -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="../js/jquery.mobile-1.4.5/jquery.mobile-1.4.5.js"></script>
+    <!-- <script src='js/zepto.min.1.1.6.js'></scrip-->
+    <link rel="stylesheet" href="../css/friendsStyle.css">
+</head>
+<body>
+    <div id="box">
+        <div id="header">
+            <div id="headPortrait"><img src="../img/avatar04.png" alt=""></div>
+            <span>联系人</span>
+            <div id="addFriends"><img src="../img/avatar04.png" alt=""></div>
+            <!-- <input id="search" type="text" placeholder="搜索"> -->
+        </div>
+        <div id="content">
+            <div id="newFriends">新朋友
+                <img src="../img/next.png" alt="">
+            </div>
+            <!-- <ul id="classification">
+                <li class="lei">好友</li>
+                <li class="lei">分组</li>
+                <li class="lei">群聊</li>
+                <li class="lei">设备</li>
+            </ul> -->
+            <ul id="friendsUl" style="overflow: scroll;">
+                <li class="friends">
+                    <span class='Logo'><img src="../img/联系人.png" alt=""></span>
+                    <span class="nickname">李四1</span>
+                    <span class="signature">I wish</span>
+                    <button class="delete" data-role='none' style="display: inline;">删除</button>
+                </li>
+                <li class="friends"><span class='Logo'><img src="../img/联系人.png" alt=""></span>
+                    <span class="nickname">李四1</span>
+                    <span class="signature">I wish</span>
+                    <button class="delete" data-role='none'>删除</button>
+                </li>
+            </ul>
+        </div>
+        <!-- <div id="footer">
+            <ul id="footerUl">
+                <li><img src="../img/消 息 1.png" alt=""></li>
+                <li><img src="../img/联系人(1).png" alt=""></li>
+                <li><img src="../img/动态.png" alt=""></li>
+            </ul>
+        </div> -->
+    </div>
+</body>
+<script src="../js/friendsLIist.js"></script>
+</html>

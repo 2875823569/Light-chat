@@ -7,12 +7,14 @@
     <meta name="viewport"
         content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
     <link rel="stylesheet" href="../css/Main.css">
-    <script src="../js/jquery-3.4.1/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../css/personal_homepage.css">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_1837326_68xgxlax9a.css">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_1898437_izt0yre64fj.css">
-    <script src="../js/checkScreen.js"></script>
     <!-- <link rel="stylesheet" href="../css/Main.scss"> -->
+
+    <!--    弹窗-->
+    <link rel="stylesheet" href="../css/alert.css">
+    <script src='../js/alert.js'></script>
 </head>
 
 <body>
@@ -54,21 +56,11 @@
                         t = setTimeout(time, 1000); //设定定时器，循环运行
                     }</script>
             </div>
-            <input type="text" class="iconfont search" placeholder="&#xe616;搜索">
-            <div class="notice_area">
-<!--                <div class="notice_infomation">-->
-<!--                    <img src="../img/head_logo.jpg" class="notice_uheadimg">-->
-<!--                    <div class="notice_left">-->
-<!--                        <div class="notice_information">-->
-<!--                            <p class="uname">kj</p>-->
-<!--                            <p class="send_time">下午1:56</p>-->
-<!--                        </div>-->
-<!--                        <div class="notice_container">123456</div>-->
-                    </div>
-                </div>
-            </div>
+                <input type="text" class="iconfont search" placeholder="&#xe616;搜索">
+                <div class="notice_area"></div>
         </div>
     </div>
+
 
     <!-- 个人主页 -->
     <div class="left_home">
@@ -79,6 +71,7 @@
                     <ul>
                         <li>用户名：<span></span></li>
                         <li>昵&nbsp&nbsp&nbsp称：<span></span></li>
+                        <li>用户ID：<span></span></li>
                     </ul>
                 </div>
             </div>
@@ -97,9 +90,6 @@
                 <input type="file" id="btn_file">
                 <input type="button" value="确认上传新头像" id="btn_submit" />
             </div>
-            <div class="login_out">
-                <img src="../img/settings.png" id="log_out">
-            </div>
             <div class="login_out_slider">
                 <a id="login_outt">退出登录</a>
             </div>
@@ -107,6 +97,8 @@
         <div class="left_ri"></div>
     </div>
 </body>
+<script src="../js/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script src="../js/checkScreen.js"></script>
 <script src="../js/Main.js"></script>
 
 </html>

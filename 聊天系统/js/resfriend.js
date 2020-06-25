@@ -7,9 +7,12 @@ function getfriendid(){
         url:"http://118.24.25.7/chat_api/interface/getFriendRequests.php",
         type:"POST",
         data:{
-            sign_str:,
+            sign_str:localStorage.user_id,
             user_id
         },
         datatype:"json"
+    })
+    .done(function(){
+        
     })
 }

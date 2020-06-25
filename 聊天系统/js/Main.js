@@ -3,6 +3,7 @@ var id = window.localStorage.getItem('id')
 var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
+
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
 $(".icon-shizi-copy").click(function () {
     $(".icon-shizi-copy").toggleClass("shizi_isclicked")
@@ -43,8 +44,22 @@ function longLoop(url,type,data,callback) {
         data:data,
         success(data){
             if(data.msg === "签名字符串已过期"){
-                location.href = '../Login.html';
-                console.log(1)
+                if(M.dialog2){
+                    return M.dialog2.show();
+                }
+                M.dialog2 = jqueryAlert({
+                    'content' : '签名字符串已过期,请重新登陆！',
+                    'modal'   : true,
+                    'end':function(){
+                    },
+                    'buttons' :{
+                        '确定' : function(){
+                            parent.location.href = '../Login.html';
+                            M.dialog2.close();
+                        }
+                    }
+                })
+
             }
             callback(data)
         },
@@ -56,9 +71,6 @@ function longLoop(url,type,data,callback) {
             longLoop(url,type,data,callback)
         }
     })
-        .always(function () {
-
-        })
 }
 var notic_data = {
     sign_str:sign_str,
@@ -72,8 +84,8 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
         if(arr_id.includes(data.data[i].user_id)){
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                console.log($(".notice_num").html())
-                return parseInt($(".notice_num").html())+1;
+                // console.log($(".notice_num").html())
+                return parseInt($(`.notice_num[user_id=${data.data[i].user_id}]`).html())+1;
             })
             $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
             $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
@@ -93,7 +105,7 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
 function add_information(time,uname,head_logo,message,user_id) {
     $(".notice_area").html(function(n){
         return `<div class="notice_infomation" user_id=${user_id} uname=${uname}>
-                    <img src="http://118.24.25.7/chat_api${head_logo}" class="notice_uheadimg">
+                    <img src="http://118.24.25.7/${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
                         <div class="notice_information1">
                             <p class="uname">${uname}</p>
@@ -187,22 +199,11 @@ get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (
 })
 
 // 搜索用户
-//用户按下回车键执行的操作
+//用户点击操作跳转到搜索用户界面
+$(".search").click(function () {
+    location.href = '../html/search_all_user.html'
+})
 
-
-// $.ajax({
-//     url:"http://118.24.25.7/chat_api/interface/getSearchUsers.php",
-//     type:"GET",
-//     data:{
-//         sign_str:sign_str,
-//         user_id:id,
-//         search_text:$(".search").val
-//     },
-//     datatype:"JSON",
-//     success:(function (msg) {
-//         console.log(msg)
-//     })
-// })
 
 //------------------------------------------------个人信息界面--------------------------------------------------------------
 //获取元素
@@ -217,6 +218,7 @@ var change_avatar = $(".change_avatar")
 var backg = $(".backg")
 var login_out_slider= $(".login_out_slider")
 var login_out =$(".login_out")
+var head_img =$(".head_img")
 
 //获取大框宽度
 var ri_width = -$(".left_home").width()
@@ -242,18 +244,15 @@ left_ri.click(function () {
 avatar.click(function () {
     change_avatar.slideToggle("slow")
 })
-login_out.click(function(){
-    login_out_slider.slideToggle("slow")
-})
 
-$("#login_outt").click(function(){
+//退出
+login_out_slider.click(function(){
     parent.location.href="../Login.html"
 })
 
-
 //获取用户头像
 $.ajax({
-    url: "http://118.24.25.7/chat_api/interface/getHeadImg.php",
+    url: "http://118.24.25.7/interface/getHeadImg.php",
     type: 'GET',
     data: {
         username: username
@@ -263,10 +262,12 @@ $.ajax({
         var user_head_logo = msg.data[0].head_logo
 
         //获取的数据显示到页面
-        avatar.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
-        avatar2.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
+        avatar.attr("src", "http://118.24.25.7/" + user_head_logo)
+        avatar2.attr("src", "http://118.24.25.7/" + user_head_logo)
+        head_img.attr("src", "http://118.24.25.7/" + user_head_logo)
         backg.children().eq(1).children().eq(0).children().empty().append(username)
         backg.children().eq(1).children().eq(1).children().empty().append(nikename)
+        backg.children().eq(1).children().eq(2).children().empty().append(id)
 
         //上传图片
         btn_submit.click(function () {
@@ -292,9 +293,9 @@ $.ajax({
                     contentType: false,
                     data: data,
                     success: function (msg) {
-                        console.log(msg.data.path);
+                        // console.log(msg.data.path);
                         var data_path = "http://118.24.25.7"+msg.data.path
-                        // console.log(msg.data);
+                        console.log(data_path);
                         $.ajax({
                             url:"http://118.24.25.7/chat_api/interface/modifyHeadLogo.php",
                             type:"GET",
@@ -305,12 +306,11 @@ $.ajax({
                             },
                             success: function (msg) {
                                 console.log(msg);
-                                console.log(1);
+                                console.log("success");
                                 
                             },
                             error: function (msg) {
-                                console.log(2);
-                                
+                                console.log("fail");
                                 console.log(msg);
                             }
                         })
@@ -323,6 +323,6 @@ $.ajax({
         })
     },
     error: function () {
-        console.log("faile");
+        console.log("获取头像失败");
     }
 })
