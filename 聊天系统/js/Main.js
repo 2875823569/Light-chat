@@ -3,6 +3,8 @@ var id = window.localStorage.getItem('id')
 var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
+var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
+
 
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
 $(".out .main .top > i").click(function () {
@@ -14,7 +16,7 @@ $(".add_btn").click(function () {
 
     //申请好友
     $.ajax({
-        url: "http://118.24.25.7/chat_api/interface/addFriend.php",
+        url: all_net.addFriend_net,
         type: "POST",
         data: {
             sign_str: sign_str,
@@ -110,7 +112,7 @@ var notic_data = {
     user_id:id
 }
 var arr_id=[]//存放发信息的id
-longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
+longLoop(all_net.getMessages_net,"GET",notic_data,function (data) {
     // set_add_information(data.data)
     for(var i=0;i<data.data.length;i++){
         set_add_information(data.data[i])
@@ -118,7 +120,8 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
         if(arr_id.includes(data.data[i].user_id)){
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
                 // console.log($(".notice_num").html())
-                return parseInt($(`.notice_num[user_id=${data.data[i].user_id}]`).html())+1;
+                console.log($(`.notice_num[user_id=${data.data[i].user_id}]`).html())
+                return parseInt($(`.notice_num[user_id=${data.data[i].user_id}]`).html());
             })
             $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
             $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
@@ -139,7 +142,7 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
 function add_information(time,uname,head_logo,message,user_id) {
     $(".notice_area").html(function(n){
         return `<div class="notice_infomation" user_id=${user_id} uname=${uname}>
-                    <img src="http://118.24.25.7/${head_logo}" class="notice_uheadimg">
+                    <img src= "${all_net.headInner_net}${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
                         <div class="notice_information1">
                             <p class="uname">${uname}</p>
@@ -195,7 +198,7 @@ function get_friendlist(url,callback) {
 //获取聊天记录
 function getchatlist(user_id,sign_str,friend_id,callback) {
     $.ajax({
-        url:"http://118.24.25.7/chat_api/interface/getChatHistory.php",
+        url:window.localStorage.getItem("getChatHistory_net"),
         type:"GET",
         datatype:"json",
         data:{
@@ -214,7 +217,7 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
 }
 
 // 添加聊天记录到主页上
-get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (data) {
+get_friendlist(window.localStorage.getItem("getFriends_net"),function (data) {
     // console.log(11)
     var friend_list = data.data
 
@@ -286,7 +289,7 @@ login_out_slider.click(function(){
 
 //获取用户头像
 $.ajax({
-    url: "http://118.24.25.7/interface/getHeadImg.php",
+    url: all_net.getHeadImg_net,
     type: 'GET',
     data: {
         username: username
@@ -296,9 +299,9 @@ $.ajax({
         var user_head_logo = msg.data[0].head_logo
 
         //获取的数据显示到页面
-        avatar.attr("src", "http://118.24.25.7/" + user_head_logo)
-        avatar2.attr("src", "http://118.24.25.7/" + user_head_logo)
-        head_img.attr("src", "http://118.24.25.7/" + user_head_logo)
+        avatar.attr("src", all_net.headInner_net + user_head_logo)
+        avatar2.attr("src", all_net.headInner_net + user_head_logo)
+        head_img.attr("src", all_net.headInner_net + user_head_logo)
         backg.children().eq(1).children().eq(0).children().empty().append(username)
         backg.children().eq(1).children().eq(1).children().empty().append(nikename)
         backg.children().eq(1).children().eq(2).children().empty().append(id)
@@ -321,17 +324,17 @@ $.ajax({
                 // console.log(data);
                 
                 $.ajax({
-                    url: "http://118.24.25.7/chat_api/interface/upload.php",
+                    url:  all_net.upload_net,
                     type: "POST",
                     processData: false,
                     contentType: false,
                     data: data,
                     success: function (msg) {
                         // console.log(msg.data.path);
-                        var data_path = "http://118.24.25.7"+msg.data.path
+                        var data_path = all_net.headInner_net+msg.data.path
                         console.log(data_path);
                         $.ajax({
-                            url:"http://118.24.25.7/chat_api/interface/modifyHeadLogo.php",
+                            url:all_net.modifyHeadLogo_net,
                             type:"GET",
                             data:{
                                 sign_str:sign_str,
