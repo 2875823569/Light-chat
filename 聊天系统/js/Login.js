@@ -1,4 +1,3 @@
-var M = {}
 //创建弹窗
 function create_tc(message){
     $(".out").html(function () {
@@ -21,6 +20,7 @@ function create_tc(message){
 $(document).delegate("#loading",'click',function(){
     //输入的账号为空时
     if($("#uername")[0].value===""){
+        var M = {}
         if(M.dialog1){
             return M.dialog1.show();
         }
@@ -35,6 +35,7 @@ $(document).delegate("#loading",'click',function(){
     }
     //输入的密码为空时
     else if($("#password")[0].value===""){
+        var M = {}
         if(M.dialog1){
             return M.dialog1.show();
         }
@@ -58,6 +59,7 @@ $(document).delegate("#loading",'click',function(){
         // dataType:JSON,
         success:(function (msg) {
             if(msg.msg==="success"){
+                var M = {}
                 if(M.dialog1){
                     return M.dialog1.show();
                 }
@@ -81,6 +83,7 @@ $(document).delegate("#loading",'click',function(){
                 },1000)
 
             }else{
+                var M = {}
                 if(M.dialog1){
                     return M.dialog1.show();
                 }
@@ -123,6 +126,7 @@ $("#regist_btn").click(function () {
     headimg = $("#regist_headimg input").val()
 
     if(uname===""||password===""||nickname===""){
+        var M = {}
         if(M.dialog1){
             return M.dialog1.show();
         }
@@ -144,12 +148,13 @@ $("#regist_btn").click(function () {
                 nickname:nickname
             },
             success:(function (msg) {
+                var M = {}
                 if(M.dialog1){
                     return M.dialog1.show();
                 }
                 M.dialog1 = jqueryAlert({
-                    'content' : '注册成功',
-                    'closeTime' : 2000,
+                    'content' : msg.msg,
+                    'closeTime' : 4000,
                     'end':function(){
                     }
                 })

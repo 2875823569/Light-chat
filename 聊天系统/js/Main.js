@@ -23,10 +23,28 @@ $(".add_btn").click(function () {
         },
         datatype: "JSON",
         success: (function (msg) {
-            alert(msg.msg)
+            var M = {}
+            if(M.dialog1){
+                return M.dialog1.show();
+            }
+            M.dialog1 = jqueryAlert({
+                'content' : msg.msg,
+                'closeTime' : 3000,
+                'end':function(){
+                }
+            })
         }),
         err: (function (msg) {
-            console.log(msg)
+            var M = {}
+            if(M.dialog1){
+                return M.dialog1.show();
+            }
+            M.dialog1 = jqueryAlert({
+                'content' : msg.msg,
+                'closeTime' : 4000,
+                'end':function(){
+                }
+            })
         })
 
 
@@ -44,6 +62,7 @@ function longLoop(url,type,data,callback) {
         data:data,
         success(data){
             if(data.msg === "签名字符串已过期"){
+                var M = {}
                 if(M.dialog2){
                     return M.dialog2.show();
                 }
