@@ -5,7 +5,7 @@ var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
 
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
-$(".icon-shizi").click(function () {
+$(".out .main .top > i").click(function () {
     $(".icon-shizi").toggleClass("shizi_isclicked")
     $(".hidden_rigth").toggleClass("hidden_rigth_display")
 })
@@ -23,6 +23,20 @@ $(".add_btn").click(function () {
         },
         datatype: "JSON",
         success: (function (msg) {
+            console.log(typeof msg.msg)
+            if (!msg.msg){
+                var M = {}
+                if(M.dialog1){
+                    return M.dialog1.show();
+                }
+                M.dialog1 = jqueryAlert({
+                    'content' : "请输入正确的ID",
+                    'closeTime' : 3000,
+                    'end':function(){
+                    }
+                })
+                return ;
+            }
             var M = {}
             if(M.dialog1){
                 return M.dialog1.show();
@@ -112,9 +126,10 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
             arr_id.push(data.data[i].user_id)
             add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
         }
-        
+
         $(".notice_area").on("click",".notice_infomation",function () {
-            location.href = '../html/chatpage.html'
+            console.log(aaaa)
+            parent.location.href = '../html/chatpage.html'
             window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         })
     }
@@ -155,7 +170,7 @@ function set_add_information(arr_notice) {
     }
 
     $(".notice_area").on("click",".notice_infomation",function () {
-        location.href = '../html/chatpage.html'
+        parent.location.href = '../html/chatpage.html'
         window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         window.localStorage.setItem('nick_name',this.getAttribute("uname"));
     })
@@ -220,7 +235,7 @@ get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (
 // 搜索用户
 //用户点击操作跳转到搜索用户界面
 $(".search").click(function () {
-    location.href = '../html/search_all_user.html'
+    parent.location.href = '../html/search_all_user.html'
 })
 
 
