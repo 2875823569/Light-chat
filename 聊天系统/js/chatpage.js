@@ -138,7 +138,7 @@ sendbtn.onclick = function () {
                     location.href = '../Login.html'
                 }, 3000)
                 clearTimeout()
-            }else{
+            }else if(res.code == 2){
                 var timer = null;
                 timer = setInterval(function () {
                     location.href = '../Login.html'
@@ -150,7 +150,42 @@ sendbtn.onclick = function () {
         .always(function () { })
 }
 
-
+function history() {
+    $.ajax({
+        url: 'http://118.24.25.7/chat_api/interface/getChatHistory.php',
+        type: "GET",
+        data: {
+            sign_str: localStorage.sign_str,
+            user_id: localStorage.id,
+            friend_id: friendid,
+        },
+        dataType: "JSON",
+    })
+        .done(function (res) {
+            console.log(res);
+            console.log(res.data);
+            for(var i=0;i<res.data.length;i++){
+                
+                // var p = document.createElement('div');
+                // var message = mes.value.split('<').join('&lt').split('>').join('&gt')
+                // p.innerHTML = `<div class="sendb">  
+                // <div class='leftmm'>
+                // <div class='nickname'>${localStorage.nickname}</div>
+                // <div class='mybox'>${mes.value}</div>
+                // </div>
+                // <div class="headlogo">
+                // <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
+                // </div><br><br><br>`
+                // mesbox.append(p)
+            }
+        })
+        .fail(function (res) {
+            console.log(res);
+        })
+        .always(function () {
+        })
+}
+history();
 
 
 

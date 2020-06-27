@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <title>登陆</title>
-<!--    ﻿<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
-    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <!--    ﻿<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">-->
+    <meta name="viewport"
+        content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
     <link rel="stylesheet" href="css/Login.css">
     <link rel="stylesheet" href="css/register.css">
     <link rel="icon" href="./img/熊猫.png">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_1837326_68xgxlax9a.css">
     <script src="js/checkScreen.js"></script>
 
-<!--    弹窗-->
+    <!--    弹窗-->
     <link rel="stylesheet" href="css/alert.css">
     <script src='js/alert.js'></script>
 
 </head>
+
 <body>
     <div class="out">
         <div class="main loading_window">
-                <div class="middle">
-                    <div class="loading">
-                        <img src="img/用户.png" alt="">
-                        <input type="text" id="uername" placeholder="账号" value="">
-                    </div>
-                    <div class="loading">
-                        <img src="img/密码.png" id="#password" alt="">
-                        <input type="password" id="password" placeholder="密码" value="" name="password">
-                    </div>
-                    <div class="loading loading_btn alert-api-button" id="loading"></div>
+            <div class="middle">
+                <div class="loading">
+                    <img src="img/用户.png" alt="">
+                    <input type="text" id="uername" placeholder="账号" value="">
                 </div>
-                <div class="footer">
-                    <span class="forget_password">忘记密码</span>
-                    <span class="open_register_btn" id="open_register_btn">立即注册</span>
+                <div class="loading">
+                    <img src="img/密码.png" id="#password" alt="">
+                    <input type="password" id="password" placeholder="密码" value="" name="password">
                 </div>
-                </div>
+                <div class="loading loading_btn alert-api-button" id="loading"></div>
+            </div>
+            <div class="footer">
+                <span class="forget_password">忘记密码</span>
+                <span class="open_register_btn" id="open_register_btn">立即注册</span>
+            </div>
+        </div>
         <div class="main register_window">
             <div class="top">
                 <i class="iconfont icon-jiantouzuoxi"></i>
@@ -50,12 +53,19 @@
                 </label>
                 <label class="loading" id="regist_nickname">
                     <img src="img/昵称.png" alt="">
-                    <input type="text"  placeholder="请输入您的昵称" value="">
+                    <input type="text" placeholder="请输入您的昵称" value="">
                 </label>
+<<<<<<< HEAD
+                <label class="loading" id="regist_headimg">
+                    <img src="img/用户.png" alt="">
+                    <input type="text" placeholder="请输入您的头像" value="">
+                </label>
+=======
 <!--                <label class="loading" id="regist_headimg">-->
 <!--                    <img src="img/用户.png" alt="">-->
 <!--                    <input type="text"  placeholder="请输入您的头像" value="">-->
 <!--                </label>-->
+>>>>>>> 9a9a4b7fec5f808e2844c43dacfa47a3ce3e4905
             </div>
             <div class="footer">
                 <span id="regist_btn"></span>
@@ -67,4 +77,5 @@
 <script src="js/checkScreen.js"></script>
 <script src="js/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script src="js/Login.js"></script>
+
 </html>
