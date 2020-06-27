@@ -1,42 +1,49 @@
 
 $(function () {
-var sign_str;
-var user_id = ""
-var list=[];
-var user_id="";
-var password="";
-var delSignStr='';
-var delUserId='';
-var delFriendId=[];
-    $.ajax({
-        url: 'http://118.24.25.7/chat_api/interface/login.php',
-        type: 'POST',
-        data: {
-            username: 'abcdef',
-            password: 'admin1',
-        },
-        success: function (msg) {
-            sign_str = msg.data.sign_str;
-            user_id = msg.data.id;
-            console.log(user_id)
-            getFriends(sign_str, user_id);
-            callback(sign_str,user_id)
-        }
-    })
+    var id = window.localStorage.getItem('id')
+    var sign_str = window.localStorage.getItem('sign_str')
+    var username = window.localStorage.getItem('username')
+    var nikename = window.localStorage.getItem('nickname')
+    var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
+    var curID=0;//现在点击头像的当前好友ID
+// var sign_str;
+// var user_id = ""
+// var list=[];
+// var user_id="";
+// var password="";
+// var delSignStr='';
+// var delUserId='';
+// var delFriendId=[];
+    // $.ajax({
+    //     url: 'http://118.24.25.7/chat_api/interface/login.php',
+    //     type: 'POST',
+    //     data: {
+    //         username: 'koujing',
+    //         password: '123456',
+    //     },
+    //     success: function (msg) {
+    //         sign_str = msg.data.sign_str;
+    //         user_id = msg.data.id;
+    //         // console.log(user_id)
+    //         getFriends(sign_str, user_id);
+    //         callback(sign_str,user_id)
+    //     }
+    // })
 
-    function callback(sign_str,user_id){
-        delSignStr=sign_str;
-        delUserId=user_id;
-    }
-    function getFriends(sign_str, user_id) {
+    // function callback(sign_str,user_id){
+    //     delSignStr=sign_str;
+    //     delUserId=user_id;
+    // }
+    getFriends(sign_str,id);
+    function getFriends(sign_str,id) {
         $.ajax({
-            url: 'http://118.24.25.7/chat_api/interface/getFriends.php',
+            url: all_net.getFriends_net,
             type: 'GET',
             data: {
                 // username:'aaaaa11',
                 // password:'admin1',
                 sign_str: sign_str,
-                user_id: user_id
+                user_id:id
             },
             success: function (msg) {
                 list=msg.data;
@@ -50,7 +57,7 @@ var delFriendId=[];
     function writeLi(list){
         for(var i=0;i<list.length;i++){
             var str=`
-            <li class="friends"><span class='Logo'><img src=" http://118.24.25.7/chat_api${list[i].head_logo}" alt=""></span>
+            <li class="friends"><span class='Logo'><img class='headImg' src=" http://118.24.25.7/${list[i].head_logo}" alt=""></span>
                         <span class="nickname">${list[i].nickname}</span>
                         <span class="signature">${list[i].onlinechat_number}</span>
                         <button class="delete" style="display:none;">删除</button>
@@ -59,22 +66,22 @@ var delFriendId=[];
             $('#friendsUl').append(str);
         }
     }
-    function deleteFriends(sign_str,user_id,friend_id){
-        $.ajax({
-            url:"http://118.24.25.7/chat_api/interface/removeFriend.php",
-            type:'POST',
-            data:{
-                sign_str:sign_str,
-                user_id:user_id,
-                friend_id:friend_id
-            },
-            success:function(msg){
-                console.log(msg);
-            }
-        })
-    }
-    //关于删除按钮的出现于隐藏
-    var friends=document.querySelector('.friends');
+    // function deleteFriends(sign_str,id,friend_id){
+    //     $.ajax({
+    //         url:"http://118.24.25.7/chat_api/interface/removeFriend.php",
+    //         type:'POST',
+    //         data:{
+    //             sign_str:sign_str,
+    //             user_id:id,
+    //             friend_id:friend_id
+    //         },
+    //         success:function(msg){
+    //             console.log(msg);
+    //         }
+    //     })
+    // }
+    //关于删除按钮的出现与隐藏
+    // var friends=document.querySelector('.friends');
     $('.delete').hide();
     $('#friendsUl').on('swipeleft',function(e){
         if(e.target.className=='nickname'||e.target.className=='signature'){
@@ -100,12 +107,17 @@ var delFriendId=[];
             $(e.target.parentNode).remove();
             // deleteFriends(sign_str,user_id,friend_id);
 
+        }else if(e.target.className=='headImg'){
+            var index=$(e.target.parentNode.parentNode).index();
+            curID=list[index].user_id;
+            location.href = 'chatpage.html';
+            console.log(curID)
         }
     })
      //ajax删除
      function delFriends(x,y,z) {
         $.ajax({
-            url:"http://118.24.25.7/chat_api/interface/removeFriend.php",
+            url:all_net.removFriend_net,
             type:"POST",
             data:{
                 sign_str:x,

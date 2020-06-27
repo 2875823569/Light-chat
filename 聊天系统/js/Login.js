@@ -1,26 +1,69 @@
-var M = {}
-//创建弹窗
-function create_tc(message){
-    $(".out").html(function () {
-        return `<div class="tcbox" num="${num}">
-            <p>${message}</p>
-        </div>`+$('.out').html()
-    })
-    //给弹窗显示事件
-    $(".out .tcbox").css({"animation":"ani 3s"})
 
-    var timer = setInterval(function () {
-        $(`.out .tcbox[num=${num}]`).remove();
-        console.log(num)
-        num++;
-        clearInterval(timer)
-    },3000)
+window.localStorage.clear(all_net);
+console.log(all_net)
+//所有网址变量
+// var regist_net = "http://118.24.25.7/chat_api/interface/reg.php" //注册
+// var login_net = "http://118.24.25.7/chat_api/interface/login.php" //登陆
+// var addFriend_net = "http://118.24.25.7/chat_api/interface/addFriend.php"//申请好友
+// var getFriendRequests_net = "http://118.24.25.7/chat_api/interface/getFriendRequests.php"//获取好友申请
+// var processFriendRequest_net = "http://118.24.25.7/chat_api/interface/processFriendRequest.php"//处理好友申请
+// var getFriends_net = "http://118.24.25.7/chat_api/interface/getFriends.php"//获取好友列表
+// var removeFriend_net = "http://118.24.25.7/chat_api/interface/removeFriend.php"//删除好友
+// var sendMessage_net = "http://118.24.25.7/chat_api/interface/sendMessage.php"//发消息
+// var getMessages_net = "http://118.24.25.7/chat_api/interface/getMessages.php"//获取消息
+// var logout_net = "http://118.24.25.7/chat_api/interface/logout.php"//登出
+// var getSearchUsers_net = "http://118.24.25.7/chat_api/interface/getSearchUsers.php"//搜索用户
+// var getUserInfo_net = "http://118.24.25.7/chat_api/interface/getUserInfo.php" //获取用户信息
+// var upload_net = "http://118.24.25.7/chat_api/interface/upload.php" //图片上传
+// var getChatHistory_net = "http://118.24.25.7/chat_api/interface/getChatHistory.php"//获取历史记录
+// var getHeadImg_net = "http://118.24.25.7/interface/getHeadImg.php" //获取用户头像
+// var modifyHeadLogo_net = "http://118.24.25.7/chat_api/interface/modifyHeadLogo.php" //改变头像
+// var headInner_net = "http://118.24.25.7/"//头像前置
+
+var all_net = {
+    regist_net:"http://118.24.25.7/chat_api/interface/reg.php", //注册
+    login_net:"http://118.24.25.7/chat_api/interface/login.php", //登陆
+    addFriend_net:"http://118.24.25.7/chat_api/interface/addFriend.php",//申请好友
+    getFriendRequests_net:"http://118.24.25.7/chat_api/interface/getFriendRequests.php",//获取好友申请
+    processFriendRequest_net:"http://118.24.25.7/chat_api/interface/processFriendRequest.php",//处理好友申请
+    getFriends_net:"http://118.24.25.7/chat_api/interface/getFriends.php",//获取好友列表
+    removeFriend_net:"http://118.24.25.7/chat_api/interface/removeFriend.php",//删除好友"
+    sendMessage_net:"http://118.24.25.7/chat_api/interface/sendMessage.php",//发消息
+    getMessages_net:"http://118.24.25.7/chat_api/interface/getMessages.php",//获取消息
+    logout_net:"http://118.24.25.7/chat_api/interface/logout.php",//登出
+    getSearchUsers_net:"http://118.24.25.7/chat_api/interface/getSearchUsers.php",//搜索用户
+    getUserInfo_net:"http://118.24.25.7/chat_api/interface/getUserInfo.php", //获取用户信息
+    upload_net:"http://118.24.25.7/chat_api/interface/upload.php", //图片上传
+    getChatHistory_net:"http://118.24.25.7/chat_api/interface/getChatHistory.php",//获取历史记录
+    getHeadImg_net:"http://118.24.25.7/chat_api/interface/getHeadImg.php", //获取用户头像
+    modifyHeadLogo_net:"http://118.24.25.7/chat_api/interface/modifyHeadLogo.php", //改变头像
+    headInner_net:" http://118.24.25.7"//头像前置
 }
+window.localStorage.setItem("all_net",JSON.stringify(all_net))
+
+
+// window.localStorage.setItem("login_net",login_net)
+// window.localStorage.setItem("addFriend_net",addFriend_net)
+// window.localStorage.setItem("getFriendRequests_net",getFriendRequests_net)
+// window.localStorage.setItem("processFriendRequest_net",processFriendRequest_net)
+// window.localStorage.setItem("getFriends_net",getFriends_net)
+// window.localStorage.setItem("removeFriend_net",removeFriend_net)
+// window.localStorage.setItem("sendMessage_net",sendMessage_net)
+// window.localStorage.setItem("getMessages_net",getMessages_net)
+// window.localStorage.setItem("logout_net",logout_net)
+// window.localStorage.setItem("getSearchUsers_net",getSearchUsers_net)
+// window.localStorage.setItem("getUserInfo_net",getUserInfo_net)
+// window.localStorage.setItem("upload_net",upload_net)
+// window.localStorage.setItem("getChatHistory_net",getChatHistory_net)
+// window.localStorage.setItem("getHeadImg_net",getHeadImg_net)
+// window.localStorage.setItem("modifyHeadLogo_net",modifyHeadLogo_net)
+
 
 //点击登陆按钮
 $(document).delegate("#loading",'click',function(){
     //输入的账号为空时
     if($("#uername")[0].value===""){
+        var M = {}
         if(M.dialog1){
             return M.dialog1.show();
         }
@@ -35,6 +78,7 @@ $(document).delegate("#loading",'click',function(){
     }
     //输入的密码为空时
     else if($("#password")[0].value===""){
+        var M = {}
         if(M.dialog1){
             return M.dialog1.show();
         }
@@ -52,12 +96,13 @@ $(document).delegate("#loading",'click',function(){
         password: `${$("#password")[0].value}`
     }
     $.ajax({
-        url:"http://118.24.25.7/chat_api/interface/login.php",
+        url:all_net.login_net,
         type:"POST",
         data:data,
         // dataType:JSON,
         success:(function (msg) {
             if(msg.msg==="success"){
+                var M = {}
                 if(M.dialog1){
                     return M.dialog1.show();
                 }
@@ -81,6 +126,7 @@ $(document).delegate("#loading",'click',function(){
                 },1000)
 
             }else{
+                var M = {}
                 if(M.dialog1){
                     return M.dialog1.show();
                 }
@@ -123,6 +169,7 @@ $("#regist_btn").click(function () {
     headimg = $("#regist_headimg input").val()
 
     if(uname===""||password===""||nickname===""){
+        var M = {}
         if(M.dialog1){
             return M.dialog1.show();
         }
@@ -134,9 +181,8 @@ $("#regist_btn").click(function () {
         })
         return;
     }
-    if(headimg===""){
         $.ajax({
-            url:"http://118.24.25.7/chat_api/interface/reg.php",
+            url:all_net.regist_net,
             type:"POST",
             data:{
                 username:uname,
@@ -144,16 +190,16 @@ $("#regist_btn").click(function () {
                 nickname:nickname
             },
             success:(function (msg) {
+                var M = {}
                 if(M.dialog1){
                     return M.dialog1.show();
                 }
                 M.dialog1 = jqueryAlert({
-                    'content' : '注册成功',
-                    'closeTime' : 2000,
+                    'content' : msg.msg,
+                    'closeTime' : 4000,
                     'end':function(){
                     }
                 })
             })
         })
-    }
 })

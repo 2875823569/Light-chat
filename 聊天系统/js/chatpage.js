@@ -11,7 +11,7 @@ userid.innerHTML = `${nickname}`;
 // 返回按钮
 var lbtn = document.querySelector('.leftbtn');
 lbtn.onclick = function () {
-    location.href = 'Main.html'
+    location.href = 'main_box.html'
 }
 // 右菜单栏
 var rightbtn = document.querySelector('.rightbtn');

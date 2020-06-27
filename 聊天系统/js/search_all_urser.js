@@ -2,7 +2,8 @@ var user_id = window.localStorage.getItem('id')
 var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
-var M = {}
+
+//搜索关键字好友
 $(".search").keydown(function (res) {
     // console.log(res.code)
     if(res.code==="Enter"){
@@ -51,7 +52,7 @@ function add_friend(id) {
         },
         datatype: "JSON",
         success: (function (msg) {
-            // console.log(id)
+            var M = {}
             if(M.dialog1){
                 return M.dialog1.show();
             }
