@@ -7,7 +7,7 @@
     top: 0;
     background-image: url(../img/顶部1.png);
     width: 10rem;
-    height: 2.133333rem /* 80/37.5 */;
+    height: 10vh;
     background-size: cover;
 }
 .header::after{
@@ -17,7 +17,7 @@
     color: white;
     left: 50%;
     transform: translateX(-50%);
-    line-height: 2.133333rem /* 80/37.5 */; 
+    line-height: 10vh; 
     vertical-align: middle;
 }
 .icon-arrow-left{
@@ -25,6 +25,59 @@
     font-size: .8rem /* 30/37.5 */;
     color: white;
     left: .266667rem /* 10/37.5 */;
-    line-height: 2.133333rem /* 80/37.5 */; 
+    line-height: 10vh; 
     vertical-align: middle;
+}
+.addfriend{
+    color: white;
+    position: absolute;
+    right: .48rem /* 18/37.5 */;
+    font-size: .426667rem /* 16/37.5 */;
+    line-height: 10vh;
+    vertical-align: middle;
+}
+.addfriendbox{
+    width: 10rem;
+    height: 90vh;
+}
+.headlogo{
+    display: inline-block;
+    width: 1.333333rem /* 50/37.5 */;
+    height: 1.333333rem /* 50/37.5 */;
+    margin: .266667rem /* 10/37.5 */;
+}
+.headimg{
+    width: 1.333333rem /* 50/37.5 */;
+    height: 1.333333rem /* 50/37.5 */;
+    border-radius: 50%;
+
+    background-size: cover;
+}
+.nickname{
+    display: inline-block;
+    font-size: .64rem /* 24/37.5 */;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.friendbox{
+    position: relative;
+}
+.regtype{
+    width: 1.333333rem /* 50/37.5 */;
+    height: .533333rem /* 20/37.5 */;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    right: 2.133333rem /* 80/37.5 */;
+    transform: translateY(-50%);
+}
+.submitf{
+    width: 1.333333rem /* 50/37.5 */;
+    height: .533333rem /* 20/37.5 */;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    right: .533333rem /* 20/37.5 */;
+    transform: translateY(-50%);
 }
