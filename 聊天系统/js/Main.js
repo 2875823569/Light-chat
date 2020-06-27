@@ -4,7 +4,7 @@ var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
 var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
-
+// console.log(all_net)
 
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
 $(".out .main .top > i").click(function () {
@@ -69,6 +69,7 @@ $(".add_btn").click(function () {
 
 //------------------------------------------------聊天信息界面--------------------------------------------------------------
 //长轮询
+var reLogin = {}
 function longLoop(url,type,data,callback) {
     $.ajax({
         url:url,
@@ -77,12 +78,12 @@ function longLoop(url,type,data,callback) {
         timeout:1000*20,
         data:data,
         success(data){
-            if(data.msg === "签名字符串已过期"){
-                var M = {}
-                if(M.dialog2){
-                    return M.dialog2.show();
+            if(data.msg === "签名字符串已过期" || data.msg.includes("无效")){
+
+                if(reLogin.dialog2){
+                    return reLogin.dialog2.show();
                 }
-                M.dialog2 = jqueryAlert({
+                reLogin.dialog2 = jqueryAlert({
                     'content' : '签名字符串已过期,请重新登陆！',
                     'modal'   : true,
                     'end':function(){
@@ -90,7 +91,7 @@ function longLoop(url,type,data,callback) {
                     'buttons' :{
                         '确定' : function(){
                             parent.location.href = '../Login.html';
-                            M.dialog2.close();
+                            reLogin.dialog2.close();
                         }
                     }
                 })
@@ -113,28 +114,9 @@ var notic_data = {
 }
 var arr_id=[]//存放发信息的id
 longLoop(all_net.getMessages_net,"GET",notic_data,function (data) {
-    // set_add_information(data.data)
     for(var i=0;i<data.data.length;i++){
+        ishistory = false;
         set_add_information(data.data[i])
-        var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
-        if(arr_id.includes(data.data[i].user_id)){
-            $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                // console.log($(".notice_num").html())
-                console.log($(`.notice_num[user_id=${data.data[i].user_id}]`).html())
-                return parseInt($(`.notice_num[user_id=${data.data[i].user_id}]`).html());
-            })
-            $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
-            $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
-        }else{
-            arr_id.push(data.data[i].user_id)
-            add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
-        }
-
-        $(".notice_area").on("click",".notice_infomation",function () {
-            console.log(aaaa)
-            parent.location.href = '../html/chatpage.html'
-            window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
-        })
     }
   })
 
@@ -169,9 +151,36 @@ function set_add_information(arr_notice) {
     }else{
         arr_id.push(arr_notice.user_id)
         add_information(time,arr_notice.nickname,arr_notice.head_logo,arr_notice.message,arr_notice.user_id)
-        $(`.notice_num[user_id=${arr_notice.user_id}]`).html("1");
+        if(!ishistory){
+            $(`.notice_num[user_id=${arr_notice.user_id}]`).html("1");
+        }
+
+
+
+
     }
 
+//将消息数传到底部的函数
+    function notice_all_num(){
+
+
+        if($(".information_num", parent.document)>=1){
+            $(".information_num", parent.document).css({"display":"block"})
+
+        }else {
+            $(".information_num", parent.document).css({"display":"none"});
+        }
+    }
+
+    // $(".information_num", parent.document).html(function () {
+    //     var num = 0;
+    //
+    //
+    //     console.log(num)
+    //     return  $(".information_num", parent.document).html(num)
+    // })
+
+    //点击跳转到发消息界面
     $(".notice_area").on("click",".notice_infomation",function () {
         parent.location.href = '../html/chatpage.html'
         window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
@@ -198,7 +207,7 @@ function get_friendlist(url,callback) {
 //获取聊天记录
 function getchatlist(user_id,sign_str,friend_id,callback) {
     $.ajax({
-        url:window.localStorage.getItem("getChatHistory_net"),
+        url:all_net.getChatHistory_net,
         type:"GET",
         datatype:"json",
         data:{
@@ -216,8 +225,9 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
     })
 }
 
+var ishistory = false;//判断是否是加载的历史记录
 // 添加聊天记录到主页上
-get_friendlist(window.localStorage.getItem("getFriends_net"),function (data) {
+get_friendlist(all_net.getFriends_net,function (data) {
     // console.log(11)
     var friend_list = data.data
 
@@ -226,9 +236,10 @@ get_friendlist(window.localStorage.getItem("getFriends_net"),function (data) {
             if(!data.data[0]) return;
 
             var data_list = {"message_send_time":"14:20:06","nickname":friend_list[i].nickname,"user_id":friend_list[i].user_id,
-                "head_logo":friend_list[i].head_logo,"message":data.data[0].message}
+                "head_logo":friend_list[i].head_logo,"message":data.data[data.data.length-1].message}
             arr_id.push(friend_list.user_id)
             // console.log(data.data[0].message)
+            ishistory = true
             set_add_information(data_list)
             $(".notice_area .notice_num").css({"display":"none"});
         })

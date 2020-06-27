@@ -1,24 +1,6 @@
 
 window.localStorage.clear(all_net);
-console.log(all_net)
-//所有网址变量
-// var regist_net = "http://118.24.25.7/chat_api/interface/reg.php" //注册
-// var login_net = "http://118.24.25.7/chat_api/interface/login.php" //登陆
-// var addFriend_net = "http://118.24.25.7/chat_api/interface/addFriend.php"//申请好友
-// var getFriendRequests_net = "http://118.24.25.7/chat_api/interface/getFriendRequests.php"//获取好友申请
-// var processFriendRequest_net = "http://118.24.25.7/chat_api/interface/processFriendRequest.php"//处理好友申请
-// var getFriends_net = "http://118.24.25.7/chat_api/interface/getFriends.php"//获取好友列表
-// var removeFriend_net = "http://118.24.25.7/chat_api/interface/removeFriend.php"//删除好友
-// var sendMessage_net = "http://118.24.25.7/chat_api/interface/sendMessage.php"//发消息
-// var getMessages_net = "http://118.24.25.7/chat_api/interface/getMessages.php"//获取消息
-// var logout_net = "http://118.24.25.7/chat_api/interface/logout.php"//登出
-// var getSearchUsers_net = "http://118.24.25.7/chat_api/interface/getSearchUsers.php"//搜索用户
-// var getUserInfo_net = "http://118.24.25.7/chat_api/interface/getUserInfo.php" //获取用户信息
-// var upload_net = "http://118.24.25.7/chat_api/interface/upload.php" //图片上传
-// var getChatHistory_net = "http://118.24.25.7/chat_api/interface/getChatHistory.php"//获取历史记录
-// var getHeadImg_net = "http://118.24.25.7/interface/getHeadImg.php" //获取用户头像
-// var modifyHeadLogo_net = "http://118.24.25.7/chat_api/interface/modifyHeadLogo.php" //改变头像
-// var headInner_net = "http://118.24.25.7/"//头像前置
+
 
 var all_net = {
     regist_net:"http://118.24.25.7/chat_api/interface/reg.php", //注册
