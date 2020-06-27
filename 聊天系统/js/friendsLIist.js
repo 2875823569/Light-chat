@@ -12,13 +12,13 @@ var delFriendId=[];
         url: 'http://118.24.25.7/chat_api/interface/login.php',
         type: 'POST',
         data: {
-            username: 'abcdef',
-            password: 'admin1',
+            username: 'koujing',
+            password: '123456',
         },
         success: function (msg) {
             sign_str = msg.data.sign_str;
             user_id = msg.data.id;
-            console.log(user_id)
+            // console.log(user_id)
             getFriends(sign_str, user_id);
             callback(sign_str,user_id)
         }
