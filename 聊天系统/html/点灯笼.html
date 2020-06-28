@@ -88,7 +88,6 @@
             //将数字转换为坐标
             var col = n%5===0?0:n%5;
             var row = n/5===parseInt(n/5)?n/5:parseInt(n/5);
-            console.log(col,row)
 
             var xy = [col,row]
             arrs.push(xy)
@@ -113,7 +112,6 @@
             for(var i=0;i<arrs.length;i++){
                 var num = arrs[i][0] + arrs[i][1]*5;
                 var bg = list[num].style.backgroundImage;
-                console.log(bg)
                 if(bg==='url("../img/灯泡灭.png")'){
                     list[num].style.backgroundImage='url(../img/灯泡亮.png'
                     count++;
