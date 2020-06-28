@@ -1,0 +1,48 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+img{
+    width: 100px;
+    height: 80px;
+}
+
+.deletAll{
+    width: 40px;
+}
+
+table{
+    width: 100%;
+    display: block;
+    border-collapse:collapse;
+}
+
+table tr{
+    border-bottom: 1px solid;
+}
+
+table tr:nth-of-type(6){
+    border-bottom: 0;
+}
+
+table th:nth-of-type(3){
+    display: none;
+}
+
+table th:nth-of-type(6){
+    width: 67px;
+}
+
+table th:nth-of-type(7){
+    width: 35px;
+}
+
+#get_back{
+    float: right;
+    width: 70px;
+}
+#get_back:hover{
+    background-color: tomato;
+}

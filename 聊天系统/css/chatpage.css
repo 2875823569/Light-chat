@@ -73,7 +73,6 @@ body{
     max-width: 7.573333rem /* 284/37.5 */;
     max-height: 6.4rem /* 240/37.5 */;
     overflow-wrap: break-word;
-    margin-top: .533333rem /* 20/37.5 */;
 }
 .mybox::after{
     content: "";
@@ -85,6 +84,7 @@ body{
     border-left-color: antiquewhite;
 }
 .headlogo{
+    
     border-radius: 50%;
     display: inline-block;
 }
@@ -159,9 +159,6 @@ body{
     margin-left: .266667rem /* 10/37.5 */;
     padding: .266667rem .266667rem .266667rem 0;
     font-size: .48rem /* 18/37.5 */;
-    max-width: 7.573333rem /* 284/37.5 */;
-    max-height: 6.4rem /* 240/37.5 */;
-    overflow-wrap: break-word;
 }
 .mybox2::before{
     content: "";
