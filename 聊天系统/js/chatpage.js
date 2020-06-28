@@ -5,6 +5,7 @@ var userid = document.querySelector('.userid')
 var friendid = window.localStorage.getItem('friend_id');
 var nickname = localStorage.getItem('nick_name')
 userid.innerHTML = `${nickname}`;
+// var reslogo=localStorage.getItem('')
 // console.log(friendid);
 
 
@@ -70,7 +71,6 @@ function receivemes() {
                 // console.log(lmessage);
                 //
                 // console.log(localStorage.nickname);
-                mes.value = null;
             } else if (res.code == 3) {
                 var timer = null;
                 timer = setInterval(function () {
@@ -116,8 +116,6 @@ sendbtn.onclick = function () {
             } else if (res.code == 0) {
                 console.log('发送成功');
                 var head_log = res.data
-                console.log(head_log);
-
                 var p = document.createElement('div');
                 p.classList.add('messbox')
                 // var messbox=document.querySelector('.messbox');
@@ -217,9 +215,37 @@ function historys() {
             for (i = 0; i < res.data.length; i++) {
                 console.log(res.data[i]);
                 console.log(res.data[i].message);
-                // if(res.data[i]){
-
-                // }
+                if(res.data[i].user_id==localStorage.id){
+                    var p = document.createElement('div');
+                    p.classList.add('messbox')
+                    // var messbox=document.querySelector('.messbox');
+                    var message = res.data[i].message.split('<').join('&lt').split('>').join('&gt')
+                    p.innerHTML = `<div class="sendb">  
+                    <div class='leftmm'>
+                    <div class='nickname'>${localStorage.nickname}</div>
+                    <div class='mybox'>${res.data[i].message}</div>
+                    </div>
+                    <div class="headlogo">
+                    <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                    </div>`
+                    mesbox.append(p)
+                }else{
+                    var message = res.data[0].message.split('<').join('&lt').split('>').join('&gt')
+                    var p = document.createElement('div');
+                    p.style.display = "block";
+                    console.log(res.data[0].nickname);
+                    p.innerHTML = `
+                    <div class="sendb2"> 
+                    <div class="headlogo2">
+                    <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                    <div class='rightmm'>
+                    <div class='nickname2'>${nickname}</div>
+                    <div class='mybox2'>${res.data[i].message}</div>
+                    </div>
+                    </div>
+                    `
+                    mesbox.append(p)
+                }
             }
         })
         .fail(function (err) {
