@@ -304,11 +304,10 @@ ul, li {
 }
 
 .out .main .notice_area .notice_infomation .notice_left .notice_container {
-    font-size: 14px;
-    width: 69vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
+  font-size: 14px;
+  width: 88%;
+  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 .out .main .notice_area .notice_infomation .notice_left .notice_num {

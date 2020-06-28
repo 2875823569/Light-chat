@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点灯笼</title>
+    <style>
+        h1{
+            text-align: center;
+            font-size: 3rem;
+            color:#EFB336;
+        }
+        .main{
+            width: 100%;
+            height: 800px;
+            margin:100px auto;
+            outline: 1px solid red;
+            font-size: 0;
+        }
+        .light{
+            width:20%;
+            height: 160px;
+            /*background-color: #333333;*/
+            outline: 1px solid black;
+            display: inline-block;
+            margin:0;
+            background-size:cover;
+            background-position:center;
+        }
+        #back{
+            width: 60px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <img src="../img/返回.png" alt="" id="back">
+    <h1>快来点灯笼呀</h1>
+    <div class="main">
+        <div class="light" onclick="changeStatus(0)"></div>
+        <div class="light" onclick="changeStatus(1)"></div>
+        <div class="light" onclick="changeStatus(2)"></div>
+        <div class="light" onclick="changeStatus(3)"></div>
+        <div class="light" onclick="changeStatus(4)"></div>
+        <div class="light" onclick="changeStatus(5)"></div>
+        <div class="light" onclick="changeStatus(6)"></div>
+        <div class="light" onclick="changeStatus(7)"></div>
+        <div class="light" onclick="changeStatus(8)"></div>
+        <div class="light" onclick="changeStatus(9)"></div>
+        <div class="light" onclick="changeStatus(10)"></div>
+        <div class="light" onclick="changeStatus(11)"></div>
+        <div class="light" onclick="changeStatus(12)"></div>
+        <div class="light" onclick="changeStatus(13)"></div>
+        <div class="light" onclick="changeStatus(14)"></div>
+        <div class="light" onclick="changeStatus(15)"></div>
+        <div class="light" onclick="changeStatus(16)"></div>
+        <div class="light" onclick="changeStatus(17)"></div>
+        <div class="light" onclick="changeStatus(18)"></div>
+        <div class="light" onclick="changeStatus(19)"></div>
+        <div class="light" onclick="changeStatus(20)"></div>
+        <div class="light" onclick="changeStatus(21)"></div>
+        <div class="light" onclick="changeStatus(22)"></div>
+        <div class="light" onclick="changeStatus(23)"></div>
+        <div class="light" onclick="changeStatus(24)"></div>
+
+
+    </div>
+    <script>
+        var list = document.getElementsByClassName('light')
+        // console.log(list)
+        for(var i=0;i<list.length;i++){
+            list[i].style.backgroundImage='url(../img/灯泡灭.png)'
+        }
+
+        // var arr = [
+        //     [1,2,3,4,5],
+        //     [1,2,3,4,5],
+        //     [1,2,3,4,5],
+        //     [1,2,3,4,5],
+        //     [1,2,3,4,5]
+        // ]
+        //定义一个数来存放有几盏灯亮着
+        var count = 0;
+        //定义一个变量来存放关数
+        var lv = 1;
+        function changeStatus(n) {
+            var arrs = []//记录当前点击需要改变的坐标点
+
+            //将数字转换为坐标
+            var col = n%5===0?0:n%5;
+            var row = n/5===parseInt(n/5)?n/5:parseInt(n/5);
+            console.log(col,row)
+
+            var xy = [col,row]
+            arrs.push(xy)
+            //计算周围的坐标点
+            //上
+            if(row>0){
+                arrs.push([col,row-1])
+            }
+            //下
+            if(row<4){
+                arrs.push([col,row+1])
+            }
+
+            //左
+            if(col>0){
+                arrs.push([col-1,row])
+            }
+            //右
+            if(col<4){
+                arrs.push([col+1,row])
+            }
+            for(var i=0;i<arrs.length;i++){
+                var num = arrs[i][0] + arrs[i][1]*5;
+                var bg = list[num].style.backgroundImage;
+                console.log(bg)
+                if(bg==='url("../img/灯泡灭.png")'){
+                    list[num].style.backgroundImage='url(../img/灯泡亮.png'
+                    count++;
+                }else{
+                    list[num].style.backgroundImage='url(../img/灯泡灭.png)'
+                    count--;
+                }
+            }
+            if(count===0){
+                lv++;
+                alert("恭喜过关");
+                gameStart(lv);
+            }
+
+        }
+        function gameStart(lv){
+                for(var i=0;i<lv;i++){
+                    var Number = rand();
+                    changeStatus(Number);
+                }
+            }
+        function rand() {
+            return Math.ceil(Math.random()*25)
+
+        }
+        gameStart(lv)
+        var back = document.querySelector('#back');
+            back.addEventListener('click', function () {
+                location.href = 'gamelist.html';
+            })
+    </script>
+</body>
+</html>

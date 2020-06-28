@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     padding: 0;
     margin: 0;
@@ -188,4 +189,185 @@ body{
     float: left;
     border-radius: 50%;
     display: inline-block;
+=======
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+body{
+    background-color: rgb(229,229,229);
+}
+.header{
+    width: 10rem;
+    height: 1.6rem /* 60/37.5 */;
+    background-color: rgb(55,152,255);
+    position: fixed;
+    z-index: 1;
+}
+.iconfont.iconfont{
+    color: aliceblue;
+    font-size: .8rem /* 30/37.5 */;
+    margin: .4rem /* 15/37.5 */;
+}
+.leftbtn{
+    float: left;
+}
+.rightbtn{
+    float: right;
+}
+.buttombox{
+    width: 10rem;
+    position: absolute;
+    bottom: 0;
+    background-color: rgb(229,229,229);
+}
+.textbox{
+    width: 80%;
+    height: .8rem /* 30/37.5 */;
+    margin: .266667rem /* 10/37.5 */;
+    border-radius: .4rem /* 15/37.5 */;
+    border: 1px solid rgb(229,229,229);
+}
+.mesbox{
+    top: 1.6rem /* 60/37.5 */;
+    width: 10rem;
+    position: absolute;
+    height: 84vh;
+    background-color: rgb(229,229,229);
+    overflow: scroll;
+}
+.send{
+    padding: .133333rem /* 5/37.5 */ .266667rem /* 10/37.5 */;
+    border: 1px solid white;
+    background-color: rgb(135, 241, 248);
+    border-radius: 1.2rem /* 45/37.5 */;
+    color: white;
+}
+.userid{
+    font-size: .64rem /* 24/37.5 */;
+    color: aliceblue;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.6rem /* 60/37.5 */;
+    vertical-align: middle;
+}
+.mybox{
+    background-color: antiquewhite;
+    display: inline-block;
+    position: relative;
+    border-radius: .266667rem /* 10/37.5 */;
+    /* right: 0; */
+    display: block;
+    padding: .266667rem 0 .266667rem .266667rem;
+    font-size: .48rem /* 18/37.5 */;
+    max-width: 7.573333rem /* 284/37.5 */;
+    max-height: 6.4rem /* 240/37.5 */;
+    overflow-wrap: break-word;
+}
+.mybox::after{
+    content: "";
+    width: 0;
+    height: 0;
+    right: -.426667rem /* -16/37.5 */;
+    position: absolute;
+    border: 8px solid transparent;
+    border-left-color: antiquewhite;
+}
+.headlogo{
+    
+    border-radius: 50%;
+    display: inline-block;
+}
+.sendb{
+    display: inline-block;
+    position: absolute;
+    /* padding: .4rem; */
+    right: .266667rem /* 10/37.5 */;
+    
+    
+}
+.nickname{
+    top: 0;
+    right: 1.6rem /* 60/37.5 */;
+    display: inline-block;
+    font-size: .426667rem /* 16/37.5 */;
+    /* float: right; */
+    position: absolute;
+
+}
+.leftmm{
+    display: inline-block;
+    /* position: relative; */
+    padding-right: .133333rem /* 5/37.5 */;
+}
+.revb{
+    display: inline-block;
+    /* position: absolute;
+    left: 0; */
+    padding: .266667rem /* 10/37.5 */;
+}
+
+
+.mbox{
+    background-color: antiquewhite;
+    display: inline-block;
+    border-radius: .266667rem /* 10/37.5 */;
+    /* right: 0; */
+    display: block;
+    padding: .133333rem /* 5/37.5 */;
+}
+.mbox::before{
+    content: "";
+    width: 0;
+    height: 0;
+    left: -.4rem /* -15/37.5 */;
+    position: absolute;
+    border: 8px solid transparent;
+    border-right-color: antiquewhite;
+}
+.messbox{
+    position: relative;
+    padding-top: .266667rem /* 10/37.5 */;
+    min-height: 2rem /* 75/37.5 */;
+    max-height: 5rem;
+}
+.rightmm{
+    display: inline-block;
+    position: relative;
+    padding-right: .133333rem /* 5/37.5 */;
+}
+.nickname2{
+    font-size: .48rem /* 18/37.5 */;
+}
+.mybox2{
+    background-color: antiquewhite;
+    display: inline-block;
+    position: relative;
+    border-radius: .266667rem /* 10/37.5 */;
+    /* right: 0; */
+    display: block;
+    margin-left: .266667rem /* 10/37.5 */;
+    padding: .266667rem .266667rem .266667rem 0;
+    font-size: .48rem /* 18/37.5 */;
+}
+.mybox2::before{
+    content: "";
+    width: 0;
+    height: 0;
+    left: -.426667rem /* -16/37.5 */;
+    position: absolute;
+    border: 8px solid transparent;
+    border-right-color: antiquewhite;
+}
+.sendb2{
+    display: inline-block;
+    margin-left: .266667rem /* 10/37.5 */;
+}
+.headlogo2{
+    
+    border-radius: 50%;
+    display: inline-block;
+>>>>>>> 0c690cea909e5103437751d6d33d5f0bf3bd79cb
 }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏列表</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            width:100%;
+            height:700px;
+            background-image: linear-gradient(to bottom,#1AC0BC,#8F8ACA);
+        }
+        #back{
+            width: 40px;
+            height: 30px;
+        }
+        #gameUl .gameLi{
+            width: 100%;
+            height:40px;
+            font-size: 20px;
+        }
+        #gameUl .gameLi img{
+            width: 30px;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+    <img src="../img/返回.png" alt="" id="back">
+    <ul id="gameUl">
+        <a href="../html/翻牌游戏.html"><li class="gameLi"><img src="../img/棋牌.png">翻牌游戏</li></a>
+        <a href="../html/猜颜色.html"><li class="gameLi"><img src="../img/字典.png">看字选颜色游戏</li></a>
+        <a href="../html/点灯笼.html"><li class="gameLi"><img src="../img/灯笼.png">点灯笼游戏</li></a>
+    </ul>
+</body>
+<script>
+    var back=document.querySelector('#back');
+    back.addEventListener('click',function(){
+        location.href = 'developmen.html';
+    })
+</script>
+</html>
