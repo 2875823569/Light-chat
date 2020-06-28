@@ -10,7 +10,7 @@ console.log(leftbtn);
 
 leftbtn.onclick=function(){
     // console.log(1);
-    location.href='../html/main_box.html'
+    location.href='../html/Main.html'
 }
 
 function getfriend(){
