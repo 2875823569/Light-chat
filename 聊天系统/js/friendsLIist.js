@@ -1,4 +1,9 @@
 
+var addfriend=document.querySelector('#newFriends')
+addfriend.onclick=function(){
+    location.href='../html/resfriend.html'
+}
+
 $(function () {
     var id = window.localStorage.getItem('id')
     var sign_str = window.localStorage.getItem('sign_str')
@@ -110,7 +115,7 @@ $(function () {
         }else if(e.target.className=='headImg'){
             var index=$(e.target.parentNode.parentNode).index();
             curID=list[index].user_id;
-            location.href = 'chatpage.html';
+            parent.location.href = 'chatpage.html';
             console.log(curID)
         }
     })
@@ -132,6 +137,10 @@ $(function () {
             }
         })
     }
+    //调转到新朋友页面
+    $('#newFriends').on('click',function(){
+        location.href = 'resfriend.html';
+    })
 })
     
     
