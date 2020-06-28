@@ -5,6 +5,7 @@ addfriend.onclick=function(){
 }
 
 $(function () {
+    var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
     var id = window.localStorage.getItem('id')
     var sign_str = window.localStorage.getItem('sign_str')
     var username = window.localStorage.getItem('username')
@@ -108,7 +109,8 @@ $(function () {
             var index=$(e.target.parentNode).index();
             delFriendId=list[index].user_id;
             list.splice(index,1);
-            delFriends(delSignStr,delUserId,delFriendId);
+            delFriends(sign_str,id,delFriendId);
+            console.log(delFriendId)
             $(e.target.parentNode).remove();
             // deleteFriends(sign_str,user_id,friend_id);
 
@@ -116,7 +118,7 @@ $(function () {
             var index=$(e.target.parentNode.parentNode).index();
             // curID=list[index].user_id;
             window.localStorage.setItem('friend_id',list[index].user_id);
-        window.localStorage.setItem('nick_name',list[index].nickname);
+           window.localStorage.setItem('nick_name',list[index].nickname);
             parent.location.href = 'chatpage.html';
             // console.log(list[index].nickname)
         }
@@ -124,7 +126,7 @@ $(function () {
      //ajax删除
      function delFriends(x,y,z) {
         $.ajax({
-            url:all_net.removFriend_net,
+            url:all_net.removeFriend_net,
             type:"POST",
             data:{
                 sign_str:x,
@@ -135,7 +137,7 @@ $(function () {
                 console.log("删除成功！")
             },
             error:function(msg){
-                console.log(msg);
+                console.log("删除失败");
             }
         })
     }
