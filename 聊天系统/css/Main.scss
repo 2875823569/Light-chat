@@ -231,7 +231,8 @@ ul,li{
           }
           .notice_container{
             font-size: 14px;
-            width: 88%;
+            width: 69vw;
+            overflow: hidden;
             text-overflow: ellipsis;
             display: inline-block;
           }
