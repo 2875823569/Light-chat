@@ -249,6 +249,13 @@ login_out_slider.click(function(){
     parent.location.href="../Login.html"
 })
 
+avatar2.click(function () {
+    btn_file.click();
+    btn_file.change(function(){
+        avatar2.attr("src",URL.createObjectURL($(this)[0].files[0]));
+    });
+});
+
 //获取用户头像
 $.ajax({
     url: "http://118.24.25.7/chat_api/interface/getHeadImg.php",
