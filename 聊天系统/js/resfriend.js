@@ -23,8 +23,6 @@ function getfriend(){
     })
     .done(function(res){
         
-        
-        
         for(let i=0;i<res.data.length;i++){
             // console.log(res.data[i]);
             var p = document.createElement('div');

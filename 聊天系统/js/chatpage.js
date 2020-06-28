@@ -110,8 +110,17 @@ sendbtn.onclick = function () {
 
             if (res.code == 101) {
                 
-                // confirm("你不是对方的好友")
-                
+                var Mes = {}
+                if(Mes.dialog1){
+                    return Mes.dialog1.show();
+                }
+                Mes.dialog1 = jqueryAlert({
+                    'content' : '你不是对方的好友',
+                    'closeTime' : 2000,
+                    'end':function(){
+                    }
+                })
+
             } else if (res.code == 0) {
                 
                 var head_log = res.data
@@ -147,6 +156,19 @@ sendbtn.onclick = function () {
                 mes.value = null;
 
             } else {
+                console.log(res);
+                
+                var Mes = {}
+                if(Mes.dialog1){
+                    return Mes.dialog1.show();
+                }
+                Mes.dialog1 = jqueryAlert({
+                    'content' : '发送失败,消息不能为空',
+                    'closeTime' : 2000,
+                    'end':function(){
+                    }
+                })
+
             }
         })
         .fail(function (res) {
@@ -180,7 +202,7 @@ function headlog() {
         .done(function (res) {
             
             var head_log = res.data[0].head_logo;
-            console.log(head_log);
+            // console.log(head_log);
             window.localStorage.setItem('head_log', head_log)
         })
         .fail(function (err) {
@@ -190,6 +212,7 @@ function headlog() {
         .always(function () {
         })
 }
+
 
 
 // 获取历史记录
@@ -255,6 +278,7 @@ function historys() {
                
         })
         .fail(function (err) {
+            console.log(err);
             
         })
         .always(function () {
