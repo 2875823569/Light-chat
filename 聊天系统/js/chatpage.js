@@ -90,11 +90,11 @@ function receivemes() {
         })
 }
 receivemes();
-
+headlog()
 // 发送消息
 sendbtn.onclick = function () {
     // console.log(mes.value)
-    headlog()
+   
     $.ajax({
         url: "http://118.24.25.7/chat_api/interface/sendMessage.php",
         type: "POST",
@@ -125,7 +125,7 @@ sendbtn.onclick = function () {
                 <div class='mybox'>${mes.value}</div>
                 </div>
                 <div class="headlogo">
-                <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height:1.4rem"></div>
                 </div>`
                 mesbox.append(p)
 
@@ -224,7 +224,7 @@ function historys() {
                     <div class='mybox'>${res.data[i].message}</div>
                     </div>
                     <div class="headlogo">
-                    <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                    <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height:1.4rem"></div>
                     </div>`
                     mesbox.append(p)
                 }else{
@@ -253,6 +253,9 @@ function historys() {
                     // },100)
                 }
             }
+            console.log(document.documentElement.clientHeight);
+            
+            
             // console.log($(".messbox .mybox2")[0].getBoundRect.top)
                
         })
@@ -263,6 +266,7 @@ function historys() {
         })
 }
 historys();
+$("body").scrollTop(document.documentElement.clientHeight)
 
 // console.log(localStorage);
 
