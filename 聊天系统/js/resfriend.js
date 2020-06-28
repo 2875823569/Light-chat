@@ -9,7 +9,7 @@ var leftbtn=document.querySelector(".leftbtn");
 console.log(leftbtn);
 
 leftbtn.onclick=function(){
-    console.log(1);
+    // console.log(1);
     location.href='../html/main_box.html'
 }
 
@@ -32,6 +32,7 @@ function getfriend(){
             console.log(res.data[i]);
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
+            console.log(res.data)
             p.classList.add('friendbox')
             p.innerHTML = `
             <div class="headlogo">
@@ -52,6 +53,8 @@ function getfriend(){
             })
             
         }
+
+        
     })
     .fail(function(res){
         console.log(res);

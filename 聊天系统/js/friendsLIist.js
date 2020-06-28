@@ -1,4 +1,9 @@
 
+var addfriend=document.querySelector('#newFriends')
+addfriend.onclick=function(){
+    location.href='../html/resfriend.html'
+}
+
 $(function () {
     var id = window.localStorage.getItem('id')
     var sign_str = window.localStorage.getItem('sign_str')
