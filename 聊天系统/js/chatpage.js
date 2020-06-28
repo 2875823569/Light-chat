@@ -11,7 +11,9 @@ userid.innerHTML = `${nickname}`;
 // 返回按钮
 var lbtn = document.querySelector('.leftbtn');
 lbtn.onclick = function () {
-    location.href = 'main_box.html'
+    console.log(window.history);
+    
+    window.history.go(-1)
 }
 // 右菜单栏
 var rightbtn = document.querySelector('.rightbtn');
@@ -92,7 +94,7 @@ receivemes();
 // 发送消息
 sendbtn.onclick = function () {
     // console.log(mes.value)
-   headlog()
+    headlog()
     $.ajax({
         url: "http://118.24.25.7/chat_api/interface/sendMessage.php",
         type: "POST",
@@ -113,9 +115,9 @@ sendbtn.onclick = function () {
 
             } else if (res.code == 0) {
                 console.log('发送成功');
-                var head_log=res.data
+                var head_log = res.data
                 console.log(head_log);
-                
+
                 var p = document.createElement('div');
                 p.classList.add('messbox')
                 // var messbox=document.querySelector('.messbox');
@@ -148,7 +150,7 @@ sendbtn.onclick = function () {
 
                 // console.log(localStorage.nickname);
                 mes.value = null;
-                
+
             } else {
                 console.log('发送失败');
             }
@@ -161,7 +163,7 @@ sendbtn.onclick = function () {
                     location.href = '../Login.html'
                 }, 3000)
                 clearTimeout()
-            }else if(res.code == 2){
+            } else if (res.code == 2) {
                 var timer = null;
                 timer = setInterval(function () {
                     location.href = '../Login.html'
@@ -174,31 +176,31 @@ sendbtn.onclick = function () {
 }
 // 获取头像
 function headlog() {
-        $.ajax({
-            url: 'http://118.24.25.7/chat_api/interface/getHeadImg.php',
-            type: "GET",
-            data: {
-                username:localStorage.username,
-            },
-            dataType: "JSON",
+    $.ajax({
+        url: 'http://118.24.25.7/chat_api/interface/getHeadImg.php',
+        type: "GET",
+        data: {
+            username: localStorage.username,
+        },
+        dataType: "JSON",
+    })
+        .done(function (res) {
+            console.log(res.data[0].head_logo);
+            var head_log = res.data[0].head_logo;
+            console.log(head_log);
+
+            window.localStorage.setItem('head_log', head_log)
         })
-            .done(function (res) {
-                console.log(res.data[0].head_logo);
-                var head_log=res.data[0].head_logo;
-                console.log(head_log);
-                
-                window.localStorage.setItem('head_log',head_log)
-            })
-            .fail(function (res) {
-                console.log(res);
-            })
-            .always(function () {
-            })
-    }
+        .fail(function (res) {
+            console.log(res);
+        })
+        .always(function () {
+        })
+}
 
 
 // 获取历史记录
-function history() {
+function historys() {
     $.ajax({
         url: 'http://118.24.25.7/chat_api/interface/getChatHistory.php',
         type: "GET",
@@ -210,8 +212,8 @@ function history() {
         dataType: "JSON",
     })
         .done(function (res) {
-            console.log(res.data);
-            for(i=0;i<res.data.length;i++){
+            console.log(res.data.length);
+            for (i = 0; i < res.data.length; i++) {
 
             }
         })
@@ -221,7 +223,7 @@ function history() {
         .always(function () {
         })
 }
-history();
+historys();
 
 
 
