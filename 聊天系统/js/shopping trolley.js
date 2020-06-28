@@ -165,7 +165,8 @@ $(function () {
     $("div").css("height", window_height, "width", window_width, "overflow", "hidden")
 
     $("#get_back").click(function(){
-        parent.location.href="main_box.html"
+        // wonlocation.href="main_box.html"
         // parent.$(".toaction").click()
+        window.history.go(-1)
     })
 })

@@ -1,12 +1,12 @@
 var addfriendbox=document.querySelector(".addfriendbox");
 var submitf=document.querySelector(".submitf")
 var regtype=document.querySelector(".regtype")
-console.log(localStorage);
+
 
 var leftbtn=document.querySelector(".leftbtn");
 
 leftbtn.onclick=function(){
-    // console.log(1);
+    // 
     location.href='../html/好友列表.html'
 }
 
@@ -22,14 +22,14 @@ function getfriend(){
         timeout: 6000
     })
     .done(function(res){
-        console.log(res);
+        
         
         
         for(let i=0;i<res.data.length;i++){
-            console.log(res.data[i]);
+            
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
-            // console.log(head_log)
+            // 
             p.classList.add('friendbox')
             p.innerHTML = `
             <div class="headlogo">
@@ -44,7 +44,7 @@ function getfriend(){
             addfriendbox.append(p)
             $(`.submitf[user_id=${res.data[i].user_id}]`).on("click",function(){
                 var processvals=$(`.regtype[user_id=${res.data[i].user_id}]`).val();
-                console.log(localStorage);
+                
                 processFriendRequest(res.data[i],processvals)
                 
             })
@@ -54,7 +54,7 @@ function getfriend(){
         
     })
     .fail(function(res){
-        console.log(res);
+        
         
     })
     .always(function(){
@@ -81,19 +81,19 @@ function processFriendRequest(obj,val){
         datatype:"JSON",
     })
     .done(function(res){
-        console.log(res);
+        
         if(res.code==0){
 
         }else if(res.code==1){
-            console.log(res.data);
+            
             
         }else{
-            console.log(11);
+            
             
         }
     })
     .fail(function(data){
-        console.log(data);
+        
         
     })
     .always(function(){
