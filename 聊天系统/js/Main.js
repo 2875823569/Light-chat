@@ -7,13 +7,8 @@ var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
 // console.log(all_net)
 
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
-<<<<<<< HEAD
 $(".icon-shizi-copy").click(function () {
     $(".icon-shizi-copy").toggleClass("shizi_isclicked")
-=======
-$(".out .main .top > i").click(function () {
-    $(".icon-shizi").toggleClass("shizi_isclicked")
->>>>>>> 9a9a4b7fec5f808e2844c43dacfa47a3ce3e4905
     $(".hidden_rigth").toggleClass("hidden_rigth_display")
 })
 //申请好友
@@ -221,6 +216,7 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
             friend_id:friend_id
         },
         success:(function (msg) {
+            console.log(msg)
             callback(msg)
         }),
         error(msg) {

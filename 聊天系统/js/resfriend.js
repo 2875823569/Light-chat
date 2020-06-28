@@ -43,15 +43,27 @@ function getfriend(){
             console.log(res.data[i]);
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
+            console.log(res.data)
             p.classList.add('friendbox')
             p.innerHTML = `
             <div class="headlogo">
             <img src='http://118.24.25.7/${head_log}' class="headimg"></div>
             <div class='nickname'>${res.data[i].nickname}</div>
-            <select class="regtype"><option value="1">同意</option><option value="2">拒绝</option>
-            <option value="3">拒绝并不再接收此用人好友申请</option></select><button class="submitf">提交</button>`
+                <select class="regtype" user_id=${res.data[i].user_id}>
+                <option value="1">同意</option>
+                <option value="2">拒绝</option>
+                <option value="3">拒绝并不再接收此用人好友申请</option>
+                </select>
+            <button class="submitf" user_id=${res.data[i].user_id}>提交</button>`
             addfriendbox.append(p)
+            
+            $(`.submitf[user_id=${res.data[i].user_id}]`).on("click",function(){
+                console.log( $(`.regtype[user_id=${res.data[i].user_id}]`).val())
+                // console.log(111)
+            })
         }
+
+        
     })
     .fail(function(res){
         console.log(res);

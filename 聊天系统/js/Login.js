@@ -1,5 +1,5 @@
 
-window.localStorage.clear(all_net);
+// window.localStorage.clear(all_net);
 
 
 var all_net = {
@@ -23,28 +23,9 @@ var all_net = {
 }
 window.localStorage.setItem("all_net",JSON.stringify(all_net))
 
-
-// window.localStorage.setItem("login_net",login_net)
-// window.localStorage.setItem("addFriend_net",addFriend_net)
-// window.localStorage.setItem("getFriendRequests_net",getFriendRequests_net)
-// window.localStorage.setItem("processFriendRequest_net",processFriendRequest_net)
-// window.localStorage.setItem("getFriends_net",getFriends_net)
-// window.localStorage.setItem("removeFriend_net",removeFriend_net)
-// window.localStorage.setItem("sendMessage_net",sendMessage_net)
-// window.localStorage.setItem("getMessages_net",getMessages_net)
-// window.localStorage.setItem("logout_net",logout_net)
-// window.localStorage.setItem("getSearchUsers_net",getSearchUsers_net)
-// window.localStorage.setItem("getUserInfo_net",getUserInfo_net)
-// window.localStorage.setItem("upload_net",upload_net)
-// window.localStorage.setItem("getChatHistory_net",getChatHistory_net)
-// window.localStorage.setItem("getHeadImg_net",getHeadImg_net)
-// window.localStorage.setItem("modifyHeadLogo_net",modifyHeadLogo_net)
-
-
-//点击登陆按钮
-$(document).delegate("#loading",'click',function(){
-    //输入的账号为空时
-    if($("#uername")[0].value===""){
+function Login(){
+     //输入的账号为空时
+     if($("#uername")[0].value===""){
         var M = {}
         if(M.dialog1){
             return M.dialog1.show();
@@ -124,6 +105,18 @@ $(document).delegate("#loading",'click',function(){
             alert("连接失败")
         })
     })
+}
+
+//点击登陆按钮
+//按回车登陆
+$("body").keydown(function(res){
+    if(res.code==="Enter"){
+    Login();
+}
+})
+
+$("#loading").click(function(){
+    Login();
 })
 
 $(".loading:nth-of-type(3)").mousedown(function () {
