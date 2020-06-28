@@ -229,7 +229,7 @@ function historys() {
                     <div class='mybox'>${res.data[i].message}</div>
                     </div>
                     <div class="headlogo">
-                    <img src=http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height:1.4rem"></div>
+                    <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height:1.4rem"></div>
                     </div>`
                     mesbox.append(p)
                 }else{
