@@ -17,13 +17,14 @@
 #header{
     width: 100%;
     height:15%;
-    background-color: darkturquoise;
+    background-image: linear-gradient(to right,#01D4FF,#00A8FF);
     position: absolute;
     text-align: center;
 }
 #headPortrait{
     width:12%;
-    height:29%;
+    height:50%;
+    border:1px solid black;
     /* background-color: darkviolet; */
     position: absolute;
     bottom: 15px;

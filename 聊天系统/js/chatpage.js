@@ -11,7 +11,7 @@ userid.innerHTML = `${nickname}`;
 // 返回按钮
 var lbtn = document.querySelector('.leftbtn');
 lbtn.onclick = function () {
-    location.href = 'Main.html'
+    location.href = 'main_box.html'
 }
 // 右菜单栏
 var rightbtn = document.querySelector('.rightbtn');
@@ -49,7 +49,7 @@ function receivemes() {
 
             if (res.code == 0) {
 
-
+                var message = res.data[0].message.split('<').join('&lt').split('>').join('&gt')
                 var p = document.createElement('div');
                 p.style.display = "block";
                 console.log(res.data[0].nickname);
@@ -59,14 +59,14 @@ function receivemes() {
             </div>
             <div class='rightmm'>   
             <div class='nickname'>${res.data[0].nickname}</div>
-            <div class='mbox'>${res.data[0].message}</div>
+            <div class='mbox'>${message}</div>
             </div>
             <br>`
                 mesbox.append(p)
-                var lmessage = localStorage.setItem('p');
-                console.log(lmessage);
-
-                console.log(localStorage.nickname);
+                // // var lmessage = localStorage.setItem('p');
+                // console.log(lmessage);
+                //
+                // console.log(localStorage.nickname);
                 mes.value = null;
             } else if (res.code == 3) {
                 var timer = null;
@@ -112,6 +112,7 @@ sendbtn.onclick = function () {
             } else if (res.code == 0) {
                 console.log('发送成功');
                 var p = document.createElement('div');
+                var message = mes.value.split('<').join('&lt').split('>').join('&gt')
                 p.innerHTML = `<div class="sendb">  
                 <div class='leftmm'>
                 <div class='nickname'>${localStorage.nickname}</div>
@@ -137,7 +138,7 @@ sendbtn.onclick = function () {
                     location.href = '../Login.html'
                 }, 3000)
                 clearTimeout()
-            }else{
+            }else if(res.code == 2){
                 var timer = null;
                 timer = setInterval(function () {
                     location.href = '../Login.html'
@@ -149,7 +150,42 @@ sendbtn.onclick = function () {
         .always(function () { })
 }
 
-
+function history() {
+    $.ajax({
+        url: 'http://118.24.25.7/chat_api/interface/getChatHistory.php',
+        type: "GET",
+        data: {
+            sign_str: localStorage.sign_str,
+            user_id: localStorage.id,
+            friend_id: friendid,
+        },
+        dataType: "JSON",
+    })
+        .done(function (res) {
+            console.log(res);
+            console.log(res.data);
+            for(var i=0;i<res.data.length;i++){
+                
+                // var p = document.createElement('div');
+                // var message = mes.value.split('<').join('&lt').split('>').join('&gt')
+                // p.innerHTML = `<div class="sendb">  
+                // <div class='leftmm'>
+                // <div class='nickname'>${localStorage.nickname}</div>
+                // <div class='mybox'>${mes.value}</div>
+                // </div>
+                // <div class="headlogo">
+                // <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
+                // </div><br><br><br>`
+                // mesbox.append(p)
+            }
+        })
+        .fail(function (res) {
+            console.log(res);
+        })
+        .always(function () {
+        })
+}
+history();
 
 
 

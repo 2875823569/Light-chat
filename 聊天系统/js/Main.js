@@ -3,9 +3,17 @@ var id = window.localStorage.getItem('id')
 var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
+var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
+
+
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
-$(".icon-shizi").click(function () {
+<<<<<<< HEAD
+$(".icon-shizi-copy").click(function () {
+    $(".icon-shizi-copy").toggleClass("shizi_isclicked")
+=======
+$(".out .main .top > i").click(function () {
     $(".icon-shizi").toggleClass("shizi_isclicked")
+>>>>>>> 9a9a4b7fec5f808e2844c43dacfa47a3ce3e4905
     $(".hidden_rigth").toggleClass("hidden_rigth_display")
 })
 //申请好友
@@ -13,7 +21,7 @@ $(".add_btn").click(function () {
 
     //申请好友
     $.ajax({
-        url: "http://118.24.25.7/chat_api/interface/addFriend.php",
+        url: all_net.addFriend_net,
         type: "POST",
         data: {
             sign_str: sign_str,
@@ -22,10 +30,42 @@ $(".add_btn").click(function () {
         },
         datatype: "JSON",
         success: (function (msg) {
-            alert(msg.msg)
+            console.log(typeof msg.msg)
+            if (!msg.msg){
+                var M = {}
+                if(M.dialog1){
+                    return M.dialog1.show();
+                }
+                M.dialog1 = jqueryAlert({
+                    'content' : "请输入正确的ID",
+                    'closeTime' : 3000,
+                    'end':function(){
+                    }
+                })
+                return ;
+            }
+            var M = {}
+            if(M.dialog1){
+                return M.dialog1.show();
+            }
+            M.dialog1 = jqueryAlert({
+                'content' : msg.msg,
+                'closeTime' : 3000,
+                'end':function(){
+                }
+            })
         }),
         err: (function (msg) {
-            console.log(msg)
+            var M = {}
+            if(M.dialog1){
+                return M.dialog1.show();
+            }
+            M.dialog1 = jqueryAlert({
+                'content' : msg.msg,
+                'closeTime' : 4000,
+                'end':function(){
+                }
+            })
         })
 
 
@@ -43,8 +83,23 @@ function longLoop(url,type,data,callback) {
         data:data,
         success(data){
             if(data.msg === "签名字符串已过期"){
-                location.href = '../Login.html';
-                console.log(1)
+                var M = {}
+                if(M.dialog2){
+                    return M.dialog2.show();
+                }
+                M.dialog2 = jqueryAlert({
+                    'content' : '签名字符串已过期,请重新登陆！',
+                    'modal'   : true,
+                    'end':function(){
+                    },
+                    'buttons' :{
+                        '确定' : function(){
+                            parent.location.href = '../Login.html';
+                            M.dialog2.close();
+                        }
+                    }
+                })
+
             }
             callback(data)
         },
@@ -56,24 +111,22 @@ function longLoop(url,type,data,callback) {
             longLoop(url,type,data,callback)
         }
     })
-        .always(function () {
-
-        })
 }
 var notic_data = {
     sign_str:sign_str,
     user_id:id
 }
 var arr_id=[]//存放发信息的id
-longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_data,function (data) {
+longLoop(all_net.getMessages_net,"GET",notic_data,function (data) {
     // set_add_information(data.data)
     for(var i=0;i<data.data.length;i++){
         set_add_information(data.data[i])
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
         if(arr_id.includes(data.data[i].user_id)){
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                console.log($(".notice_num").html())
-                return parseInt($(".notice_num").html())+1;
+                // console.log($(".notice_num").html())
+                console.log($(`.notice_num[user_id=${data.data[i].user_id}]`).html())
+                return parseInt($(`.notice_num[user_id=${data.data[i].user_id}]`).html());
             })
             $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
             $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
@@ -81,9 +134,10 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
             arr_id.push(data.data[i].user_id)
             add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
         }
-        
+
         $(".notice_area").on("click",".notice_infomation",function () {
-            location.href = '../html/chatpage.html'
+            console.log(aaaa)
+            parent.location.href = '../html/chatpage.html'
             window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         })
     }
@@ -93,7 +147,7 @@ longLoop("http://118.24.25.7/chat_api/interface/getMessages.php","GET",notic_dat
 function add_information(time,uname,head_logo,message,user_id) {
     $(".notice_area").html(function(n){
         return `<div class="notice_infomation" user_id=${user_id} uname=${uname}>
-                    <img src="http://118.24.25.7/chat_api${head_logo}" class="notice_uheadimg">
+                    <img src= "${all_net.headInner_net}${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
                         <div class="notice_information1">
                             <p class="uname">${uname}</p>
@@ -124,7 +178,7 @@ function set_add_information(arr_notice) {
     }
 
     $(".notice_area").on("click",".notice_infomation",function () {
-        location.href = '../html/chatpage.html'
+        parent.location.href = '../html/chatpage.html'
         window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         window.localStorage.setItem('nick_name',this.getAttribute("uname"));
     })
@@ -149,7 +203,7 @@ function get_friendlist(url,callback) {
 //获取聊天记录
 function getchatlist(user_id,sign_str,friend_id,callback) {
     $.ajax({
-        url:"http://118.24.25.7/chat_api/interface/getChatHistory.php",
+        url:window.localStorage.getItem("getChatHistory_net"),
         type:"GET",
         datatype:"json",
         data:{
@@ -168,7 +222,7 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
 }
 
 // 添加聊天记录到主页上
-get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (data) {
+get_friendlist(window.localStorage.getItem("getFriends_net"),function (data) {
     // console.log(11)
     var friend_list = data.data
 
@@ -187,22 +241,11 @@ get_friendlist("http://118.24.25.7/chat_api/interface/getFriends.php",function (
 })
 
 // 搜索用户
-//用户按下回车键执行的操作
+//用户点击操作跳转到搜索用户界面
+$(".search").click(function () {
+    parent.location.href = '../html/search_all_user.html'
+})
 
-
-// $.ajax({
-//     url:"http://118.24.25.7/chat_api/interface/getSearchUsers.php",
-//     type:"GET",
-//     data:{
-//         sign_str:sign_str,
-//         user_id:id,
-//         search_text:$(".search").val
-//     },
-//     datatype:"JSON",
-//     success:(function (msg) {
-//         console.log(msg)
-//     })
-// })
 
 //------------------------------------------------个人信息界面--------------------------------------------------------------
 //获取元素
@@ -258,7 +301,7 @@ avatar2.click(function () {
 
 //获取用户头像
 $.ajax({
-    url: "http://118.24.25.7/chat_api/interface/getHeadImg.php",
+    url: all_net.getHeadImg_net,
     type: 'GET',
     data: {
         username: username
@@ -268,9 +311,9 @@ $.ajax({
         var user_head_logo = msg.data[0].head_logo
 
         //获取的数据显示到页面
-        avatar.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
-        avatar2.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
-        head_img.attr("src", "http://118.24.25.7/chat_api" + user_head_logo)
+        avatar.attr("src", all_net.headInner_net + user_head_logo)
+        avatar2.attr("src", all_net.headInner_net + user_head_logo)
+        head_img.attr("src", all_net.headInner_net + user_head_logo)
         backg.children().eq(1).children().eq(0).children().empty().append(username)
         backg.children().eq(1).children().eq(1).children().empty().append(nikename)
         backg.children().eq(1).children().eq(2).children().empty().append(id)
@@ -293,17 +336,17 @@ $.ajax({
                 // console.log(data);
                 
                 $.ajax({
-                    url: "http://118.24.25.7/chat_api/interface/upload.php",
+                    url:  all_net.upload_net,
                     type: "POST",
                     processData: false,
                     contentType: false,
                     data: data,
                     success: function (msg) {
                         // console.log(msg.data.path);
-                        var data_path = "http://118.24.25.7"+msg.data.path
+                        var data_path = all_net.headInner_net+msg.data.path
                         console.log(data_path);
                         $.ajax({
-                            url:"http://118.24.25.7/chat_api/interface/modifyHeadLogo.php",
+                            url:all_net.modifyHeadLogo_net,
                             type:"GET",
                             data:{
                                 sign_str:sign_str,
