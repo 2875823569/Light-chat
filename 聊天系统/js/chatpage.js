@@ -212,9 +212,14 @@ function historys() {
         dataType: "JSON",
     })
         .done(function (res) {
-            console.log(res.data.length);
+            console.log(res.data);
+            console.log(res);
             for (i = 0; i < res.data.length; i++) {
+                console.log(res.data[i]);
+                console.log(res.data[i].message);
+                // if(res.data[i]){
 
+                // }
             }
         })
         .fail(function (err) {
