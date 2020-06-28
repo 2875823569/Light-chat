@@ -180,6 +180,7 @@ function set_add_information(arr_notice) {
         parent.location.href = '../html/chatpage.html'
         window.localStorage.setItem('friend_id', this.getAttribute("user_id"));
         window.localStorage.setItem('nick_name', this.getAttribute("uname"));
+        window.localStorage.setItem("friend_head_log",arr_notice.head_logo)
     })
 }
 
