@@ -3,13 +3,13 @@ var id = window.localStorage.getItem('id')
 var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
-var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
+var all_net = obj = JSON.parse(window.localStorage.getItem("all_net"))
 
 
 
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
-$(".icon-shizi-copy").click(function () {
-    $(".icon-shizi-copy").toggleClass("shizi_isclicked")
+$(".icon-shizicha").click(function () {
+    $(".icon-shizicha").toggleClass("shizi_isclicked")
     $(".hidden_rigth").toggleClass("hidden_rigth_display")
 })
 //申请好友
@@ -29,37 +29,37 @@ $(".add_btn").click(function () {
             
             if (!msg.msg){
                 var M = {}
-                if(M.dialog1){
+                if (M.dialog1) {
                     return M.dialog1.show();
                 }
                 M.dialog1 = jqueryAlert({
-                    'content' : "请输入正确的ID",
-                    'closeTime' : 3000,
-                    'end':function(){
+                    'content': "请输入正确的ID",
+                    'closeTime': 3000,
+                    'end': function () {
                     }
                 })
-                return ;
+                return;
             }
             var M = {}
-            if(M.dialog1){
+            if (M.dialog1) {
                 return M.dialog1.show();
             }
             M.dialog1 = jqueryAlert({
-                'content' : msg.msg,
-                'closeTime' : 3000,
-                'end':function(){
+                'content': msg.msg,
+                'closeTime': 3000,
+                'end': function () {
                 }
             })
         }),
         err: (function (msg) {
             var M = {}
-            if(M.dialog1){
+            if (M.dialog1) {
                 return M.dialog1.show();
             }
             M.dialog1 = jqueryAlert({
-                'content' : msg.msg,
-                'closeTime' : 4000,
-                'end':function(){
+                'content': msg.msg,
+                'closeTime': 4000,
+                'end': function () {
                 }
             })
         })
@@ -70,26 +70,26 @@ $(".add_btn").click(function () {
 
 //------------------------------------------------聊天信息界面--------------------------------------------------------------
 //长轮询
-function longLoop(url,type,data,callback) {
+function longLoop(url, type, data, callback) {
     $.ajax({
-        url:url,
-        type:type,
-        dataType:"json",
-        timeout:1000*20,
-        data:data,
-        success(data){
-            if(data.msg === "签名字符串已过期"){
+        url: url,
+        type: type,
+        dataType: "json",
+        timeout: 1000 * 20,
+        data: data,
+        success(data) {
+            if (data.msg === "签名字符串已过期") {
                 var M = {}
-                if(M.dialog2){
+                if (M.dialog2) {
                     return M.dialog2.show();
                 }
                 M.dialog2 = jqueryAlert({
-                    'content' : '签名字符串已过期,请重新登陆！',
-                    'modal'   : true,
-                    'end':function(){
+                    'content': '签名字符串已过期,请重新登陆！',
+                    'modal': true,
+                    'end': function () {
                     },
-                    'buttons' :{
-                        '确定' : function(){
+                    'buttons': {
+                        '确定': function () {
                             parent.location.href = '../Login.html';
                             M.dialog2.close();
                         }
@@ -99,26 +99,26 @@ function longLoop(url,type,data,callback) {
             }
             callback(data)
         },
-        error(data){
+        error(data) {
 
 
         },
-        complete(){
-            longLoop(url,type,data,callback)
+        complete() {
+            longLoop(url, type, data, callback)
         }
     })
 }
 var notic_data = {
-    sign_str:sign_str,
-    user_id:id
+    sign_str: sign_str,
+    user_id: id
 }
-var arr_id=[]//存放发信息的id
-longLoop(all_net.getMessages_net,"GET",notic_data,function (data) {
+var arr_id = []//存放发信息的id
+longLoop(all_net.getMessages_net, "GET", notic_data, function (data) {
     // set_add_information(data.data)
-    for(var i=0;i<data.data.length;i++){
+    for (var i = 0; i < data.data.length; i++) {
         set_add_information(data.data[i])
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
-        if(arr_id.includes(data.data[i].user_id)){
+        if (arr_id.includes(data.data[i].user_id)) {
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
                 // 
                 
@@ -126,22 +126,22 @@ longLoop(all_net.getMessages_net,"GET",notic_data,function (data) {
             })
             $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
             $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
-        }else{
+        } else {
             arr_id.push(data.data[i].user_id)
-            add_information(time,data.data[i].nickname,data.data[i].head_logo,data.data[i].message,data.data[i].user_id)
+            add_information(time, data.data[i].nickname, data.data[i].head_logo, data.data[i].message, data.data[i].user_id)
         }
 
         $(".notice_area").on("click",".notice_infomation",function () {
             
             parent.location.href = '../html/chatpage.html'
-            window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
+            window.localStorage.setItem('friend_id', this.getAttribute("user_id"));
         })
     }
-  })
+})
 
 //添加消息的函数
-function add_information(time,uname,head_logo,message,user_id) {
-    $(".notice_area").html(function(n){
+function add_information(time, uname, head_logo, message, user_id) {
+    $(".notice_area").html(function (n) {
         return `<div class="notice_infomation" user_id=${user_id} uname=${uname}>
                     <img src= "${all_net.headInner_net}${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
@@ -152,52 +152,52 @@ function add_information(time,uname,head_logo,message,user_id) {
                         <div class="notice_container" user_id=${user_id} uname=${uname}>${message}</div>
                         <span class="notice_num" user_id=${user_id} uname=${uname}>0</span>
                     </div>
-                </div>`+$(".notice_area").html()
+                </div>`+ $(".notice_area").html()
     })
 }
 function set_add_information(arr_notice) {
     var time = arr_notice.message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
 
-    if(arr_id.includes(arr_notice.user_id)){
+    if (arr_id.includes(arr_notice.user_id)) {
         $(`.notice_num[user_id=${arr_notice.user_id}]`).html(function (n) {
             // 
             return parseInt($(`.notice_num[user_id=${arr_notice.user_id}]`).html())+1;
         })
-        $(`.notice_num[user_id=${arr_notice.user_id}]`).css({"display":"inline-block"});
+        $(`.notice_num[user_id=${arr_notice.user_id}]`).css({ "display": "inline-block" });
         $(`.notice_container[user_id=${arr_notice.user_id}]`).html(arr_notice.message)
         $(`.send_time[user_id=${arr_notice.user_id}]`).html(time)
 
-    }else{
+    } else {
         arr_id.push(arr_notice.user_id)
-        add_information(time,arr_notice.nickname,arr_notice.head_logo,arr_notice.message,arr_notice.user_id)
+        add_information(time, arr_notice.nickname, arr_notice.head_logo, arr_notice.message, arr_notice.user_id)
         $(`.notice_num[user_id=${arr_notice.user_id}]`).html("1");
     }
 
-    $(".notice_area").on("click",".notice_infomation",function () {
+    $(".notice_area").on("click", ".notice_infomation", function () {
         parent.location.href = '../html/chatpage.html'
-        window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
-        window.localStorage.setItem('nick_name',this.getAttribute("uname"));
+        window.localStorage.setItem('friend_id', this.getAttribute("user_id"));
+        window.localStorage.setItem('nick_name', this.getAttribute("uname"));
     })
 }
 
 //获取好友列表
-function get_friendlist(url,callback) {
+function get_friendlist(url, callback) {
     $.ajax({
-        url:url,
-        type:"GET",
-        datatype:"json",
-        data:{
-            sign_str:sign_str,
-            user_id:id,
+        url: url,
+        type: "GET",
+        datatype: "json",
+        data: {
+            sign_str: sign_str,
+            user_id: id,
         },
-        success:(function (data) {
+        success: (function (data) {
             callback(data)
         })
     })
 }
 
 //获取聊天记录
-function getchatlist(user_id,sign_str,friend_id,callback) {
+function getchatlist(user_id, sign_str, friend_id, callback) {
     $.ajax({
         url:all_net.getChatHistory_net,
         type:"GET",
@@ -207,7 +207,7 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
             user_id:user_id,
             friend_id:friend_id
         },
-        success:(function (msg) {
+        success: (function (msg) {
             callback(msg)
         }),
         error(msg) {
@@ -222,16 +222,18 @@ get_friendlist(all_net.getFriends_net,function (data) {
     // 
     var friend_list = data.data
 
-    for(let i=0;i<friend_list.length;i++){
-        getchatlist(id,sign_str,friend_list[i].user_id,function (data) {
-            if(!data.data[0]) return;
+    for (let i = 0; i < friend_list.length; i++) {
+        getchatlist(id, sign_str, friend_list[i].user_id, function (data) {
+            if (!data.data[0]) return;
 
-            var data_list = {"message_send_time":"14:20:06","nickname":friend_list[i].nickname,"user_id":friend_list[i].user_id,
-                "head_logo":friend_list[i].head_logo,"message":data.data[0].message}
+            var data_list = {
+                "message_send_time": "14:20:06", "nickname": friend_list[i].nickname, "user_id": friend_list[i].user_id,
+                "head_logo": friend_list[i].head_logo, "message": data.data[0].message
+            }
             arr_id.push(friend_list.user_id)
             // 
             set_add_information(data_list)
-            $(".notice_area .notice_num").css({"display":"none"});
+            $(".notice_area .notice_num").css({ "display": "none" });
         })
     }
 })
@@ -254,18 +256,18 @@ var btn_file = $("#btn_file")
 var btn_submit = $("#btn_submit")
 var change_avatar = $(".change_avatar")
 var backg = $(".backg")
-var login_out_slider= $(".login_out_slider")
-var login_out =$(".login_out")
-var head_img =$(".head_img")
+var login_out_slider = $(".login_out_slider")
+var login_out = $(".login_out")
+var head_img = $(".head_img")
 
 //获取大框宽度
 var ri_width = -$(".left_home").width()
 var ri_height = $(".left_home").height()
 
-$("#avatar").css("top",ri_height/14)
-$("#avatar").css("left",-ri_width/40)
-$(".backg").children().eq(1).css("top",ri_height/100-20)
-$(".backg").children().eq(1).css("left",-ri_width/4)
+$("#avatar").css("top", ri_height / 14)
+$("#avatar").css("left", -ri_width / 40)
+$(".backg").children().eq(1).css("top", ri_height / 100 - 20)
+$(".backg").children().eq(1).css("left", -ri_width / 4)
 
 
 //点击滑出
@@ -284,14 +286,14 @@ avatar.click(function () {
 })
 
 //退出
-login_out_slider.click(function(){
-    parent.location.href="../Login.html"
+login_out_slider.click(function () {
+    parent.location.href = "../Login.html"
 })
 
 avatar2.click(function () {
     btn_file.click();
-    btn_file.change(function(){
-        avatar2.attr("src",URL.createObjectURL($(this)[0].files[0]));
+    btn_file.change(function () {
+        avatar2.attr("src", URL.createObjectURL($(this)[0].files[0]));
     });
 });
 
@@ -342,12 +344,12 @@ $.ajax({
                         // var data_path = all_net.headInner_net+msg.data.path
                         // 
                         $.ajax({
-                            url:all_net.modifyHeadLogo_net,
-                            type:"POST",
-                            data:{
-                                sign_str:sign_str,
-                                user_id:id,
-                                head_logo_path:msg.data.path,
+                            url: all_net.modifyHeadLogo_net,
+                            type: "POST",
+                            data: {
+                                sign_str: sign_str,
+                                user_id: id,
+                                head_logo_path: msg.data.path,
                             },
                             success: function (msg) {
                                 
