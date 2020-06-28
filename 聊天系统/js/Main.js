@@ -6,6 +6,7 @@ var nikename = window.localStorage.getItem('nickname')
 var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
 
 
+
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
 $(".icon-shizi-copy").click(function () {
     $(".icon-shizi-copy").toggleClass("shizi_isclicked")
@@ -25,7 +26,7 @@ $(".add_btn").click(function () {
         },
         datatype: "JSON",
         success: (function (msg) {
-            console.log(typeof msg.msg)
+            
             if (!msg.msg){
                 var M = {}
                 if(M.dialog1){
@@ -119,8 +120,8 @@ longLoop(all_net.getMessages_net,"GET",notic_data,function (data) {
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
         if(arr_id.includes(data.data[i].user_id)){
             $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                // console.log($(".notice_num").html())
-                console.log($(`.notice_num[user_id=${data.data[i].user_id}]`).html())
+                // 
+                
                 return parseInt($(`.notice_num[user_id=${data.data[i].user_id}]`).html());
             })
             $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
@@ -131,7 +132,7 @@ longLoop(all_net.getMessages_net,"GET",notic_data,function (data) {
         }
 
         $(".notice_area").on("click",".notice_infomation",function () {
-            console.log(aaaa)
+            
             parent.location.href = '../html/chatpage.html'
             window.localStorage.setItem('friend_id',this.getAttribute("user_id"));
         })
@@ -159,7 +160,7 @@ function set_add_information(arr_notice) {
 
     if(arr_id.includes(arr_notice.user_id)){
         $(`.notice_num[user_id=${arr_notice.user_id}]`).html(function (n) {
-            // console.log($(".notice_num").html())
+            // 
             return parseInt($(`.notice_num[user_id=${arr_notice.user_id}]`).html())+1;
         })
         $(`.notice_num[user_id=${arr_notice.user_id}]`).css({"display":"inline-block"});
@@ -198,7 +199,7 @@ function get_friendlist(url,callback) {
 //获取聊天记录
 function getchatlist(user_id,sign_str,friend_id,callback) {
     $.ajax({
-        url:window.localStorage.getItem("getChatHistory_net"),
+        url:all_net.getChatHistory_net,
         type:"GET",
         datatype:"json",
         data:{
@@ -210,15 +211,15 @@ function getchatlist(user_id,sign_str,friend_id,callback) {
             callback(msg)
         }),
         error(msg) {
-            console.log(msg)
-            console.log("获取失败")
+            
+            
         }
     })
 }
 
 // 添加聊天记录到主页上
-get_friendlist(window.localStorage.getItem("getFriends_net"),function (data) {
-    // console.log(11)
+get_friendlist(all_net.getFriends_net,function (data) {
+    // 
     var friend_list = data.data
 
     for(let i=0;i<friend_list.length;i++){
@@ -228,7 +229,7 @@ get_friendlist(window.localStorage.getItem("getFriends_net"),function (data) {
             var data_list = {"message_send_time":"14:20:06","nickname":friend_list[i].nickname,"user_id":friend_list[i].user_id,
                 "head_logo":friend_list[i].head_logo,"message":data.data[0].message}
             arr_id.push(friend_list.user_id)
-            // console.log(data.data[0].message)
+            // 
             set_add_information(data_list)
             $(".notice_area .notice_num").css({"display":"none"});
         })
@@ -302,7 +303,7 @@ $.ajax({
         username: username
     },
     success: function (msg) {
-        // console.log(msg.data[0].head_logo);
+        // 
         var user_head_logo = msg.data[0].head_logo
 
         //获取的数据显示到页面
@@ -328,7 +329,7 @@ $.ajax({
                 var file = btn_file[0].files[0];
                 var data = new FormData();
                 data.append('file', file)
-                // console.log(data);
+                // 
                 
                 $.ajax({
                     url: all_net.upload_net,
@@ -337,9 +338,9 @@ $.ajax({
                     contentType: false,
                     data: data,
                     success: function (msg) {
-                        console.log(msg.data.path);
+                        
                         // var data_path = all_net.headInner_net+msg.data.path
-                        // console.log(data_path);
+                        // 
                         $.ajax({
                             url:all_net.modifyHeadLogo_net,
                             type:"POST",
@@ -349,24 +350,24 @@ $.ajax({
                                 head_logo_path:msg.data.path,
                             },
                             success: function (msg) {
-                                console.log(msg);
-                                console.log("success");
+                                
+                                
                                 
                             },
                             error: function (msg) {
-                                console.log("fail");
-                                console.log(msg);
+                                
+                                
                             }
                         })
                     },
                     error: function (msg) {
-                        console.log(msg);
+                        
                     }
                 })
             }
         })
     },
     error: function () {
-        console.log("获取头像失败");
+        
     }
 })
