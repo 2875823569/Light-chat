@@ -12,7 +12,7 @@ userid.innerHTML = `${nickname}`;
 // 返回按钮
 var lbtn = document.querySelector('.leftbtn');
 lbtn.onclick = function () {
-    console.log(window.history);
+    // console.log(window.history);
     
     window.history.go(-1)
 }
@@ -59,7 +59,7 @@ function receivemes() {
                 p.innerHTML = `
                 <div class="sendb2"> 
                 <div class="headlogo2">
-                <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                <img src="http://118.24.25.7/${localStorage.friend_head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
                 <div class='rightmm'>
                 <div class='nickname2'>${res.data[0].nickname}</div>
                 <div class='mybox2'>${message}</div>
@@ -118,7 +118,6 @@ sendbtn.onclick = function () {
                 var head_log = res.data
                 var p = document.createElement('div');
                 p.classList.add('messbox')
-                // var messbox=document.querySelector('.messbox');
                 var message = mes.value.split('<').join('&lt').split('>').join('&gt')
                 p.innerHTML = `<div class="sendb">  
                 <div class='leftmm'>
@@ -132,15 +131,14 @@ sendbtn.onclick = function () {
 
                 // var p = document.createElement('div');
                 // p.classList.add('messbox')
-                // // var messbox=document.querySelector('.messbox');
                 // var message = mes.value.split('<').join('&lt').split('>').join('&gt')
                 // p.innerHTML = `
                 // <div class="sendb2"> 
                 // <div class="headlogo2">
                 // <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
                 // <div class='rightmm'>
-                // <div class='nickname2'>${res.data[0].nickname}</div>
-                // <div class='mybox2'>${message}</div>
+                // <div class='nickname2'>${localStorage.nickname}</div>
+                // <div class='mybox2'>${mes.value}</div>
                 // </div>
                 // </div>
                 // `
@@ -237,7 +235,7 @@ function historys() {
                     p.innerHTML = `
                     <div class="sendb2"> 
                     <div class="headlogo2">
-                    <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                    <img src="http://118.24.25.7/${localStorage.friend_head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
                     <div class='rightmm'>
                     <div class='nickname2'>${nickname}</div>
                     <div class='mybox2'>${res.data[i].message}</div>
@@ -245,8 +243,18 @@ function historys() {
                     </div>
                     `
                     mesbox.append(p)
+                    // console.log(document.documentElement.clientHeight)
+                    // var timer = null;
+                    // timer = setInterval(function(){
+                    //     // console.log(13)
+                    //     console.log(document.documentElement.clientHeight)
+                    //     window.scrollTo(0,parseInt(document.documentElement.clientHeight))
+                    //     clearInterval(timer)
+                    // },100)
                 }
             }
+            // console.log($(".messbox .mybox2")[0].getBoundRect.top)
+               
         })
         .fail(function (err) {
             console.log(err);
@@ -256,6 +264,7 @@ function historys() {
 }
 historys();
 
+console.log(localStorage);
 
 
 
