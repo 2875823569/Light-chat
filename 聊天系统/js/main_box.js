@@ -29,11 +29,11 @@ $(".tofriend_window").click(function () {
 var window_num = window.localStorage.getItem("window_num")
 
 if(window_num==="1"){
-    $(".tomain_window").click();
+    $(".tomain_window i").addClass("isclicked").parent().siblings().children("i").removeClass("isclicked")
 }else if(window_num==="2"){
-    $(".tofriend_window").click();
+    $(".tofriend_window i").addClass("isclicked").parent().siblings().children("i").removeClass("isclicked")
 }else if(window_num==="3"){
-    $(".toaction").click();
+    $(".toaction i").addClass("isclicked").parent().siblings().children("i").removeClass("isclicked")
 }else{
     
 }
