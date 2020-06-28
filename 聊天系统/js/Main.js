@@ -118,25 +118,6 @@ longLoop(all_net.getMessages_net, "GET", notic_data, function (data) {
     isloading = true;
     for (var i = 0; i < data.data.length; i++) {
         set_add_information(data.data[i])
-        var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
-        if (arr_id.includes(data.data[i].user_id)) {
-            $(`.notice_num[user_id=${data.data[i].user_id}]`).html(function (n) {
-                // 
-                
-                return parseInt($(`.notice_num[user_id=${data.data[i].user_id}]`).html());
-            })
-            $(`.notice_container[user_id=${data.data[i].user_id}]`).html(data.data[i].message)
-            $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
-        } else {
-            arr_id.push(data.data[i].user_id)
-            add_information(time, data.data[i].nickname, data.data[i].head_logo, data.data[i].message.replace("<","&gt"), data.data[i].user_id)
-        }
-
-        $(".notice_area").on("click",".notice_infomation",function () {
-            
-            parent.location.href = '../html/chatpage.html'
-            window.localStorage.setItem('friend_id', this.getAttribute("user_id"));
-        })
     }
 })
 
@@ -158,6 +139,7 @@ function add_information(time, uname, head_logo, message, user_id) {
 }
 function set_add_information(arr_notice) {
     var time = arr_notice.message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
+    console.log(arr_notice)
 
     if (arr_id.includes(arr_notice.user_id)) {
         $(`.notice_num[user_id=${arr_notice.user_id}]`).html(function (n) {
@@ -180,6 +162,7 @@ function set_add_information(arr_notice) {
         parent.location.href = '../html/chatpage.html'
         window.localStorage.setItem('friend_id', this.getAttribute("user_id"));
         window.localStorage.setItem('nick_name', this.getAttribute("uname"));
+        window.localStorage.setItem("friend_head_log",arr_notice.head_logo)
     })
 }
 
@@ -232,7 +215,7 @@ get_friendlist(all_net.getFriends_net,function (data) {
             isloading = true;
             var data_list = {
                 "message_send_time": "14:20:06", "nickname": friend_list[i].nickname, "user_id": friend_list[i].user_id,
-                "head_logo": friend_list[i].head_logo, "message": data.data[0].message
+                "head_logo": friend_list[i].head_logo, "message": data.data[data.data.length-1].message
             }
             arr_id.push(friend_list.user_id)
             // 
