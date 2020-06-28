@@ -36,6 +36,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
 
       i{
         font-size: 35px;
@@ -43,6 +44,20 @@
       p{
         font-size: 12px;
 
+      }
+      .information_num{
+        width: .24rem;
+        height: .24rem;
+        background: #e80909fa;
+        text-align: center;
+        line-height: .24rem;
+        border-radius: 50%;
+        color: #ffffffbd;
+        font-size: 12px;
+        position: absolute;
+        right: .1rem;
+        top: .2rem;
+        display: none;
       }
     }
     .isclicked{

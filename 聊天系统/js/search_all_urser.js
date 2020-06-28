@@ -2,13 +2,14 @@ var user_id = window.localStorage.getItem('id')
 var sign_str = window.localStorage.getItem('sign_str')
 var username = window.localStorage.getItem('username')
 var nikename = window.localStorage.getItem('nickname')
+var all_net = obj=JSON.parse(window.localStorage.getItem("all_net"))
 
 //搜索关键字好友
 $(".search").keydown(function (res) {
     // console.log(res.code)
     if(res.code==="Enter"){
         $.ajax({
-            url:"http://118.24.25.7/chat_api/interface/getSearchUsers.php",
+            url:all_net.getSearchUsers_net,
             type:"GET",
             data:{
                 sign_str:sign_str,
@@ -43,7 +44,7 @@ function add_information(arr){
 //添加好友的函数
 function add_friend(id) {
     $.ajax({
-        url: "http://118.24.25.7/chat_api/interface/addFriend.php",
+        url: all_net.addFriend_net,
         type: "POST",
         data: {
             sign_str: sign_str,
