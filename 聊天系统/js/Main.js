@@ -278,6 +278,9 @@ $(".head_img").click(function () {
 //左滑隐藏
 left_ri.click(function () {
     left_home.css("left", `${ri_width}px`)
+    if(change_avatar.css("display")=="block"){
+        avatar.click()
+    }
 })
 
 //滑动效果
@@ -305,7 +308,6 @@ $.ajax({
         username: username
     },
     success: function (msg) {
-        // 
         var user_head_logo = msg.data[0].head_logo
 
         //获取的数据显示到页面
@@ -331,8 +333,6 @@ $.ajax({
                 var file = btn_file[0].files[0];
                 var data = new FormData();
                 data.append('file', file)
-                // 
-                
                 $.ajax({
                     url: all_net.upload_net,
                     type: "POST",
@@ -340,9 +340,6 @@ $.ajax({
                     contentType: false,
                     data: data,
                     success: function (msg) {
-                        
-                        // var data_path = all_net.headInner_net+msg.data.path
-                        // 
                         $.ajax({
                             url: all_net.modifyHeadLogo_net,
                             type: "POST",
@@ -352,24 +349,36 @@ $.ajax({
                                 head_logo_path: msg.data.path,
                             },
                             success: function (msg) {
-                                
-                                
-                                
+                                $.ajax({
+                                    url: all_net.getHeadImg_net,
+                                    type: 'GET',
+                                    data: {
+                                        username: username
+                                    },
+                                    success: function (msg) {
+                                        var user_head_logo = msg.data[0].head_logo
+                                        //获取的数据显示到页面
+                                        avatar.attr("src", all_net.headInner_net + user_head_logo)
+                                        avatar2.attr("src", all_net.headInner_net + user_head_logo)
+                                        head_img.attr("src", all_net.headInner_net + user_head_logo)
+                                        backg.children().eq(1).children().eq(0).children().empty().append(username)
+                                        backg.children().eq(1).children().eq(1).children().empty().append(nikename)
+                                        backg.children().eq(1).children().eq(2).children().empty().append(id)
+                                    },
+                                    error: function (msg) {
+                                    }
+                                })
                             },
                             error: function (msg) {
-                                
-                                
                             }
                         })
                     },
                     error: function (msg) {
-                        
                     }
                 })
             }
         })
     },
     error: function () {
-        
     }
 })
