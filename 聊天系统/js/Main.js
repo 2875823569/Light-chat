@@ -68,6 +68,7 @@ $(".add_btn").click(function () {
     })
 })
 
+var M = {}
 //------------------------------------------------聊天信息界面--------------------------------------------------------------
 //长轮询
 function longLoop(url, type, data, callback) {
@@ -78,8 +79,7 @@ function longLoop(url, type, data, callback) {
         timeout: 1000 * 20,
         data: data,
         success(data) {
-            if (data.msg === "签名字符串已过期") {
-                var M = {}
+            if (data.msg === "签名字符串已过期" || data.msg.includes("无效")) {
                 if (M.dialog2) {
                     return M.dialog2.show();
                 }
@@ -115,6 +115,7 @@ var notic_data = {
 var arr_id = []//存放发信息的id
 longLoop(all_net.getMessages_net, "GET", notic_data, function (data) {
     // set_add_information(data.data)
+    isloading = true;
     for (var i = 0; i < data.data.length; i++) {
         set_add_information(data.data[i])
         var time = data.data[i].message_send_time.match(/(\d\d:\d\d):\d\d/)[1]
@@ -128,7 +129,7 @@ longLoop(all_net.getMessages_net, "GET", notic_data, function (data) {
             $(`.send_time[user_id=${data.data[i].user_id}]`).html(time)
         } else {
             arr_id.push(data.data[i].user_id)
-            add_information(time, data.data[i].nickname, data.data[i].head_logo, data.data[i].message, data.data[i].user_id)
+            add_information(time, data.data[i].nickname, data.data[i].head_logo, data.data[i].message.replace("<","&gt"), data.data[i].user_id)
         }
 
         $(".notice_area").on("click",".notice_infomation",function () {
@@ -170,7 +171,9 @@ function set_add_information(arr_notice) {
     } else {
         arr_id.push(arr_notice.user_id)
         add_information(time, arr_notice.nickname, arr_notice.head_logo, arr_notice.message, arr_notice.user_id)
-        $(`.notice_num[user_id=${arr_notice.user_id}]`).html("1");
+        if(!isloading){
+            $(`.notice_num[user_id=${arr_notice.user_id}]`).html("1");
+        }
     }
 
     $(".notice_area").on("click", ".notice_infomation", function () {
@@ -217,6 +220,7 @@ function getchatlist(user_id, sign_str, friend_id, callback) {
     })
 }
 
+var isloading = false;
 // 添加聊天记录到主页上
 get_friendlist(all_net.getFriends_net,function (data) {
     // 
@@ -225,7 +229,7 @@ get_friendlist(all_net.getFriends_net,function (data) {
     for (let i = 0; i < friend_list.length; i++) {
         getchatlist(id, sign_str, friend_list[i].user_id, function (data) {
             if (!data.data[0]) return;
-
+            isloading = true;
             var data_list = {
                 "message_send_time": "14:20:06", "nickname": friend_list[i].nickname, "user_id": friend_list[i].user_id,
                 "head_logo": friend_list[i].head_logo, "message": data.data[0].message

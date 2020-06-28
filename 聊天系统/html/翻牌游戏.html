@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>翻牌</title>
+    <link rel="icon" href="../img/熊猫.png">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+    <link type="text/css" href="http://at.alicdn.com/t/font_1837326_f6msfbyatb.css" rel="stylesheet">
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .game_box{
+            /* width: 600px;
+            height: 650px; */
+            /* margin:50px auto auto auto; */
+            background-color: rgb(30,190,188);
+            outline: 1px solid;
+        }
+        h2{
+            text-align: center;
+            font-size: 30px;
+        }
+        .game_information{
+            display: flex;
+            justify-content: space-between;
+            width: 60%;
+            margin: 10px auto;
+            font-size: 20px;
+        }
+        .game_information p{
+            font-size: 20px;
+        }
+        .game_information span{
+            display: flex;
+            /* font-size: 14px; */
+        }
+        .game_information span p{
+            margin: 0 5px;
+            text-align: center;
+        }
+
+        .game_screen{
+            height: 5rem;
+            border-radius: 10px;
+            display: grid;
+            grid-template: repeat(4,100px)/repeat(4,100px);
+            gap: 11px;
+            list-style-type: none;
+            padding: 0px;
+            justify-content: center;
+            align-content: center;
+            /* margin-top: .6rem; */
+        }
+        .game_screen li{
+            cursor:pointer;
+            transition: .3s;
+        }
+        .card{
+            /*background-color: rgb(46,61,73);*/
+            border-radius: 5px;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            /*backface-visibility: hidden;*/
+        }
+        .card span{
+            background-color: rgb(46,61,73);
+            width:100px;
+            height: 100px;
+            position: absolute;
+            transition: .3s;
+            z-index: 1;
+        }
+        .card img{
+            background-color: rgb(46,61,73);
+            width:100px;
+            height: 100px;
+            position: absolute;
+            transition: .3s;
+            z-index: 0;
+        }
+        /*.card span:hover,.card img:hover{*/
+        /*    transform: rotateY(180deg);*/
+        /*}*/
+        .icon-zhongzhi{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="game_box">
+        <h2>翻牌消除游戏</h2>
+        <div class="game_information">
+            <span>点击次数:<p id="clickTime">0</p>Moves</span>
+            <i class="iconfont icon-zhongzhi"></i>
+        </div>
+        <ul class="game_screen">
+            <li class="card">
+                <span></span>
+                <img src="../img/绿植1.png">
+            </li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+            <li class="card"></li>
+        </ul>
+    </div>
+    <script>
+        var card = document.querySelectorAll(".card")
+        var top_=null;
+        var bottom = null;
+        var arr_img = ["../img/绿植1.png","../img/绿植2.png","../img/绿植3.png","../img/绿植4.png"]
+        var clickTime = document.querySelector("#clickTime")
+        var changeImage = document.querySelector(".icon-zhongzhi")
+        //生成卡片数组
+        var arr_card = [];
+        for(var i=0;i<card.length;i++){
+            arr_card.push(i);
+        }
+
+        //设置打乱元素的函数
+        function rand(arr) {
+            var temp = [].concat(arr)
+            return temp .sort(function (a,b) {
+                return Math.random()-.5;
+            })
+        }
+
+        //设置添加图片的函数
+        function addimg(){
+            var newarr_card = rand(arr_card);
+            for(var i=0;i<newarr_card.length;i++){
+                card[newarr_card[i]].innerHTML = `<span></span><img src="${arr_img[i%4]}" alt=" ">`
+            }
+
+            top_ = document.querySelectorAll(".card span")
+            bottom = document.querySelectorAll(".card img")
+        }
+        addimg();
+
+        //顶部和底部
+
+        var last_click = "";
+        var last_idx = "";
+        var now_click = "";
+        var click_time = 1;
+        var timer = null;
+        var sum = 0;//点击次数
+        var canclik = true;
+        var timer = null;
+        // console.log(bottom_[0].getAttribute("src"))
+
+        //给卡片添加点击事件
+        for(let i=0;i<card.length;i++){
+            (function () {
+                card[i].onclick = function () {
+                    if(!canclik)return;
+                    canclik=false;
+                    sum++;
+                    card[i].style.transform = "rotateY(180deg)"
+                    top_[i].style.zIndex = "0";
+
+                    //动画执行完再执行
+                    timer = setInterval(function(){
+                        canclik = true
+                        now_click = bottom[i].getAttribute("src");
+                        if(click_time===2){
+                        click_time=1;
+                        if(last_click!==now_click){
+                            card[i].style.transform = "rotateY(0deg)"
+                            top_[i].style.zIndex = "1";
+
+
+                            card[last_idx].style.transform = "rotateY(0deg)"
+                            top_[last_idx].style.zIndex = "1";
+                        }
+                    }else {
+                        last_click = bottom[i].getAttribute("src");
+                        click_time=2;
+                        console.log(222)
+                    }
+                    // console.log(last_idx)
+                    last_idx = i;
+                        clearTimeout(timer);
+                    },300)
+
+                    clickTime.innerHTML = `${sum}`;
+                }
+            })(i)
+        }
+
+        changeImage.onclick = function () {
+            for(var i=0;i<card.length;i++){
+                card[i].style.transform = "rotateY(0deg)"
+                top_[i].style.zIndex = "1";
+            }
+            addimg();
+        }
+
+    </script>
+    <script src="../js/checkScreen.js"></script>
+</body>
+</html>

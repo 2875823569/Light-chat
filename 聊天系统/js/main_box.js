@@ -13,6 +13,6 @@ $(".tofriend_window").click(function () {
 
 
 $(".toaction").click(function () {
-    $(".main_window")[0].setAttribute("src","Main.html")
+    $(".main_window")[0].setAttribute("src","../html/developmen.html")
     $(".toaction i").addClass("isclicked").siblings().parent().siblings().children("i").removeClass("isclicked")
 })
