@@ -26,7 +26,7 @@ function getfriend(){
         
         
         for(let i=0;i<res.data.length;i++){
-            console.log(res.data[i]);
+            // console.log(res.data[i]);
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
             // console.log(head_log)
@@ -38,13 +38,13 @@ function getfriend(){
                 <select class="regtype" user_id=${res.data[i].user_id}>
                 <option value="1">同意</option>
                 <option value="2">拒绝</option>
-                <option value="3">拒绝并不再接收此人好友申请</option>
+                <option value="3">拒绝并不再接收</option>
                 </select>
             <button class="submitf" user_id=${res.data[i].user_id}>提交</button>`
             addfriendbox.append(p)
             $(`.submitf[user_id=${res.data[i].user_id}]`).on("click",function(){
                 var processvals=$(`.regtype[user_id=${res.data[i].user_id}]`).val();
-                console.log(localStorage);
+                // console.log(localStorage);
                 processFriendRequest(res.data[i],processvals)
                 
             })
