@@ -12,7 +12,7 @@ var all_net = obj = JSON.parse(window.localStorage.getItem("all_net"))
 
 // 返回按钮
 var lbtn = document.querySelector('.leftbtn');
-lbtn.onclick = function () {    
+lbtn.onclick = function () {
     window.history.go(-1)
 }
 // 右菜单栏
@@ -47,14 +47,14 @@ function receivemes() {
         timeout: 6000
     })
         .done(function (res) {
-            
+
 
             if (res.code == 0) {
 
                 var message = res.data[0].message.split('<').join('&lt').split('>').join('&gt')
                 var p = document.createElement('div');
                 p.style.display = "block";
-                
+
                 p.innerHTML = `
                 <div class="sendb2"> 
                 <div class="headlogo2">
@@ -78,11 +78,11 @@ function receivemes() {
                 clearTimeout()
             }
             else {
-                
+
             }
         })
         .fail(function (res) {
-            
+
         })
         .always(function () {
             receivemes();
@@ -90,10 +90,20 @@ function receivemes() {
 }
 receivemes();
 headlog()
-// 发送消息
+// 回车发送消息
+$(".textbox").keydown(function (res) {
+    if (res.code === "Enter") {
+        sendmessage()
+    }
+})
+// 点击发送消息
 sendbtn.onclick = function () {
     // console.log(mes.value)
-   
+    sendmessage()
+
+}
+
+function sendmessage() {
     $.ajax({
         url: all_net.sendMessage_net,
         type: "POST",
@@ -106,23 +116,23 @@ sendbtn.onclick = function () {
         dataType: "JSON",
     })
         .done(function (res) {
-            
+
 
             if (res.code == 101) {
-                
+                console.log(res);
                 var Mes = {}
-                if(Mes.dialog1){
+                if (Mes.dialog1) {
                     return Mes.dialog1.show();
                 }
                 Mes.dialog1 = jqueryAlert({
-                    'content' : '你不是对方的好友',
-                    'closeTime' : 2000,
-                    'end':function(){
+                    'content': '你不是对方的好友',
+                    'closeTime': 2000,
+                    'end': function () {
                     }
                 })
 
             } else if (res.code == 0) {
-                
+
                 var head_log = res.data
                 var p = document.createElement('div');
                 p.classList.add('messbox')
@@ -157,15 +167,15 @@ sendbtn.onclick = function () {
 
             } else {
                 console.log(res);
-                
+
                 var Mes = {}
-                if(Mes.dialog1){
+                if (Mes.dialog1) {
                     return Mes.dialog1.show();
                 }
                 Mes.dialog1 = jqueryAlert({
-                    'content' : '发送失败,消息不能为空',
-                    'closeTime' : 2000,
-                    'end':function(){
+                    'content': '发送失败,消息不能为空',
+                    'closeTime': 2000,
+                    'end': function () {
                     }
                 })
 
@@ -200,14 +210,14 @@ function headlog() {
         dataType: "JSON",
     })
         .done(function (res) {
-            
+
             var head_log = res.data[0].head_logo;
             // console.log(head_log);
             window.localStorage.setItem('head_log', head_log)
         })
         .fail(function (err) {
             console.log(err);
-            
+
         })
         .always(function () {
         })
@@ -228,12 +238,12 @@ function historys() {
         dataType: "JSON",
     })
         .done(function (res) {
-            
-            
+
+
             for (i = 0; i < res.data.length; i++) {
-                
-                
-                if(res.data[i].user_id==localStorage.id){
+
+
+                if (res.data[i].user_id == localStorage.id) {
                     var p = document.createElement('div');
                     p.classList.add('messbox')
                     // var messbox=document.querySelector('.messbox');
@@ -247,11 +257,11 @@ function historys() {
                     <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height:1.4rem"></div>
                     </div>`
                     mesbox.append(p)
-                }else{
+                } else {
                     var message = res.data[0].message.split('<').join('&lt').split('>').join('&gt')
                     var p = document.createElement('div');
                     p.style.display = "block";
-                    
+
                     p.innerHTML = `
                     <div class="sendb2"> 
                     <div class="headlogo2">
@@ -275,11 +285,11 @@ function historys() {
             }
             console.log(document.documentElement.clientHeight);
             // console.log($(".messbox .mybox2")[0].getBoundRect.top)
-               
+
         })
         .fail(function (err) {
             console.log(err);
-            
+
         })
         .always(function () {
         })
