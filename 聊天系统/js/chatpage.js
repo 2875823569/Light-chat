@@ -53,15 +53,16 @@ function receivemes() {
                 var p = document.createElement('div');
                 p.style.display = "block";
                 console.log(res.data[0].nickname);
-                p.innerHTML = `<div class="revb">
-            <div class="headlogo">
-            <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
-            </div>
-            <div class='rightmm'>   
-            <div class='nickname'>${res.data[0].nickname}</div>
-            <div class='mbox'>${message}</div>
-            </div>
-            <br>`
+                p.innerHTML = `
+                <div class="sendb2"> 
+                <div class="headlogo2">
+                <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                <div class='rightmm'>
+                <div class='nickname2'>${res.data[0].nickname}</div>
+                <div class='mybox2'>${message}</div>
+                </div>
+                </div>
+                `
                 mesbox.append(p)
                 // // var lmessage = localStorage.setItem('p');
                 // console.log(lmessage);
@@ -90,7 +91,8 @@ receivemes();
 
 // 发送消息
 sendbtn.onclick = function () {
-    console.log(mes.value)
+    // console.log(mes.value)
+   headlog()
     $.ajax({
         url: "http://118.24.25.7/chat_api/interface/sendMessage.php",
         type: "POST",
@@ -107,11 +109,16 @@ sendbtn.onclick = function () {
 
             if (res.code == 101) {
                 console.log("你不是对方的好友");
-                confirm("你不是对方的好友")
+                // confirm("你不是对方的好友")
 
             } else if (res.code == 0) {
                 console.log('发送成功');
+                var head_log=res.data
+                console.log(head_log);
+                
                 var p = document.createElement('div');
+                p.classList.add('messbox')
+                // var messbox=document.querySelector('.messbox');
                 var message = mes.value.split('<').join('&lt').split('>').join('&gt')
                 p.innerHTML = `<div class="sendb">  
                 <div class='leftmm'>
@@ -119,13 +126,29 @@ sendbtn.onclick = function () {
                 <div class='mybox'>${mes.value}</div>
                 </div>
                 <div class="headlogo">
-                <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
-                </div><br><br><br>`
+                <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                </div>`
                 mesbox.append(p)
+
+                // var p = document.createElement('div');
+                // p.classList.add('messbox')
+                // // var messbox=document.querySelector('.messbox');
+                // var message = mes.value.split('<').join('&lt').split('>').join('&gt')
+                // p.innerHTML = `
+                // <div class="sendb2"> 
+                // <div class="headlogo2">
+                // <img src="http://118.24.25.7/${localStorage.head_log}" style="border-radius: 50%;width: 1.4rem;height=1.4rem"></div>
+                // <div class='rightmm'>
+                // <div class='nickname2'>${res.data[0].nickname}</div>
+                // <div class='mybox2'>${message}</div>
+                // </div>
+                // </div>
+                // `
+                // mesbox.append(p)
 
                 // console.log(localStorage.nickname);
                 mes.value = null;
-
+                
             } else {
                 console.log('发送失败');
             }
@@ -149,7 +172,32 @@ sendbtn.onclick = function () {
         })
         .always(function () { })
 }
+// 获取头像
+function headlog() {
+        $.ajax({
+            url: 'http://118.24.25.7/chat_api/interface/getHeadImg.php',
+            type: "GET",
+            data: {
+                username:localStorage.username,
+            },
+            dataType: "JSON",
+        })
+            .done(function (res) {
+                console.log(res.data[0].head_logo);
+                var head_log=res.data[0].head_logo;
+                console.log(head_log);
+                
+                window.localStorage.setItem('head_log',head_log)
+            })
+            .fail(function (res) {
+                console.log(res);
+            })
+            .always(function () {
+            })
+    }
 
+
+// 获取历史记录
 function history() {
     $.ajax({
         url: 'http://118.24.25.7/chat_api/interface/getChatHistory.php',
@@ -162,25 +210,13 @@ function history() {
         dataType: "JSON",
     })
         .done(function (res) {
-            console.log(res);
             console.log(res.data);
-            for(var i=0;i<res.data.length;i++){
-                
-                // var p = document.createElement('div');
-                // var message = mes.value.split('<').join('&lt').split('>').join('&gt')
-                // p.innerHTML = `<div class="sendb">  
-                // <div class='leftmm'>
-                // <div class='nickname'>${localStorage.nickname}</div>
-                // <div class='mybox'>${mes.value}</div>
-                // </div>
-                // <div class="headlogo">
-                // <img src="../img/head_logo.jpg" style="border-radius: 50%;width: .8rem;height=.8rem"></div>
-                // </div><br><br><br>`
-                // mesbox.append(p)
+            for(i=0;i<res.data.length;i++){
+
             }
         })
-        .fail(function (res) {
-            console.log(res);
+        .fail(function (err) {
+            console.log(err);
         })
         .always(function () {
         })

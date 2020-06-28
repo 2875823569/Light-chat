@@ -7,7 +7,7 @@ var leftbtn=document.querySelector(".leftbtn");
 
 leftbtn.onclick=function(){
     // console.log(1);
-    location.href='../html/Main.html'
+    location.href='../html/好友列表.html'
 }
 
 function getfriend(){
@@ -29,7 +29,7 @@ function getfriend(){
             console.log(res.data[i]);
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
-            // console.log(res.data)
+            // console.log(head_log)
             p.classList.add('friendbox')
             p.innerHTML = `
             <div class="headlogo">
@@ -67,12 +67,7 @@ getfriend()
 
 // 处理好友申请
 function processFriendRequest(obj,val){
-    console.log(localStorage.sign_str);
-    console.log(localStorage.id);
-    console.log(obj.user_id);
-    console.log(obj.request_id);
-    console.log(val);
-
+    
     $.ajax({
         url:"http://118.24.25.7/chat_api/interface/processFriendRequest.php",
         type:"POST",
