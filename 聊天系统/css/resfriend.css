@@ -39,6 +39,7 @@
 .addfriendbox{
     width: 10rem;
     height: 90vh;
+    overflow: hidden;
 }
 .headlogo{
     display: inline-block;
