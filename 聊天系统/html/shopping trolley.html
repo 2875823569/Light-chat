@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shopping trolley</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="../js/jquery-3.4.1/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="../css/shopping trolley.css">
+</head>
+
+<body>
+    <div style="height: 667px;">
+    <table>
+        <tbody><tr>
+            <th>全选</th>
+            <th>商品信息</th>
+            <th></th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>总金额</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <th>
+                <input id="checkboxs" type="checkbox">
+            </th>
+            <th>
+                <img src="../img/xyy1.jpg" width="200px" height="100px">
+                <br>
+                懒羊羊66块钱一斤，走过路过不要错过
+            </th>
+            <th>
+                
+            </th>
+            <th>
+                ￥<span>66</span>/斤
+            </th>
+            <th style="width: 100px;">
+                <button id="cut_btn" style="width: 20px;">-</button>
+                <input id="inputs" type="text" value="1" style="width: 22px;" maxlength="3">
+                <button id="add_btn" style="width: 20px;">+</button>
+            </th>
+            <th>
+                ￥<span id="total">66</span>
+            </th>
+            <th>
+                <button id="delet">删除</button>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <input id="checkboxs" type="checkbox">
+            </th>
+            <th>
+                <img src="../img/xyy2.jpg" width="200px" height="100px">
+                <br>
+                喜羊羊76块钱一斤，走过路过不要错过
+            </th>
+            <th>
+            </th>
+            <th>
+                ￥<span>76</span>/斤
+            </th>
+            <th style="width: 100px;">
+                <button id="cut_btn" style="width: 20px;">-</button>
+                <input id="inputs" type="text" value="1" style="width: 22px;" maxlength="3">
+                <button id="add_btn" style="width: 20px;">+</button>
+            </th>
+            <th>
+                ￥<span id="total">76</span>
+            </th>
+            <th>
+                <button id="delet">删除</button>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <input id="checkboxs" type="checkbox">
+            </th>
+            <th>
+                <img src="../img/xyy3.jpg" width="200px" height="100px">
+                <br>
+                美羊羊86块钱一斤，走过路过不要错过
+            </th>
+            <th>
+            </th>
+            <th>
+                ￥<span>86</span>/斤
+            </th>
+            <th style="width: 100px;">
+                <button id="cut_btn" style="width: 20px;">-</button>
+                <input id="inputs" type="text" value="1" style="width: 22px;" maxlength="3">
+                <button id="add_btn" style="width: 20px;">+</button>
+            </th>
+            <th>
+                ￥<span id="total">86</span>
+            </th>
+            <th>
+                <button id="delet">删除</button>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <input id="checkboxs" type="checkbox">
+            </th>
+            <th>
+                <img src="../img/xyy4.jpg" width="200px" height="100px">
+                <br>
+                小灰灰96块钱一斤，走过路过不要错过
+            </th>
+            <th>
+            </th>
+            <th>
+                ￥<span>96</span>/斤
+            </th>
+            <th style="width: 100px;">
+                <button id="cut_btn" style="width: 20px;">-</button>
+                <input id="inputs" type="text" value="1" style="width: 22px;" maxlength="3">
+                <button id="add_btn" style="width: 20px;">+</button>
+            </th>
+            <th>
+                ￥<span id="total">96</span>
+            </th>
+            <th>
+                <button id="delet">删除</button>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                <button class="deletAll">全选</button>
+            </th>
+            <th colspan="6">
+                已选商品<span class="jian">0</span>件
+                合计<span class="yuan">0</span>元
+                <button>点击结算</button>
+                <button id="get_back">返回首页</button>
+            </th>
+        </tr>
+    </tbody></table>
+</div>
+<script src="../js/shopping trolley.js"></script>
+</body></html>
