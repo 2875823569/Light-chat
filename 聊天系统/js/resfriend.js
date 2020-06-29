@@ -27,14 +27,22 @@ function getfriend(){
         timeout: 6000
     })
     .done(function(res){
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 1c32ad5877d7c12d5268cd80a24d8e14fbb07e2e
         for(let i=0;i<res.data.length;i++){
             // console.log(res.data[i]);
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
+<<<<<<< HEAD
+            // 
+=======
             
             console.log(res.data[i]);
 
 
+>>>>>>> 1c32ad5877d7c12d5268cd80a24d8e14fbb07e2e
             p.classList.add('friendbox')
             p.innerHTML = `
             <div class="headlogo">
@@ -62,8 +70,11 @@ function getfriend(){
                         'end':function(){
                         }
                     })
+<<<<<<< HEAD
+=======
                    
                     addfriendbox.removeChild(p)
+>>>>>>> 1c32ad5877d7c12d5268cd80a24d8e14fbb07e2e
                 }else if(processvals==2){
                     var Mes = {}
                     if(Mes.dialog1){
@@ -75,8 +86,11 @@ function getfriend(){
                         'end':function(){
                         }
                     })
+<<<<<<< HEAD
+=======
                     addfriendbox.removeChild(p)
 
+>>>>>>> 1c32ad5877d7c12d5268cd80a24d8e14fbb07e2e
                 }else if(processvals==3){
                     var Mes = {}
                     if(Mes.dialog1){
@@ -88,7 +102,10 @@ function getfriend(){
                         'end':function(){
                         }
                     })
+<<<<<<< HEAD
+=======
                     addfriendbox.removeChild(p)
+>>>>>>> 1c32ad5877d7c12d5268cd80a24d8e14fbb07e2e
                 }
             })
             

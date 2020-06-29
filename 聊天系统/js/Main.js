@@ -6,11 +6,23 @@ var nikename = window.localStorage.getItem('nickname')
 var all_net = obj = JSON.parse(window.localStorage.getItem("all_net"))
 
 
-
+var isclick = false;
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
 $(".icon-shizicha").click(function () {
     $(".icon-shizicha").toggleClass("shizi_isclicked")
-    $(".hidden_rigth").toggleClass("hidden_rigth_display")
+    // $(".hidden_rigth").toggleClass("hidden_rigth_display")
+    if(!isclick){
+        $(".hidden_rigth").css({"width":"2rem","height":"2.5rem"});
+        isclick = true;
+        var timer = setInterval(function(){
+            $(".hidden_rigth").css({"overflow":"initial"})
+            clearInterval(timer)
+        },400)
+    }else{
+        $(".hidden_rigth").css({"width":"0","height":"0","overflow":"hidden"});
+        isclick = false;
+    }
+    
 })
 //申请好友
 $(".add_btn").click(function () {
@@ -120,19 +132,20 @@ longLoop(all_net.getMessages_net, "GET", notic_data, function (data) {
         set_add_information(data.data[i])
     }
 })
-
 //添加消息的函数
 function add_information(time, uname, head_logo, message, user_id) {
+    uname = uname.replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    message = message.replace(/</g,"&lt;").replace(/>/g,"&gt;")
     $(".notice_area").html(function (n) {
-        return `<div class="notice_infomation" user_id=${user_id} uname=${uname}>
+        return `<div class="notice_infomation"  user_id=${user_id} >
                     <img src= "${all_net.headInner_net}${head_logo}" class="notice_uheadimg">
                     <div class="notice_left">
                         <div class="notice_information1">
                             <p class="uname">${uname}</p>
-                            <p class="send_time" user_id=${user_id} uname=${uname}>${time}</p>
+                            <p class="send_time" uname=${uname} user_id=${user_id} >${time}</p>
                         </div>
-                        <div class="notice_container" user_id=${user_id} uname=${uname}>${message}</div>
-                        <span class="notice_num" user_id=${user_id} uname=${uname}>0</span>
+                        <div class="notice_container" uname=${uname} user_id=${user_id} >${message}</div>
+                        <span class="notice_num" user_id=${user_id} >0</span>
                     </div>
                 </div>`+ $(".notice_area").html()
     })
@@ -160,7 +173,7 @@ function set_add_information(arr_notice) {
     $(".notice_area").on("click", `.notice_infomation[user_id=${arr_notice.user_id}]`, function () {
         parent.location.href = '../html/chatpage.html'
         window.localStorage.setItem('friend_id', this.getAttribute("user_id"));
-        window.localStorage.setItem('nick_name', this.getAttribute("uname"));
+        window.localStorage.setItem('nick_name', arr_notice.nickname);
         window.localStorage.setItem("friend_head_log",arr_notice.head_logo)
     })
 }
