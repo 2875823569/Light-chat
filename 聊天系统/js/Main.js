@@ -6,11 +6,23 @@ var nikename = window.localStorage.getItem('nickname')
 var all_net = obj = JSON.parse(window.localStorage.getItem("all_net"))
 
 
-
+var isclick = false;
 //------------------------------------------------右边隐藏界面--------------------------------------------------------------
 $(".icon-shizicha").click(function () {
     $(".icon-shizicha").toggleClass("shizi_isclicked")
-    $(".hidden_rigth").toggleClass("hidden_rigth_display")
+    // $(".hidden_rigth").toggleClass("hidden_rigth_display")
+    if(!isclick){
+        $(".hidden_rigth").css({"width":"2rem","height":"2.5rem"});
+        isclick = true;
+        var timer = setInterval(function(){
+            $(".hidden_rigth").css({"overflow":"initial"})
+            clearInterval(timer)
+        },400)
+    }else{
+        $(".hidden_rigth").css({"width":"0","height":"0","overflow":"hidden"});
+        isclick = false;
+    }
+    
 })
 //申请好友
 $(".add_btn").click(function () {
@@ -120,7 +132,6 @@ longLoop(all_net.getMessages_net, "GET", notic_data, function (data) {
         set_add_information(data.data[i])
     }
 })
-
 //添加消息的函数
 function add_information(time, uname, head_logo, message, user_id) {
     $(".notice_area").html(function (n) {

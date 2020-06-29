@@ -1,6 +1,6 @@
 
-// window.localStorage.clear(all_net);
-
+window.localStorage.clear();
+window.localStorage.setItem("window_num","1")
 
 var all_net = {
     regist_net:"http://118.24.25.7/chat_api/interface/reg.php", //注册
@@ -80,7 +80,7 @@ function Login(){
                     location.href = 'html/main_box.html'
                     // var uinformation = [{"id":msg.data.id,"sign_str":msg.data.sign_str,"uname":msg.data.username}]
                     //设置localStorage
-                    // console.log(msg)
+                    // 
                     window.localStorage.setItem('id',msg.data.id);
                     window.localStorage.setItem('sign_str',msg.data.sign_str);
                     window.localStorage.setItem('username',msg.data.username);

@@ -1,18 +1,23 @@
 var addfriendbox=document.querySelector(".addfriendbox");
 var submitf=document.querySelector(".submitf")
 var regtype=document.querySelector(".regtype")
-console.log(localStorage);
+var all_net = obj = JSON.parse(window.localStorage.getItem("all_net"))
 
 var leftbtn=document.querySelector(".leftbtn");
 
+$(".addfriend").click(function () {
+    parent.location.href = '../html/search_all_user.html'
+})
+
+// 返回上一页
 leftbtn.onclick=function(){
-    // console.log(1);
-    location.href='../html/好友列表.html'
+    window.history.go(-1)
 }
 
+// 获取好友申请
 function getfriend(){
     $.ajax({
-        url:"http://118.24.25.7/chat_api/interface/getFriendRequests.php",
+        url:all_net.getFriendRequests_net,
         type:"GET",
         data:{
             sign_str:localStorage.sign_str,
@@ -22,14 +27,12 @@ function getfriend(){
         timeout: 6000
     })
     .done(function(res){
-        console.log(res);
-        
         
         for(let i=0;i<res.data.length;i++){
             // console.log(res.data[i]);
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
-            // console.log(head_log)
+            // 
             p.classList.add('friendbox')
             p.innerHTML = `
             <div class="headlogo">
@@ -46,16 +49,46 @@ function getfriend(){
                 var processvals=$(`.regtype[user_id=${res.data[i].user_id}]`).val();
                 // console.log(localStorage);
                 processFriendRequest(res.data[i],processvals)
-                
+                if(processvals==1){
+                    var Mes = {}
+                    if(Mes.dialog1){
+                        return Mes.dialog1.show();
+                    }
+                    Mes.dialog1 = jqueryAlert({
+                        'content' : '已同意',
+                        'closeTime' : 2000,
+                        'end':function(){
+                        }
+                    })
+                }else if(processvals==2){
+                    var Mes = {}
+                    if(Mes.dialog1){
+                        return Mes.dialog1.show();
+                    }
+                    Mes.dialog1 = jqueryAlert({
+                        'content' : '已拒绝该好友',
+                        'closeTime' : 2000,
+                        'end':function(){
+                        }
+                    })
+                }else if(processvals==3){
+                    var Mes = {}
+                    if(Mes.dialog1){
+                        return Mes.dialog1.show();
+                    }
+                    Mes.dialog1 = jqueryAlert({
+                        'content' : '已拒绝并不再接受该好友请求',
+                        'closeTime' : 2000,
+                        'end':function(){
+                        }
+                    })
+                }
             })
             
         }
-
-        
     })
     .fail(function(res){
         console.log(res);
-        
     })
     .always(function(){
        
@@ -69,7 +102,7 @@ getfriend()
 function processFriendRequest(obj,val){
     
     $.ajax({
-        url:"http://118.24.25.7/chat_api/interface/processFriendRequest.php",
+        url:all_net.processFriendRequest_net,
         type:"POST",
         data:{
             sign_str:localStorage.sign_str,
@@ -82,18 +115,9 @@ function processFriendRequest(obj,val){
     })
     .done(function(res){
         console.log(res);
-        if(res.code==0){
-
-        }else if(res.code==1){
-            console.log(res.data);
-            
-        }else{
-            console.log(11);
-            
-        }
     })
-    .fail(function(data){
-        console.log(data);
+    .fail(function(err){
+        console.log(err);
         
     })
     .always(function(){
