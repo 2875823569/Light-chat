@@ -312,9 +312,9 @@ $.ajax({
             if (btn_file_val == "") {
                 alert("亲，您未选择任何图片哦")
             }
-            else if (hzm != "png" && hzm != "jpg" && hzm != "JPG" && hzm != "PNG") {
-                alert("亲，请选择一张PNG或者是JPG格式的图片哦")
-            }
+            // else if (hzm != "png" && hzm != "jpg" && hzm != "JPG" && hzm != "PNG") {
+            //     alert("亲，请选择一张PNG或者是JPG格式的图片哦")
+            // }
             else {
                 var file = btn_file[0].files[0];
                 var data = new FormData();
