@@ -55,13 +55,17 @@ body{
     position: relative;
 }
 .userid{
+    max-width: 2.133333rem /* 80/37.5 */;
+    height: 1.066667rem /* 40/37.5 */;
     font-size: .64rem /* 24/37.5 */;
     color: aliceblue;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
-    line-height: 1.6rem /* 60/37.5 */;
-    vertical-align: middle;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .mybox{
     background-color: #2d292312;
@@ -107,7 +111,10 @@ body{
     font-size: .426667rem /* 16/37.5 */;
     /* float: right; */
     position: absolute;
-
+    max-width: 3.2rem /* 120/37.5 */;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .leftmm{
     display: inline-block;
@@ -154,6 +161,10 @@ body{
 .nickname2{
     display: block;
     font-size: .48rem /* 18/37.5 */;
+    max-width: 7.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .mybox2{
     float: right;
@@ -166,8 +177,8 @@ body{
     margin-left: .266667rem /* 10/37.5 */;
     padding: .266667rem;
     font-size: .48rem /* 18/37.5 */;
-    max-width: 7.573333rem /* 284/37.5 */;
-    max-height: 6.4rem /* 240/37.5 */;
+    max-width: 6.573333rem /* 284/37.5 */;
+    min-height: 1.4rem /* 240/37.5 */;
     overflow-wrap: break-word;
 }
 .mybox2::before{

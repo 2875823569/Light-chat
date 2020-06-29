@@ -58,6 +58,11 @@
     display: inline-block;
     font-size: .64rem /* 24/37.5 */;
     position: absolute;
+    width: 4.2rem ;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 1.066667rem /* 40/37.5 */;
     top: 50%;
     transform: translateY(-50%);
 }
