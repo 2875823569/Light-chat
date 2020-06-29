@@ -11,12 +11,7 @@ $(document).ready(function () {
     // var reslogo=localStorage.getItem('')
     var all_net = obj = JSON.parse(window.localStorage.getItem("all_net"))
 
-    // 新消息置底
-    var timer=null;
-    timer=setInterval(function(){
-        $(".mesbox").scrollTop($('.mesbox')[0].scrollHeight);
-        clearInterval(timer)
-    },100)
+
 
     // 返回按钮
     var lbtn = document.querySelector('.leftbtn');
@@ -284,5 +279,10 @@ $(document).ready(function () {
             })
     }
     historys();
-
+    // 新消息置底
+    var timer = null;
+    timer = setInterval(function () {
+        $(".mesbox").scrollTop($('.mesbox')[0].scrollHeight);
+        clearInterval(timer)
+    }, 100)
 });
