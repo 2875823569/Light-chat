@@ -246,7 +246,7 @@ $(document).ready(function () {
                         mesbox.append(p)
                     } else {
                         var message = res.data[i].message.replace(/</g, "&lt;").replace(/>/g, "&gt;")
-                        var nickname = localStorage.nickname.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                        var nickname2 = localStorage.nick_name.replace(/</g, "&lt;").replace(/>/g, "&gt;")
                         var p = document.createElement('div');
                         p.style.display = "block";
 
@@ -255,7 +255,7 @@ $(document).ready(function () {
                     <div class="headlogo2">
                     <img src="http://118.24.25.7/${localStorage.friend_head_log}" style="border-radius: 50%;width: 1.4rem;height:1.4rem"></div>
                     <div class='rightmm'>
-                    <div class='nickname2'>${nickname}</div>
+                    <div class='nickname2'>${nickname2}</div>
                     <div class='mybox2'>${message}</div>
                     </div>
                     </div>
