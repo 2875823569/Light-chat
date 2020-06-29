@@ -161,13 +161,13 @@ body{
 .nickname2{
     display: block;
     font-size: .48rem /* 18/37.5 */;
-    max-width: 7.2rem;
+    max-width: 6.2rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 .mybox2{
-    float: right;
+    float: left;
     background-color: antiquewhite;
     display: inline-block;
     position: relative;
