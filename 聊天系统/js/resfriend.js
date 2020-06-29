@@ -27,12 +27,14 @@ function getfriend(){
         timeout: 6000
     })
     .done(function(res){
-        
         for(let i=0;i<res.data.length;i++){
             // console.log(res.data[i]);
             var p = document.createElement('div');
             head_log = res.data[i].head_logo
-            // 
+            
+            console.log(res.data[i]);
+
+
             p.classList.add('friendbox')
             p.innerHTML = `
             <div class="headlogo">
@@ -60,6 +62,8 @@ function getfriend(){
                         'end':function(){
                         }
                     })
+                   
+                    addfriendbox.removeChild(p)
                 }else if(processvals==2){
                     var Mes = {}
                     if(Mes.dialog1){
@@ -71,6 +75,8 @@ function getfriend(){
                         'end':function(){
                         }
                     })
+                    addfriendbox.removeChild(p)
+
                 }else if(processvals==3){
                     var Mes = {}
                     if(Mes.dialog1){
@@ -82,6 +88,7 @@ function getfriend(){
                         'end':function(){
                         }
                     })
+                    addfriendbox.removeChild(p)
                 }
             })
             

@@ -49,6 +49,7 @@ $(document).ready(function () {
             timeout: 6000
         })
             .done(function (res) {
+                
                 if (res.code == 0 && res.data.length != 0) {
 
                     var message = res.data[0].message.split('<').join('&lt').split('>').join('&gt')
@@ -60,7 +61,7 @@ $(document).ready(function () {
                 <div class="headlogo2">
                 <img src="http://118.24.25.7/${localStorage.friend_head_log}"style="border-radius: 50%;width: 1.4rem;height:1.4rem"></div>
                 <div class='rightmm'>
-                <div class='nickname2'>${res.data.nickname}</div>
+                <div class='nickname2'>${nickname}</div>
                 <div class='mybox2'>${message}</div>
                 </div>
                 </div>
