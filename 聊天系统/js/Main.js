@@ -157,7 +157,7 @@ function set_add_information(arr_notice) {
         }
     }
 
-    $(".notice_area").on("click", ".notice_infomation", function () {
+    $(".notice_area").on("click", `.notice_infomation[user_id=${arr_notice.user_id}]`, function () {
         parent.location.href = '../html/chatpage.html'
         window.localStorage.setItem('friend_id', this.getAttribute("user_id"));
         window.localStorage.setItem('nick_name', this.getAttribute("uname"));
