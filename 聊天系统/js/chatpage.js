@@ -12,7 +12,6 @@ $(document).ready(function () {
     var all_net = obj = JSON.parse(window.localStorage.getItem("all_net"))
 
 
-
     // 返回按钮
     var lbtn = document.querySelector('.leftbtn');
     lbtn.onclick = function () {
