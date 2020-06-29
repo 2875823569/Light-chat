@@ -124,10 +124,11 @@ $(function () {
                 }
             })
 
-        }else if(e.target.className=='headImg'){
+        }else if(e.target.className=='headImg'){        
             var index=$(e.target.parentNode.parentNode).index();
             // curID=list[index].user_id;
             window.localStorage.setItem('friend_head_log',list[index].head_logo);
+            window.localStorage.setItem('friend_id',list[index].user_id);
            window.localStorage.setItem('nick_name',list[index].nickname);
             parent.location.href = 'chatpage.html';
             // console.log(list[index].nickname)
